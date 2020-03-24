@@ -17,7 +17,6 @@ export default class MemberDashboard extends Component {
       .catch(error => this.context.setError(error));
   }
 
-  // TODO: Fix the shit
   handleCompleted(id) {
     ApiService.completeTask(id)
       .then(this.context.completeTask(id))
@@ -50,6 +49,7 @@ export default class MemberDashboard extends Component {
   }
 
   render() {
+    const tasks = this.context.memberTasks;
     return (
       <section className="memberDashboard">
         <div className='member-container'>
@@ -59,10 +59,12 @@ export default class MemberDashboard extends Component {
           <Badge />
           <div className='chores-container'>
             <h2>Chore-llenges</h2>
-
+            {tasks.length ? 
             <div className="task_list">
-              <ul>{this.renderTasks()}</ul>
-            </div>
+              <ul>{this.renderTasks()}</ul> 
+            </div> :
+            <p className="taskAlert">You don't have any chores to do!</p>
+            }
           </div>
           </div>
       </section>

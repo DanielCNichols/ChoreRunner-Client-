@@ -14,32 +14,33 @@ export default class Badge extends Component {
     });
   }
 
-  renderBadge() {
-    const { levelInfo } = this.state;
+  // Badge refactor into grid starts here
+
+  renderGridBadge() {
+    const {levelInfo} = this.state;
+    
     return (
-      <section className="levelInfo">
+      <section className="levelInfo-grid">
+        <h3>Runner Stats</h3>
         <div className="badge">
-          <div className="image">
-            <img src={images[levelInfo.badge]} alt="Badge png" />
-          </div>
+          <img src = {images[levelInfo.badge]} alt="Badge.png"/>
+          <p>Level {levelInfo.level_id}</p>
         </div>
-        <div className="level">
-          <div className="level_totalScore">
-            <p>{levelInfo.name}</p>
-            <p>Level {levelInfo.level_id}</p>
-            <p>Total EXP: {levelInfo.total_score}</p>
-            <p>EXP needed to level up: {levelInfo.nextLevel}</p>
-          </div>
+        <div className="status">
+          <h3>{levelInfo.name}</h3>
+          <p>Total EXP: <span>{levelInfo.total_score}</span></p>
+          <p>EXP to next level: <span>{levelInfo.nextLevel}</span></p>
         </div>
       </section>
-    );
+    )
   }
+
 
   render() {
     if (this.state.levelInfo.badge) {
-      return this.renderBadge();
+      return this.renderGridBadge();
     }
     const { levelInfo } = this.state;
-    return <>{!!levelInfo.badge ? this.renderBadge() : <p> LOADING... </p>}</>;
+    return <>{!!levelInfo.badge ? this.renderGridBadge() : <p> LOADING... </p>}</>;
   }
 }

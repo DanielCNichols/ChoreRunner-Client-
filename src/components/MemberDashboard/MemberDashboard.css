@@ -17,6 +17,7 @@
   width: 95%;
   margin: 20px auto;
   padding-bottom: 20px;
+  border: 3px solid white;
 }
 
 .points span {
@@ -27,6 +28,12 @@
 .taskName p {
   color: white;
   font-size: 30px;
+  font-family: 'Electrolize', sans-serif;
+}
+
+.taskAlert {
+  color: white;
+  font-size: 20px;
   font-family: 'Electrolize', sans-serif;
 }
 
@@ -79,11 +86,6 @@
   }
 }
 
-/* .background-img{
-    background-image: url("../../images/ChoreRunner.png");
-    background-size: cover;
-    height: 100vh;
-} */
 
 .task_list ul {
     padding: 0;
@@ -106,12 +108,7 @@
   min-width: 80px;
 }
 @media screen and (min-width: 470px){
-/* 
-  .chores-container p,
-  .chores-container span {
-    color: white;
-    font-size: 30px;
-  } */
+
   .chores-container h2 {
     padding-top: 20px;
     color: rgb(255, 217, 0);
@@ -134,11 +131,7 @@
     }
   }
 
-  /* .background-img{
-        background-image: url("../../images/ChoreRunner.png");
-        background-size: cover;
-        height: 100vh;
-    } */
+
   .task_list li {
     width: 90%;
     margin: 0 auto;
@@ -168,12 +161,12 @@
   }
 
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 500px) {
   .memberDashboard {
     box-sizing: border-box;
     position: relative;
     height: 100vh;
-    padding-bottom: 1000px;
+    padding-bottom: 500px;
     overflow-y: auto;
     background-image: url("../../ImgAssets/ChoreRunner.png");
     background-size: cover;
@@ -187,7 +180,7 @@
     border-radius: 10px;
     margin-bottom: 100px;
     width: 80%;
-    margin: auto;
+    margin: 20px auto;
   }
 
 
@@ -208,8 +201,9 @@
 
   }
 }
+
 @media screen and (min-width: 1050px) {
   .chores-container {
-    width: 700px;
+    width: 60%;
   }
 }
