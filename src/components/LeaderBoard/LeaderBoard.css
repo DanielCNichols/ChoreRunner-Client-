@@ -1,15 +1,15 @@
-
-body {
+/* body {
   font-size: 1em;
-}
+} */
 
 .leaderboard_container {
   background: rgba(0, 0, 0, 0.7);
   /* border-radius: 10px; */
   min-width: 40%;
   margin: 20px auto;
-  width:95%;
+  width: 95%;
   border-radius: 10px;
+  border: 3px solid white;
 }
 
 .leader_board {
@@ -19,21 +19,16 @@ body {
   padding: 10px 0;
 }
 
-.leader_board h3{
+.leader_board h3 {
   color: rgb(255, 217, 0);
-}
-
-.headerRow {
-  width: auto;
-  display: flex;
-  padding: 5px 0;
-  border-bottom: 1px solid white;
 }
 
 .header_rank,
 .header_name,
 .header_score {
   text-align: center;
+  border-bottom: 2px solid white;
+  padding: 10px;
 }
 
 .score_display {
@@ -45,10 +40,10 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   font-size: 15px;
+  padding: 10px;
 }
 
 .rankings {
-  /* width: 80%; */
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
@@ -56,7 +51,6 @@ body {
   margin: 0 auto;
   font-size: 1.1em;
   font-family: 'Electrolize', sans-serif;
-
 }
 
 .rankings li {
@@ -74,38 +68,34 @@ body {
   background-image: url('../../ImgAssets/ChoreRunner.png');
 }
 
+.rankings li:nth-child(1)::before,
+  .rankings li:nth-child(2)::before,
+  .rankings li:nth-child(3)::before {
+    display: block;
+    margin: 0 auto;
+    background-size: 25px;
+    height: 35px;
+    width: 25px;
+  }
+
 .rankings li:nth-child(1):before {
   background-image: url('../../ImgAssets/FirstCup.png');
-  display: block;
-  margin: 0 auto;
-      background-size: 80px;
-    height: 100px;
-    width: 80px;
+
 }
 
 .rankings li:nth-child(2):before {
   background-image: url('../../ImgAssets/SecondCup.png');
-  display: block;
-  margin: 0 auto;
-      background-size: 80px;
-    height: 100px;
-    width: 80px;
 }
 
 .rankings li:nth-child(3):before {
   background-image: url('../../ImgAssets/ThirdCup.png');
-  display: block;
-  margin: 0 auto;
-      background-size: 80px;
-    height: 100px;
-    width: 80px;
 }
 
 .rankings li:nth-child(-n + 3) .score {
   display: block;
 }
 .rank {
-  font-size: 30px;
+  font-size: 1.1em;
 }
 
 .name_col {
@@ -118,23 +108,42 @@ body {
   text-align: center;
 }
 
-
-@media (min-width:500px){
-    .leaderboard_container {
-    width: 70%;
+@media (min-width: 500px) {
+  .leaderboard_container {
+    width: 80%;
   }
   .rankings {
-  font-size: 1.3em;
-  font-family: 'Electrolize', sans-serif;
-}
+    font-size: 1.3em;
+    font-family: 'Electrolize', sans-serif;
+  }
+
+  .rankings li:nth-child(1)::before,
+  .rankings li:nth-child(2)::before,
+  .rankings li:nth-child(3)::before {
+    background-size: 40px;
+    height: 50px;
+    width: 40px;
+  }
+
+  .rank {
+    font-size: 1.2em;
+  }
 }
 
-@media (min-width:850px){
-    .leaderboard_container {
-    width: 700px;
+@media (min-width: 850px) {
+  .leaderboard_container {
+    width: 60%;
   }
-    .rankings {
-  font-size: 1.4em;
-  font-family: 'Electrolize', sans-serif;
-}
+  .rankings {
+    font-size: 1.4em;
+    font-family: 'Electrolize', sans-serif;
+  }
+
+  .rankings li:nth-child(1)::before,
+  .rankings li:nth-child(2)::before,
+  .rankings li:nth-child(3)::before {
+    background-size: 50px;
+    height: 60px;
+    width: 50px;
+  }
 }
