@@ -1,6 +1,7 @@
 .memberDashboard {
+  box-sizing: border-box;
   position: relative;
-  height: 85vh;
+  height:100vh;
   padding: 15vh 0;
   overflow-y: auto;
   background-image: url('../../ImgAssets/ChoreRunner.png');
@@ -14,7 +15,7 @@
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   width: 95%;
-  margin: auto;
+  margin: 20px auto;
   padding-bottom: 20px;
 }
 
@@ -26,6 +27,7 @@
 .taskName p {
   color: white;
   font-size: 30px;
+  font-family: 'Electrolize', sans-serif;
 }
 
 
@@ -40,7 +42,7 @@
 .member-container {
   position: absolute;
   width: 100%;
-  padding-bottom: 15vh;
+  /* padding-bottom: 15vh; */
 }
 
 .badge-task-container {
@@ -168,8 +170,10 @@
 }
 @media screen and (min-width: 600px) {
   .memberDashboard {
+    box-sizing: border-box;
     position: relative;
-    height: 85vh;
+    height: 100vh;
+    padding-bottom: 1000px;
     overflow-y: auto;
     background-image: url("../../ImgAssets/ChoreRunner.png");
     background-size: cover;
@@ -181,6 +185,7 @@
   .chores-container {
     background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
+    margin-bottom: 100px;
     width: 80%;
     margin: auto;
   }

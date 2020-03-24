@@ -17,6 +17,7 @@ export default class MemberDashboard extends Component {
       .catch(error => this.context.setError(error));
   }
 
+  // TODO: Fix the shit
   handleCompleted(id) {
     ApiService.completeTask(id)
       .then(this.context.completeTask(id))

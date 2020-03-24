@@ -8,6 +8,8 @@ import EditHouseholdInput from '../EditHouseholdInput/EditHouseholdInput';
 import ApiService from '../../services/api-service.js';
 import AddMembers from '../AddMembers/AddMembers';
 import './ParentDashboard.css';
+import {IoMdPersonAdd} from "react-icons/io";
+import Modal from '../Modal/Modal'
 
 export default class ParentDashboard extends Component {
   constructor(props) {
@@ -20,6 +22,7 @@ export default class ParentDashboard extends Component {
       id: null,
       members: {},
       submitFeedback: '',
+      addMember: false
     };
   }
 
@@ -100,6 +103,12 @@ export default class ParentDashboard extends Component {
     });
   };
 
+  toggleAddMember = () => {
+    this.setState({
+      addMember: !this.state.addMember
+    });
+  }
+
   handleHouseholdSubmit = e => {
     e.preventDefault();
     let name = e.target.householdName.value;
@@ -149,6 +158,7 @@ export default class ParentDashboard extends Component {
 
   renderHouseholds = () => {
     const { households, deleteHousehold } = this.context;
+
     return households.map(household => {
       return (
         <div key={household.id} className="house_card">
@@ -160,6 +170,11 @@ export default class ParentDashboard extends Component {
             >
               See Household
             </Link>
+            <button
+            onClick={() => this.toggleAddMember()}>
+              <IoMdPersonAdd
+              className="add-icon"/>
+            </button>
             <button
               onClick={() =>
                 this.setState({ editingHousehold: true, editId: household.id })
@@ -199,6 +214,7 @@ export default class ParentDashboard extends Component {
                 id={household.id}
               />
             ) : null}
+             
             {this.state.members && this.state.members[household.id] ? (
               <ul>
                 {this.state.members[household.id].members.map(member => {
@@ -225,12 +241,15 @@ export default class ParentDashboard extends Component {
   };
 
   render() {
+    const addMember = this.state.addMember;
+
     return (
       <section className="parent_dashboard">
         <div className="parent_dashboard-feedback">
           <h3>Get Started!</h3>
           {this.renderUserFeedback()}
         </div>
+        {addMember ? <Modal><AddMembers handleRenderUpdate={this.handleRenderAfterAddMember}/></Modal>: null }
         <div className="add-forms-container">
           <div className="add-household container">
             <form
@@ -259,7 +278,7 @@ export default class ParentDashboard extends Component {
             </form>
           </div>
           <div id="add-member" className="household-details container">
-            <AddMembers handleRenderUpdate={this.handleRenderAfterAddMember} />
+            
           </div>
         </div>
         <div className="household_buttons">{this.renderHouseholds()}</div>
