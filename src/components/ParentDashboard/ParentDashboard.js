@@ -158,10 +158,13 @@ export default class ParentDashboard extends Component {
 
   renderHouseholds = () => {
     const { households, deleteHousehold } = this.context;
+    const addMember = this.state.addMember;
 
     return households.map(household => {
       return (
         <div key={household.id} className="house_card">
+           {addMember ? <Modal><AddMembers houseName={household.name} handleCancel={this.toggleAddMember}
+           handleRenderUpdate={this.handleRenderAfterAddMember}/></Modal>: null }
           <div className="buttons-container">
             <Link
               className="see-dash"
@@ -241,15 +244,13 @@ export default class ParentDashboard extends Component {
   };
 
   render() {
-    const addMember = this.state.addMember;
-
     return (
       <section className="parent_dashboard">
         <div className="parent_dashboard-feedback">
           <h3>Get Started!</h3>
           {this.renderUserFeedback()}
         </div>
-        {addMember ? <Modal><AddMembers handleRenderUpdate={this.handleRenderAfterAddMember}/></Modal>: null }
+       
         <div className="add-forms-container">
           <div className="add-household container">
             <form
@@ -276,9 +277,6 @@ export default class ParentDashboard extends Component {
                 </div>
               ) : null}
             </form>
-          </div>
-          <div id="add-member" className="household-details container">
-            
           </div>
         </div>
         <div className="household_buttons">{this.renderHouseholds()}</div>

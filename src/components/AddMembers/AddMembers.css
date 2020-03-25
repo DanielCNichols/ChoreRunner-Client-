@@ -1,0 +1,118 @@
+/* Mobile design pulled from parentDash.css */
+
+.add-member {
+box-sizing: border-box;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 10px 20px; */
+  border: none;
+}
+
+.add-member fieldset {
+  border: none;
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-member input {
+    margin: 0 auto;
+    width: 80%;
+    /* min-width: 200px; */
+}
+
+.add-member label {
+  font-size: 20px;
+  color: rgb(255, 217, 0);
+  padding-bottom: 5px;
+  font-family: 'Electrolize', sans-serif;
+  margin: 10px auto 5px auto;
+  width: 80%;
+}
+
+
+/* ------------- select dropdown ------------- */
+.select-css {
+  font-size: 16px;
+  font-family: 'Electrolize', sans-serif;
+  /* font-weight: 600; */
+  width: 225px;
+  color: #444;
+  line-height: 1.3;
+  padding: 0.6em 2em 0.5em 0.8em;
+  padding: 5px;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  border-radius: 7px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  /* will use a different arrow icon because cookies n stuff*/
+  background-image: url('https://image.flaticon.com/icons/svg/60/60995.svg');
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  margin: 5px auto;
+}
+
+.select-css::-ms-expand {
+  display: none;
+}
+.select-css:hover {
+  border-color: #888;
+  cursor: pointer;
+}
+.select-css:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+.select-css option {
+  font-weight: normal;
+}
+/* ------------- select dropdown ------------- */
+
+.add-member button {
+  text-align: center;
+  margin: 20px auto;
+  font-family: 'Electrolize', sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  background-color: rgb(255, 217, 0);
+  text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+  color: #725f00;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0.3em rgb(134, 112, 0);
+  cursor: pointer;
+}
+
+.add-member p, .add-member legend {
+  font-family: 'Press Start 2P', cursive;
+  color: rgb(255, 217, 0);
+  line-height: 25px;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.alert {
+  font-family: 'Electrolize', sans-serif;
+}
+.alertMsg {
+  max-width: 280px;
+  word-wrap: break-word;
+}
+

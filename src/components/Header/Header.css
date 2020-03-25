@@ -12,7 +12,7 @@ header {
     align-items: center;
     position: fixed;
     width: 100%;
-    background-color: rgba(86,74,216,1);
+    background-color: rgb(48, 34, 206);
     z-index: 1;
 }
 header > h1 {

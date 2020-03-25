@@ -1,6 +1,7 @@
 import React from 'react';
 import ApiService from '../../services/api-service'
 import HouseholdContext from '../../contexts/HouseHoldContext';
+import './AddMembers.css'
 
 export default class AddMembers extends React.Component {
   state = {
@@ -87,14 +88,15 @@ export default class AddMembers extends React.Component {
     const { error } = this.state;
     const { usernameError, householdError } = this.state.validateError;
     return (
-      <div className="add-member container">
-        <p>ADD HOUSEHOLD MEMBERS:</p>
-        <form onSubmit={this.handleSubmit} id="add-household-form" className="add-household-form">
+      <form onSubmit={this.handleSubmit} className="add-member container" id="add-household-form">
+      <fieldset>
+        <legend>Add a Member</legend>
+          <p>{this.props.houseName}</p>
           <label htmlFor="member-name">Name</label>
           <input type="text" id="member-name" name="name" required onChange={this.onChangeHandle} value={this.state.name}></input>
 
           <label htmlFor="household">Household</label>
-          <select className='select-css' type="text" id="assignee" name="household_id" onChange={this.onSelectChangeHandle} defaultValue="Select household" required>
+          <select className="select-css" name="household_id" onChange={this.onSelectChangeHandle} defaultValue="Select household" required>
             <option value="">Select Household</option>
             {households.map((hh, index) => <option key={index} value={hh.id}>{hh.name}</option>)}
           </select>
@@ -103,12 +105,13 @@ export default class AddMembers extends React.Component {
           <input type="text" id="child-username" name="username" required onChange={this.onChangeHandle} value={this.state.username}></input>
           <label htmlFor="child-password">Member Password</label>
           <input type="password" id="child-password" name="password" required onChange={this.onChangeHandle} value={this.state.password}></input>
-          <button type="submit" className="submitHH">+ add new member</button>
+          <button type="submit" className="submitHH">+ Add New Member</button>
+          <button type="button" onClick={this.props.handleCancel}>Cancel</button>
           <div role="alert">
             {<p className='alertMsg'>{error || householdError || usernameError}</p>}
           </div>
+          </fieldset>
         </form>
-      </div>
     )
   }
 }
