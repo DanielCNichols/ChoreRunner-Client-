@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { faSave } from '@fortawesome/free-solid-svg-icons';
 import ApiService from '../../services/api-service.js';
 import HouseholdContext from '../../contexts/HouseHoldContext';
 
