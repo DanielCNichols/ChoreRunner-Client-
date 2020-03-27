@@ -91,7 +91,7 @@ export default class AddMembers extends React.Component {
       <form onSubmit={this.handleSubmit} className="add-member container" id="add-household-form">
       <fieldset>
         <legend>Add a Member</legend>
-          <p>{this.props.houseName}</p>
+          {/* <p>{this.props.houseName}</p> */}
           <label htmlFor="member-name">Name</label>
           <input type="text" id="member-name" name="name" required onChange={this.onChangeHandle} value={this.state.name}></input>
 

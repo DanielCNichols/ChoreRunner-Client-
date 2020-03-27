@@ -1,0 +1,54 @@
+.edit-household-form {
+  box-sizing: border-box;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px; 
+  border: none;
+}
+
+.edit-household-form fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-household-form legend {
+    font-family: "Press Start 2P", italic;
+    margin: 10px auto;
+    color: #FFD900;
+}
+
+
+.edit-household-form button {
+    text-align: center;
+    margin: 10px auto 20px auto;
+    font-family: 'Electrolize', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(255, 217, 0);
+    text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+    color: #725f00;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 0.3em rgb(134, 112, 0);
+    cursor: pointer;
+  }
+
+  .edit-household-form label {
+      font-family: "Electrolize", sans-serif;
+      margin: 0 auto;
+      color: #FFD900;
+  }
+
+  .edit-household-form input {
+      margin: 10px auto 20px auto;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+  }
+
+

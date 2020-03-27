@@ -1,10 +1,12 @@
 import React from 'react';
-import './Modal.css'
+import Overlay from '../Overlay/Overlay'
+import './Modal.css';
 
 export default function Modal(props) {
-    return (
-        <section className="modal">
-        {props.children}
-        </section>
-    )
+  return (
+
+    <Overlay>
+      <section className="modal">{props.children}</section>
+    </Overlay>
+  );
 }

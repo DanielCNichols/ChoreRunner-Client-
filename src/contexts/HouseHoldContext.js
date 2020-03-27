@@ -6,6 +6,7 @@ const HouseholdContext = React.createContext({
   memberTasks: [],
   error: null,
   setHouseholds: () => {},
+  updateHousehold: () => {},
   addHousehold: () => {},
   deleteHousehold: () => {},
   completeTask: () => {},
@@ -36,6 +37,18 @@ export class HouseholdProvider extends Component {
   addHousehold = newHousehold => {
     this.setHouseholds([...this.state.households, newHousehold]);
   };
+
+  updateHousehold = (id, updateHouse) =>  {
+    console.log(updateHouse)
+    let newHouses = this.state.households.map(household => (
+      household.id !== id) ? household : household = updateHouse
+    )
+    console.log(newHouses)
+    this.setState({
+      households: newHouses,
+    })
+    console.log(this.state.households)
+  }
 
   deleteHousehold = (event, householdId) => {
     event.preventDefault();
@@ -83,6 +96,7 @@ export class HouseholdProvider extends Component {
       memberTasks: this.state.memberTasks,
       error: this.state.error,
       setHouseholds: this.setHouseholds,
+      updateHousehold: this.updateHousehold,
       setMemberTasks: this.setMemberTasks,
       addHousehold: this.addHousehold,
       deleteHousehold: this.deleteHousehold,

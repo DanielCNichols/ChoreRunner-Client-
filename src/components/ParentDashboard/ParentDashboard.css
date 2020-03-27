@@ -58,22 +58,6 @@ font-family: 'Electrolize', sans-serif; */
   width: 100%;
 }
 
-.add-household button {
-  text-align: center;
-  margin: 20px 5px;
-  font-family: 'Electrolize', sans-serif;
-  font-size: 20px;
-  padding: 10px;
-  background-color: rgb(255, 217, 0);
-  text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
-  color: #725f00;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -o-border-radius: 7px;
-  border-radius: 7px;
-  box-shadow: 0 0.3em rgb(134, 112, 0);
-  cursor: pointer;
-}
 
 .add-house-label {
   font-family: 'Press Start 2P', cursive;
@@ -93,9 +77,9 @@ font-family: 'Electrolize', sans-serif; */
 .household_buttons {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 85%;
   align-items: center;
-  margin: 20px 0 100px 0;
+  margin: 10px 0 100px 0;
 }
 .house_card {
   position: relative;
@@ -117,6 +101,34 @@ font-family: 'Electrolize', sans-serif; */
   border-radius: 9px;
   border: #334ab0 solid 1px;
   box-shadow: 0 0.3em #334ab0;
+
+  /* <-----------new card styling------------> */
+}
+
+.dash-buttons {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto 10px auto;
+}
+
+.dash-buttons button {
+  text-align: center;
+  margin: 15px auto;
+  font-family: 'Electrolize', sans-serif;
+  font-size: 20px;
+  padding: 15px;
+  background-color: rgb(255, 217, 0);
+  text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+  color: #725f00;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0.3em rgb(134, 112, 0);
+  cursor: pointer;
+  width: 80%;
 }
 
 .buttons-container {
@@ -154,7 +166,7 @@ font-family: 'Electrolize', sans-serif; */
 .add-icon {
   font-size: 1.2em;
 }
-
+/* 
 .edit-input-field {
   width: 100%;
   display: flex;
@@ -168,7 +180,7 @@ font-family: 'Electrolize', sans-serif; */
   border: 0;
   padding-left: 15px;
   cursor: pointer;
-}
+} */
 .update-household {
   width: 70%;
   font-family: 'Electrolize', sans-serif;
@@ -247,16 +259,32 @@ font-family: 'Electrolize', sans-serif; */
   }
 
   .parent_dashboard-feedback {
-    width: 500px;
+    width: 70%;
+    max-width: 550px;
   }
   .edit-input-field {
     width: 350px;
     margin: auto;
   }
+
+  
+.dash-buttons {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dash-buttons button {
+  width: 40%;
+  max-width: 225px;
+  margin: 0;
+}
+
 }
 @media screen and (min-width: 800px) {
   .house_card {
-    width: 460px;
+    width: 500px;
   }
   .add-household {
     display: inline-block;
@@ -266,10 +294,18 @@ font-family: 'Electrolize', sans-serif; */
     display: inline-block;
     width: 50%;
   }
+
+  .dash-buttons {
+    width: 500px;
+  }
 }
 
 @media screen and (min-width: 950px) {
   .add-forms-container {
-    width: 950px;
+    width: 90%;
+  }
+
+  .card-members {
+    columns: 2 auto;
   }
 }

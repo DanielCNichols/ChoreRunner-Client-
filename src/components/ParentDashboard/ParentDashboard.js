@@ -8,8 +8,8 @@ import EditHouseholdInput from '../EditHouseholdInput/EditHouseholdInput';
 import ApiService from '../../services/api-service.js';
 import AddMembers from '../AddMembers/AddMembers';
 import './ParentDashboard.css';
-import {IoMdPersonAdd} from "react-icons/io";
-import Modal from '../Modal/Modal'
+import Modal from '../Modal/Modal';
+import AddHouseHoldForm from '../AddHouseHoldForm/AddHouseHoldForm';
 
 export default class ParentDashboard extends Component {
   constructor(props) {
@@ -22,7 +22,8 @@ export default class ParentDashboard extends Component {
       id: null,
       members: {},
       submitFeedback: '',
-      addMember: false
+      addMember: false,
+      addHouse: false,
     };
   }
 
@@ -92,22 +93,24 @@ export default class ParentDashboard extends Component {
     }
   };
 
-  onChangeHandle = e => {
-    this.setState({
-      name: e.target.value,
-    });
-  };
-  handleCancel = () => {
+  //HOUSEHOLD METHODS
+  handleCancelEdit = () => {
     this.setState({
       editingHousehold: false,
     });
   };
 
+  toggleAddHouse = () => {
+    this.setState({
+      addHouse: !this.state.addHouse,
+    });
+  };
+
   toggleAddMember = () => {
     this.setState({
-      addMember: !this.state.addMember
+      addMember: !this.state.addMember,
     });
-  }
+  };
 
   handleHouseholdSubmit = e => {
     e.preventDefault();
@@ -116,11 +119,8 @@ export default class ParentDashboard extends Component {
       .then(res => {
         //Set form feedback to show successful household add and clear add input.
         this.context.addHousehold(res);
-        this.setState({
-          submitFeedback: `${this.householdName.value} Household Added! Now Add Members!`,
-        });
         clearInterval();
-        this.householdName.value = '';
+        this.toggleAddHouse();
         this.render();
       })
       .catch(error => {
@@ -134,37 +134,24 @@ export default class ParentDashboard extends Component {
     this.setState({ editingHousehold: !this.state.editingHousehold });
   };
 
-  handleEditHouseholdName = (householdId, name) => {
-    let user_id = this.state.user_id;
-
-    const newHousehold = {
-      id: householdId,
-      name,
-      user_id,
-    };
-
-    ApiService.editHouseholdName(householdId, newHousehold)
-      .then(res => this.context.setHouseholds(res))
-      .catch(this.context.setError);
-
-    this.setState({ editingHousehold: false });
-  };
-
-  onChangeHandle = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
   renderHouseholds = () => {
     const { households, deleteHousehold } = this.context;
-    const addMember = this.state.addMember;
 
     return households.map(household => {
       return (
         <div key={household.id} className="house_card">
-           {addMember ? <Modal><AddMembers houseName={household.name} handleCancel={this.toggleAddMember}
-           handleRenderUpdate={this.handleRenderAfterAddMember}/></Modal>: null }
+          {this.state.editingHousehold &&
+            household.id === this.state.editId ? (
+              <Modal>
+              <EditHouseholdInput
+                name={household.name}
+                edit={this.state.editingHousehold}
+                handleEditHouseholdName={this.handleEditHouseholdName}
+                handleCancel={this.toggleEditHousehold}
+                id={household.id}
+                />
+                </Modal>
+            ) : null}
           <div className="buttons-container">
             <Link
               className="see-dash"
@@ -173,11 +160,6 @@ export default class ParentDashboard extends Component {
             >
               See Household
             </Link>
-            <button
-            onClick={() => this.toggleAddMember()}>
-              <IoMdPersonAdd
-              className="add-icon"/>
-            </button>
             <button
               onClick={() =>
                 this.setState({ editingHousehold: true, editId: household.id })
@@ -207,19 +189,10 @@ export default class ParentDashboard extends Component {
             <p>
               <span>{household.name}</span>
             </p>
-            {this.state.editingHousehold &&
-            household.id === this.state.editId ? (
-              <EditHouseholdInput
-                name={household.name}
-                edit={this.state.editingHousehold}
-                handleEditHouseholdName={this.handleEditHouseholdName}
-                handleCancel={this.handleCancel}
-                id={household.id}
-              />
-            ) : null}
-             
+            
+
             {this.state.members && this.state.members[household.id] ? (
-              <ul>
+              <ul className="card-members">
                 {this.state.members[household.id].members.map(member => {
                   return <li key={member.id}>{member.name}</li>;
                 })}
@@ -244,41 +217,36 @@ export default class ParentDashboard extends Component {
   };
 
   render() {
+    const { addMember, addHouse } = this.state;
     return (
       <section className="parent_dashboard">
         <div className="parent_dashboard-feedback">
           <h3>Get Started!</h3>
           {this.renderUserFeedback()}
         </div>
-       
-        <div className="add-forms-container">
-          <div className="add-household container">
-            <form
-              className="add-household-form"
-              onSubmit={this.handleHouseholdSubmit}
-            >
-              <label className="add-house-label" htmlFor="householdName">
-                {' '}
-                ADD HOUSEHOLD:
-              </label>
-              <input
-                name="householdName"
-                type="text"
-                required
-                ref={input => (this.householdName = input)}
-              ></input>
-              <button className="submitHH" type="submit">
-                + add new household
-              </button>
-              {/*Shows success feedback when household submitted successfully*/}
-              {!!this.state.submitFeedback ? (
-                <div className="household-add-form-feedback">
-                  {this.state.submitFeedback}
-                </div>
-              ) : null}
-            </form>
-          </div>
+
+        {addMember ? (
+          <Modal>
+            <AddMembers
+              handleCancel={this.toggleAddMember}
+              handleRenderUpdate={this.handleRenderAfterAddMember}
+            />
+          </Modal>
+        ) : null}
+        {addHouse ? (
+          <Modal>
+            <AddHouseHoldForm
+              handleHouseSubmit={this.handleHouseholdSubmit}
+              handleCancel={this.toggleAddHouse}
+              feedback={this.state.submitFeedback}
+            ></AddHouseHoldForm>
+          </Modal>
+        ) : null}
+        <div className="dash-buttons">
+          <button onClick={this.toggleAddMember}>Add Member</button>
+          <button onClick={this.toggleAddHouse}>Add House</button>
         </div>
+
         <div className="household_buttons">{this.renderHouseholds()}</div>
       </section>
     );
