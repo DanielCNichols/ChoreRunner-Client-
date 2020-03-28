@@ -65,7 +65,7 @@ export default class ParentDashboard extends Component {
         <p>2. Add Members to your household</p>
         <p>
           3. Manage your households tasks by clicking{' '}
-          <span>'See Household'</span>{' '}
+          <span>'See Group'</span>{' '}
         </p>
       </>
     );
@@ -139,27 +139,25 @@ export default class ParentDashboard extends Component {
 
     return households.map(household => {
       return (
+        // When the edit button is clicked, this will render as an overlay.
         <div key={household.id} className="house_card">
-          {this.state.editingHousehold &&
-            household.id === this.state.editId ? (
-              <Modal>
+          {this.state.editingHousehold && household.id === this.state.editId ? (
+            <Modal>
               <EditHouseholdInput
                 name={household.name}
                 edit={this.state.editingHousehold}
                 handleEditHouseholdName={this.handleEditHouseholdName}
                 handleCancel={this.toggleEditHousehold}
                 id={household.id}
-                />
-                </Modal>
-            ) : null}
-          <div className="buttons-container">
-            <Link
-              className="see-dash"
-              to={`/household/${household.id}`}
-              style={{ textDecoration: 'none' }}
-            >
-              See Household
-            </Link>
+              />
+            </Modal>
+          ) : null}
+
+          <div className="house_card_link">
+            <Link to={`/household/${household.id}`}>See Group -></Link>
+          </div>
+
+          <div className="house_card_controls">
             <button
               onClick={() =>
                 this.setState({ editingHousehold: true, editId: household.id })
@@ -185,32 +183,28 @@ export default class ParentDashboard extends Component {
               />{' '}
             </button>
           </div>
-          <div className="card-info">
-            <p>
-              <span>{household.name}</span>
-            </p>
-            
 
-            {this.state.members && this.state.members[household.id] ? (
-              <ul className="card-members">
-                {this.state.members[household.id].members.map(member => {
-                  return <li key={member.id}>{member.name}</li>;
-                })}
-              </ul>
-            ) : (
-              <ul>
-                <li>
-                  It looks like this household has no members yet!{' '}
-                  <span>
-                    <a style={{ textDecoration: 'none' }} href={'#add-member'}>
-                      Add Household Members
-                    </a>
-                  </span>
-                  .
-                </li>
-              </ul>
-            )}
-          </div>
+          <h3>{household.name}</h3>
+
+          <h4>Members</h4>
+
+          {/* Render the names */}
+          {this.state.members && this.state.members[household.id] ? (
+            <ul className="card-members">
+              {this.state.members[household.id].members.map(member => {
+                return <li key={member.id}>{member.name}</li>;
+              })}
+            </ul>
+          ) : (
+            <ul>
+              <li>
+                It looks like this household has no members yet!{' '}
+                <span>
+                  <a href={'#add-member'}>Add Household Members</a>
+                </span>
+              </li>
+            </ul>
+          )}
         </div>
       );
     });

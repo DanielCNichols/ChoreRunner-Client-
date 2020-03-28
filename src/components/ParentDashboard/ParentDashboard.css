@@ -166,21 +166,7 @@ font-family: 'Electrolize', sans-serif; */
 .add-icon {
   font-size: 1.2em;
 }
-/* 
-.edit-input-field {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 10px;
-}
 
-.edit-input-field button {
-  background-color: transparent;
-  border: 0;
-  padding-left: 15px;
-  cursor: pointer;
-} */
 .update-household {
   width: 70%;
   font-family: 'Electrolize', sans-serif;
@@ -308,4 +294,77 @@ font-family: 'Electrolize', sans-serif; */
   .card-members {
     columns: 2 auto;
   }
+  
+  /* Grid rules  */
+
+  .house_card {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px 60px 100px 50px;
+    padding: 0px;
+    border: 3px solid white;
+    border-radius: 10px;
+  }
+
+  .house_card_link {
+    grid-column-start: span 2;
+    grid-row-start: 4;
+    width: 100%;
+    text-align: right;
+    /* display: flex;
+    justify-content: flex-end; */
+  } 
+
+  .house_card_link a {
+    color: white;
+    text-align: right;
+    font-family: "Electrolize", sans-serif;
+    padding: 0 20px;
+  } 
+
+  .house_card_controls {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    display: flex;
+    justify-content: flex-end;
+    /* border-bottom: 3px solid white; */
+    /* padding: 0 10px; */
+  }
+
+  .house_card_controls svg {
+    margin: 0 10px;
+  }
+
+
+  .house_card h3 {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    margin: 0;
+    padding: 20px;
+    font-familY: "Press Start 2P", cursive;
+    color: #FFD900;
+    text-align: left;
+    /* border-bottom: 3px solid white; */
+  }
+
+  .house_card h4 {
+    grid-column-start: span 2;
+    grid-row-start: 2;
+    text-align: center;
+    font-familY: "Press Start 2P", cursive;
+    font-size: .8em;
+    border-top: 3px solid white;
+
+    /* font-family: 'Electrolize', sans-serif; */
+    color: white;
+    /* margin: 10px 0; */
+    padding: 15px 0;
+  }
+
+  .card-members {
+    grid-column-start: span 2;
+    grid-row-start: 3;
+  }
+  
 }
