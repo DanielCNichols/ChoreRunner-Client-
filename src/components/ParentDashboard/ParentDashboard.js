@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import HouseholdContext from '../../contexts/HouseHoldContext';
 import EditHouseholdInput from '../EditHouseholdInput/EditHouseholdInput';
 import ApiService from '../../services/api-service.js';
@@ -61,11 +63,10 @@ export default class ParentDashboard extends Component {
   renderUserFeedback() {
     return (
       <>
-        <p>1. Add Households form to create your households.</p>
-        <p>2. Add Members to your household</p>
+        <p>1. Click the "Add Group" button to create groups</p>
+        <p>2. Add members to your groups with the "Add Member" button</p>
         <p>
-          3. Manage your households tasks by clicking{' '}
-          <span>'See Group'</span>{' '}
+          3. Manage your group's tasks by clicking <span>'See Group'</span>{' '}
         </p>
       </>
     );
@@ -153,9 +154,7 @@ export default class ParentDashboard extends Component {
             </Modal>
           ) : null}
 
-          <div className="house_card_link">
-            <Link to={`/household/${household.id}`}>See Group -></Link>
-          </div>
+          <h3>{household.name}</h3>
 
           <div className="house_card_controls">
             <button
@@ -184,7 +183,8 @@ export default class ParentDashboard extends Component {
             </button>
           </div>
 
-          <h3>{household.name}</h3>
+            <hr className="rule" />
+
 
           <h4>Members</h4>
 
@@ -205,6 +205,13 @@ export default class ParentDashboard extends Component {
               </li>
             </ul>
           )}
+
+          <div className="house_card_link">
+            <Link to={`/household/${household.id}`}>
+              See Group{' '}
+              <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
+            </Link>
+          </div>
         </div>
       );
     });
@@ -238,7 +245,7 @@ export default class ParentDashboard extends Component {
         ) : null}
         <div className="dash-buttons">
           <button onClick={this.toggleAddMember}>Add Member</button>
-          <button onClick={this.toggleAddHouse}>Add House</button>
+          <button onClick={this.toggleAddHouse}>Add Group</button>
         </div>
 
         <div className="household_buttons">{this.renderHouseholds()}</div>

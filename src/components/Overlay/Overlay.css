@@ -4,6 +4,7 @@
     background-color: rgba(0, 0, 0, 0.527);
     position: fixed;
     top: -10%;
+    left: 0;
     z-index: 1;
 
     display: flex;

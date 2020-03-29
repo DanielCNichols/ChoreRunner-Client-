@@ -14,13 +14,18 @@ font-family: 'Electrolize', sans-serif; */
   flex-direction: column;
 }
 
+.parent_dashboard-feedback h3 {
+  text-align: center;
+  width: 100%;
+}
+
 .parent_dashboard-feedback {
   width: 85%;
   margin: auto;
-  display: flex;
+  display: flex; 
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 0px 10px 30px 10px;
   background: rgb(0, 0, 0, 0.5);
   position: relative;
@@ -34,15 +39,37 @@ font-family: 'Electrolize', sans-serif; */
     transform: translateY(0px);
   }
   to {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 }
+
 @-webkit-keyframes bounce {
   from {
     transform: translateY(0px);
   }
   to {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+  }
+}
+
+/* .arrow-icon:hover {
+  
+} */
+
+@keyframes point {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@-webkit-keyframes point {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(3px);
   }
 }
 
@@ -83,17 +110,12 @@ font-family: 'Electrolize', sans-serif; */
 }
 .house_card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  min-width: 300px;
   min-height: 250px;
-  text-align: center;
   margin: 10px;
   font-family: 'Fredoka One', cursive;
   font-size: 23px;
-  padding: 10px;
   background-color: #3e5ad6;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -101,9 +123,97 @@ font-family: 'Electrolize', sans-serif; */
   border-radius: 9px;
   border: #334ab0 solid 1px;
   box-shadow: 0 0.3em #334ab0;
-
-  /* <-----------new card styling------------> */
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto 4px 60px auto 50px;
+  /* padding: 20px 10px; */
+  border: 3px solid white;
+  border-radius: 10px;
+  min-width: 310px;
 }
+
+.house_card_link {
+  grid-column-start: span 2;
+  grid-row-start: 5;
+  width: 100%;
+  text-align: right;
+  padding: 10px;
+} 
+
+.house_card_link a:hover {
+  color: rgb(255, 217, 0); /* yellow */
+}
+
+.house_card_link a:hover svg {
+  animation: point 500ms infinite alternate;
+  -webkit-animation: point 500ms infinite alternate;
+  border-radius: 10px;
+  color: rgb(255, 217, 0); /* yellow */
+}
+
+.house_card_link a {
+  color: white;
+  text-align: right;
+  font-family: "Electrolize", sans-serif;
+  padding: 0 20px;
+} 
+
+.house_card_controls {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 50%;
+}
+
+.house_card_controls svg {
+  margin: 0 10px;
+}
+
+.rule {
+  color: white;
+  background-color: white;
+  font-size: 1em;
+  height: 3px;
+  grid-column-start: span 2;
+  grid-row-start: 2;
+  width: inherit;
+  margin: 10px 0;
+  padding: 0;
+}
+
+
+.house_card h3 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  margin: 0;
+  padding: 10px;
+  font-familY: "Press Start 2P", cursive;
+  font-size: 1.2rem;
+  color: #FFD900;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.house_card h4 {
+  grid-column-start: span 2;
+  grid-row-start: 3;
+  text-align: center;
+  font-familY: "Press Start 2P", cursive;
+  font-size: .8em;
+  color: white;
+
+}
+
+.card-members {
+  grid-column-start: span 2;
+  grid-row-start: 4;
+  columns: 2 auto;
+}
+
 
 .dash-buttons {
   width: 80%;
@@ -162,7 +272,6 @@ font-family: 'Electrolize', sans-serif; */
   color: rgb(255, 217, 0); /* yellow */
 }
 
-/* THIS IS THE NEW SIZING FOR THE NEW ICONS WHEN WE GET THEM! */
 .add-icon {
   font-size: 1.2em;
 }
@@ -241,13 +350,18 @@ font-family: 'Electrolize', sans-serif; */
 
 @media screen and (min-width: 580px) {
   .house_card {
-    width: 80%;
+    width: 60%;
+  }
+
+  .rule {
+    width: 100%;
   }
 
   .parent_dashboard-feedback {
-    width: 70%;
+    width: 50%;
     max-width: 550px;
   }
+
   .edit-input-field {
     width: 350px;
     margin: auto;
@@ -255,7 +369,7 @@ font-family: 'Electrolize', sans-serif; */
 
   
 .dash-buttons {
-  width: 70%;
+  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -264,11 +378,15 @@ font-family: 'Electrolize', sans-serif; */
 .dash-buttons button {
   width: 40%;
   max-width: 225px;
+  min-width: 150px;
   margin: 0;
 }
 
 }
 @media screen and (min-width: 800px) {
+  .parent_dashboard-feedback {
+    width: 500px;
+  }
   .house_card {
     width: 500px;
   }
@@ -291,80 +409,12 @@ font-family: 'Electrolize', sans-serif; */
     width: 90%;
   }
 
-  .card-members {
-    columns: 2 auto;
-  }
   
-  /* Grid rules  */
-
-  .house_card {
-    display: grid;
-    box-sizing: border-box;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50px 60px 100px 50px;
-    padding: 0px;
-    border: 3px solid white;
-    border-radius: 10px;
-  }
-
-  .house_card_link {
-    grid-column-start: span 2;
-    grid-row-start: 4;
-    width: 100%;
-    text-align: right;
-    /* display: flex;
-    justify-content: flex-end; */
-  } 
-
-  .house_card_link a {
-    color: white;
-    text-align: right;
-    font-family: "Electrolize", sans-serif;
-    padding: 0 20px;
-  } 
-
-  .house_card_controls {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    display: flex;
-    justify-content: flex-end;
-    /* border-bottom: 3px solid white; */
-    /* padding: 0 10px; */
-  }
-
-  .house_card_controls svg {
-    margin: 0 10px;
-  }
 
 
-  .house_card h3 {
-    grid-column-start: 1;
-    grid-row-start: 1;
-    margin: 0;
-    padding: 20px;
-    font-familY: "Press Start 2P", cursive;
-    color: #FFD900;
-    text-align: left;
-    /* border-bottom: 3px solid white; */
-  }
 
-  .house_card h4 {
-    grid-column-start: span 2;
-    grid-row-start: 2;
-    text-align: center;
-    font-familY: "Press Start 2P", cursive;
-    font-size: .8em;
-    border-top: 3px solid white;
+  /* Arrow animation */
 
-    /* font-family: 'Electrolize', sans-serif; */
-    color: white;
-    /* margin: 10px 0; */
-    padding: 15px 0;
-  }
-
-  .card-members {
-    grid-column-start: span 2;
-    grid-row-start: 3;
-  }
+  
   
 }
