@@ -180,7 +180,7 @@ font-family: 'Electrolize', sans-serif; */
   grid-column-start: span 2;
   grid-row-start: 2;
   width: inherit;
-  margin: 10px 0;
+  margin: 0;
   padding: 0;
 }
 
@@ -189,7 +189,7 @@ font-family: 'Electrolize', sans-serif; */
   grid-column-start: 1;
   grid-row-start: 1;
   margin: 0;
-  padding: 10px;
+  padding: 0 10px;
   font-familY: "Press Start 2P", cursive;
   font-size: 1.2rem;
   color: #FFD900;
