@@ -208,11 +208,16 @@ font-family: 'Electrolize', sans-serif; */
 
 }
 
-.card-members {
+.card-members, .card-empty {
   grid-column-start: span 2;
   grid-row-start: 4;
+}
+
+.card-members {
   columns: 2 auto;
 }
+
+
 
 
 .dash-buttons {

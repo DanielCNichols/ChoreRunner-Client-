@@ -14,13 +14,19 @@ button{
 button:hover {
   animation: bounce 500ms infinite alternate;
   -webkit-animation: bounce 500ms infinite alternate;
-}
+} 
 
-.household-page-container {
+.household-page {
 	flex-direction: column;
 	height: 88vh;
 	padding-top: 12vh;
 	overflow-y: auto;
+}
+
+.household-page h3 {
+  font-family: "Press Start 2P", cursive;
+  color: #FFD900;
+
 }
 
 .tasks-to-approve h3, .assigned-tasks h3{
@@ -58,22 +64,33 @@ button:hover {
 	font-family: 'Electrolize', sans-serif;
 }
 
- .top-buttons-cont button{
-    text-align: center;
-    margin:20px 5px;
-    font-family: 'Electrolize', sans-serif; 
-    font-size: 15px;
-    padding: 10px ;
-    background-color: rgb(255, 217, 0);
-    text-shadow: -.5px -1px rgb(105, 90, 0), 1px 1px white;
-    color: #725F00;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    -o-border-radius: 7px;
-    border-radius: 7px;
-    box-shadow: 0 .3em rgb(134, 112, 0);
-    cursor: pointer;
+.top-buttons-cont {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto 10px auto;
 }
+
+ .top-buttons-cont button{
+  text-align: center;
+  margin: 15px auto;
+  font-family: 'Electrolize', sans-serif;
+  font-size: 20px;
+  padding: 15px;
+  background-color: rgb(255, 217, 0);
+  text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+  color: #725f00;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0.3em rgb(134, 112, 0);
+  cursor: pointer;
+  width: 80%;
+}
+
+
 .member-card {
 	display: flex;
 	flex-direction: column;
@@ -190,27 +207,6 @@ button:hover {
     width:100%;
 }
 
-/* .hhp-title span, .hhp-points span {
-  padding: 0 10px;
-  text-align:left;
-} */
-
-
-/* 
-SCREEN????--------------
-
-.hhp-title {
-	display: inline-block;
-	width: 50%;
-} */
-
-/* .hhp-points {
-	display: inline-block;
-	width: 30%;
-
-} 
-
--=----------------*/
 
 .completed-task-container .hhp-points span {
 	text-align: right;
@@ -428,7 +424,7 @@ button.delete-task {
 
 @media screen and (min-width:1400px) {
 	.member-card {
-		width: 600px;
+		width: 80%;
   } 
   	/* .add-task-form {
 		position: absolute;

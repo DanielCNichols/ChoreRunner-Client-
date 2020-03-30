@@ -3,15 +3,19 @@ import AddTask from '../../components/AddTask/AddTask';
 import ApiService from '../../services/api-service';
 import HouseholdContext from '../../contexts/HouseHoldContext';
 import MembersList from '../../components/MembersList/MembersList';
+import Modal from '../../components/Modal/Modal';
 import './HouseholdPage.css';
 
 export default class HouseholdPage extends Component {
   state = {
     membersList: [],
-    tasks: {},
+    // tasks: {},
     task: '',
     editMember: false,
+    addTask: false,
+    editTask: false,
   };
+
   static contextType = HouseholdContext;
 
   componentDidMount() {
@@ -79,6 +83,10 @@ export default class HouseholdPage extends Component {
       .catch(error => this.context.setError(error));
   };
 
+  toggleAddTasks = () => {
+    this.setState({ addTask: !this.state.addTask });
+  };
+
   handleResetScores = () => {
     let household_id = this.props.match.params.id;
     ApiService.resetScores(household_id)
@@ -92,21 +100,35 @@ export default class HouseholdPage extends Component {
       .catch(error => this.context.setError(error));
   };
 
+  // Editing tasks should be held outside of the member list to pass less things down. It will follow the modal design pattern. 
+
   render() {
     const { tasks } = this.context;
     const data = Object.values(tasks);
+    console.log(this.state);
+    console.log('These are the tasks', tasks);
+    const { addTask } = this.state;
 
     return (
-      <div className="household-page-container">
-        <h2>Household page</h2>
-        <div className='top-buttons-cont'>
-          <AddTask
-            members={this.state.membersList}
-            household_id={this.props.match.params.id}
-            updateEverything={this.updateEverything}
-          />
-          <button onClick={this.handleResetScores} className="reset-all-scores">reset all scores</button>
-        </div>
+      <section className="parent_dashboard household-page">
+        <h3>Household page</h3>
+        <div className="dash-buttons">
+          <button onClick={this.toggleAddTasks}>+ Assign Tasks</button>
+          <button onClick={this.handleResetScores} className="reset-all-scores">
+            reset all scores
+          </button>
+          </div>
+          {addTask ? (
+            <Modal>
+              <AddTask
+                members={this.state.membersList}
+                household_id={this.props.match.params.id}
+                updateEverything={this.updateEverything}
+                handleCancel={this.toggleAddTasks}
+              ></AddTask>
+            </Modal>
+          ) : null}
+
         <MembersList
           tasks={tasks}
           data={data}
@@ -119,7 +141,7 @@ export default class HouseholdPage extends Component {
           handlePointsChange={this.handlePointsChange}
           handleTaskDelete={this.handleTaskDelete}
         />
-      </div>
+      </section>
     );
   }
 }

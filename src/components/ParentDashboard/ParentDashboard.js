@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import HouseholdContext from '../../contexts/HouseHoldContext';
 import EditHouseholdInput from '../EditHouseholdInput/EditHouseholdInput';
@@ -196,12 +195,9 @@ export default class ParentDashboard extends Component {
               })}
             </ul>
           ) : (
-            <ul>
+            <ul className="card-empty">
               <li>
-                It looks like this household has no members yet!{' '}
-                <span>
-                  <a href={'#add-member'}>Add Household Members</a>
-                </span>
+                This group has no members{' '}
               </li>
             </ul>
           )}
