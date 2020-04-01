@@ -133,6 +133,7 @@ const ApiService = {
     );
   },
 
+  //Refactor this to return all things members and their tasks. 
   getMembers(household_id) {
     return fetch(`${config.API_ENDPOINT}/households/${household_id}/members`, {
       method: 'GET',

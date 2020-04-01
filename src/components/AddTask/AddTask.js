@@ -48,14 +48,14 @@ export default class AddTask extends React.Component {
       .then(res => handleAdd(res))
       .then(() => handleToggle())
       .catch(error => this.setState({ error: error.error.message }));
-  };
-
-  render() {
-    const { members, handleToggle } = this.props;
-    let { error } = this.state;
-
-    return (
-      <form className="task-form" onSubmit={this.handleSubmit}>
+    };
+    
+    render() {
+      const { members, handleToggle } = this.props;
+      let { error } = this.state;
+      
+      return (
+        <form className="task-form" onSubmit={this.handleSubmit}>
         <fieldset>
           <legend>Assign Tasks</legend>
           <label htmlFor="taskName">Task Name</label>

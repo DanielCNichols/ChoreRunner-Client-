@@ -31,7 +31,7 @@ export default class MembersList extends Component {
             }
           });
 
-          
+
           return (
             <section key={index} className="member-card">
               <div className="delete-edit-name">
