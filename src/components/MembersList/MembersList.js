@@ -19,6 +19,7 @@ export default class MembersList extends Component {
 
     return (
       <div>
+        {/* This splits off the assigned/completed. Does not render, so move it out! */}
         {data.map((member, index) => {
           let assigned = [];
           let completed = [];
@@ -29,6 +30,8 @@ export default class MembersList extends Component {
               completed.push(task);
             }
           });
+
+          
           return (
             <section key={index} className="member-card">
               <div className="delete-edit-name">

@@ -189,6 +189,19 @@ const ApiService = {
     );
   },
 
+
+  addTask(id, newTask) {
+    return fetch(`${config.API_ENDPOINT}/households/${id}/tasks`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(newTask),
+    }).then(res => 
+      !res.ok ? res.json().then(e=> Promise.reject(e)) : res.json())
+  },
+
   completeTask(id) {
     return fetch(
       `${config.API_ENDPOINT}/households/householdId/members/memberId/tasks`,

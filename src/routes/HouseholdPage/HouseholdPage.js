@@ -9,11 +9,12 @@ import './HouseholdPage.css';
 export default class HouseholdPage extends Component {
   state = {
     membersList: [],
-    // tasks: {},
+    tasks: {},
     task: '',
     editMember: false,
     addTask: false,
     editTask: false,
+    error: null,
   };
 
   static contextType = HouseholdContext;
@@ -31,7 +32,7 @@ export default class HouseholdPage extends Component {
       });
     });
     ApiService.getTasksForAll(household_id).then(tasks => {
-      this.context.setTasks(tasks);
+      this.setState({tasks: tasks});
     });
   };
 
@@ -87,6 +88,17 @@ export default class HouseholdPage extends Component {
     this.setState({ addTask: !this.state.addTask });
   };
 
+
+
+  //This method takes the response of the fetch call in the handleSubmit function in the AddTasks form. It effectively pushes the new task to the list in the state, under the appropriate member. Errors are handled in the Add Form itself. 
+  handleAddTasks = (newTask) => {
+      let updated = this.state.tasks[newTask.member_id]
+      updated.tasks.push(newTask)
+      let newTaskList = this.state.tasks;
+      newTaskList[newTask.member_id] = updated;
+      this.setState({tasks: newTaskList})  
+  } 
+
   handleResetScores = () => {
     let household_id = this.props.match.params.id;
     ApiService.resetScores(household_id)
@@ -95,19 +107,30 @@ export default class HouseholdPage extends Component {
         for (let member in tasks) {
           tasks[member].total_score = 0;
         }
-        this.context.setTasks(tasks);
+        this.setState({tasks: tasks})
       })
       .catch(error => this.context.setError(error));
   };
 
   // Editing tasks should be held outside of the member list to pass less things down. It will follow the modal design pattern. 
 
+  //"tasks" come from context, and it looks something like : 
+
+  // tasks = {
+  //   5: {member_id: 5, name: Kelley, username: kells, total_score: 23}
+  // }
+
+  // Then they use Object.values to just grab the actual task from the task object. This seems complicated. Take a look at this. 
+
+  // 1. Moved the task source from context to the state, because now we can directly manipulate it withinin the class and pass the handler as props. (We will need to mark its status and update name/points eventually.)
+
   render() {
-    const { tasks } = this.context;
+    const { tasks, addTask, error } = this.state;
     const data = Object.values(tasks);
-    console.log(this.state);
-    console.log('These are the tasks', tasks);
-    const { addTask } = this.state;
+    const household_id = this.props.match.params.id;
+    // console.log("This is the data", data)
+    // console.log("This is the task", tasks)
+    console.log("this is the error", error)
 
     return (
       <section className="parent_dashboard household-page">
@@ -121,10 +144,12 @@ export default class HouseholdPage extends Component {
           {addTask ? (
             <Modal>
               <AddTask
+                householdId = {household_id}
                 members={this.state.membersList}
-                household_id={this.props.match.params.id}
                 updateEverything={this.updateEverything}
-                handleCancel={this.toggleAddTasks}
+                handleAdd ={this.handleAddTasks}
+                handleToggle={this.toggleAddTasks}
+                error = {error}
               ></AddTask>
             </Modal>
           ) : null}

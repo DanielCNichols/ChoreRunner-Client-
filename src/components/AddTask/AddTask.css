@@ -62,12 +62,9 @@
     text-align: center;
   }
   
-  .alert {
+  .alert p {
     font-family: 'Electrolize', sans-serif;
-  }
-  .alertMsg {
-    max-width: 280px;
+    color: white;
+    max-width: 245px;
     word-wrap: break-word;
   }
-  
-  
