@@ -37,7 +37,7 @@ export default class MembersCard extends React.Component {
   };
 
   render() {
-    const { member, householdId, editMember, editTask, tasks, approveTask, rejectTask, deleteTask} = this.props;
+    const { member, householdId, editMember, editTask, tasks, approveTask, rejectTask, deleteMember, deleteTask} = this.props;
     const {
       assignedTasks,
       completedTasks,
@@ -50,6 +50,7 @@ export default class MembersCard extends React.Component {
         <p>{member.name}</p>
         <p>{member.total_score}</p>
         <button onClick={this.toggleMemberForm}>Edit Member</button>
+        <button onClick={() => {deleteMember(member.id)}}>Delete</button>
         {editingMember ? <Modal><EditMember householdId={householdId} editMember={editMember} handleCancel={this.toggleMemberForm} member={member}></EditMember></Modal> : null}
         {/* Put each task as its own component.  */}
         <ul>

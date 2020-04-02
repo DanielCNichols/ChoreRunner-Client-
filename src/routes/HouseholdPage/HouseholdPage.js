@@ -12,9 +12,6 @@ import './HouseholdPage.css';
 export default class HouseholdPage extends Component {
   state = {
     membersList: [],
-    editMember: false,
-    addTask: false,
-    editTask: false,
     error: null,
   };
 
@@ -29,38 +26,23 @@ export default class HouseholdPage extends Component {
     });
   }
 
+  
   //Member callbacks
-
-  //handles updating the various properties in state that deal with the member. Currently, editing a member requires updating the member info in both the tasks and memberList keys.
-  updateMembersList = updatedMember => {
-    let newMembers = this.state.membersList.map(member =>
-      member.id !== updatedMember.id ? member : updatedMember
-    );
-    this.setState({
-      membersList: newMembers,
-    });
-    let tasks = this.state.tasks;
-    tasks[updatedMember.id].name = updatedMember.name;
-    tasks[updatedMember.id].username = updatedMember.username;
-    this.setState({ tasks: tasks });
-  };
-
   toggleEditMember = () => {
     this.setState({ editMember: !this.state.editMember });
   };
 
-  handleDeleteMember = (id, household_id) => {
-    ApiService.deleteMember(id, household_id)
+
+  handleDeleteMember = id => {
+    let householdId = this.props.match.params.id;
+    ApiService.deleteMember(id, householdId)
       .then(() => {
-        let newMembers = this.state.membersList.filter(
-          member => member.id !== id
-        );
-        this.setState({ membersList: newMembers });
-        let tasks = this.context.tasks;
-        delete tasks[id];
-        this.context.setTasks(tasks);
+        let list = this.state.membersList.filter(member => {
+          return member.id !== id;
+        });
+        this.setState({ membersList: list });
       })
-      .catch(error => this.context.setError(error));
+      .catch(error => this.setState(error));
   };
 
   handleApproveTask = (points, memberId, taskId) => {
@@ -160,15 +142,19 @@ export default class HouseholdPage extends Component {
     this.setState({ membersList: updated });
   };
 
+  setScoreToZero() {
+    let list = this.state.membersList;
+
+    list.forEach(member => member.total_score = 0)
+    
+    this.setState({membersList: list})
+  }
+
   handleResetScores = () => {
     let household_id = this.props.match.params.id;
     ApiService.resetScores(household_id)
       .then(res => {
-        const { tasks } = this.context;
-        for (let member in tasks) {
-          tasks[member].total_score = 0;
-        }
-        this.setState({ tasks: tasks });
+        this.setScoreToZero()
       })
       .catch(error => this.context.setError(error));
   };
@@ -181,7 +167,7 @@ export default class HouseholdPage extends Component {
 
   handleEditMember = updatedMember => {
     let list = this.refreshMemberList(updatedMember);
-    console.log(list)
+    console.log(list);
 
     this.setState({ membersList: list });
   };
@@ -241,7 +227,8 @@ export default class HouseholdPage extends Component {
           {this.state.membersList.map(member => {
             return (
               <MembersCard
-                editMember = {this.handleEditMember}
+                deleteMember={this.handleDeleteMember}
+                editMember={this.handleEditMember}
                 rejectTask={this.handleRejectTask}
                 approveTask={this.handleApproveTask}
                 deleteTask={this.handleDeleteTask}
