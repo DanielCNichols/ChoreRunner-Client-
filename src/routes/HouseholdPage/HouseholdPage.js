@@ -12,7 +12,6 @@ import './HouseholdPage.css';
 export default class HouseholdPage extends Component {
   state = {
     membersList: [],
-    task: '', // What is this for? 
     editMember: false,
     addTask: false,
     editTask: false,
@@ -93,6 +92,30 @@ export default class HouseholdPage extends Component {
     this.setState({ tasks: newTaskList });
   };
 
+  handleEditTasks = updatedTask => {
+    //find the appropriate member in the list 
+    let idx = this.state.membersList.findIndex(member => member.id === updatedTask.member_id)
+
+    let newList = this.state.membersList[idx].tasks.map(task => {
+      return task.id === updatedTask.id ? updatedTask : task;
+    })
+
+    console.log(newList)
+
+    let updatedMember = this.state.membersList[idx]
+    updatedMember.tasks = newList;
+
+    //update the list and set state
+
+    let updated = this.state.membersList.map( member => {
+        return member.id === updatedMember.id ? updatedMember : member
+    }) 
+
+    console.log(updated)
+
+    this.setState({membersList: updated})
+  }
+
   handleResetScores = () => {
     let household_id = this.props.match.params.id;
     ApiService.resetScores(household_id)
@@ -132,7 +155,6 @@ export default class HouseholdPage extends Component {
   // 1. Moved the task source from context to the state, because now we can directly manipulate it withinin the class and pass the handler as props. (We will need to mark its status and update name/points eventually.)
 
   render() {
-    console.log(this.state)
     const { addTask} = this.state;
     // const data = Object.values(tasks);
     const household_id = this.props.match.params.id;
@@ -173,7 +195,7 @@ export default class HouseholdPage extends Component {
 
         <section className="membersList">
           {this.state.membersList.map(member => {
-            return <MembersCard key={member.id} member={member}></MembersCard>
+            return <MembersCard editTask={this.handleEditTasks} key={member.id} householdId={household_id} member={member} tasks={member.tasks}></MembersCard>
           })}
         </section>
       </section>

@@ -1,34 +1,32 @@
 import React from 'react';
-import Modal from '../Modal/Modal';
+// import Modal from '../Modal/Modal';
+// import EditMember from '../EditMember/EditMember';
+import Task from '../Task/Task'
 
 export default class MembersCard extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
+    state = {
       assignedTasks: [],
       completedTasks: [],
       editingTask: false,
       editingMember: false,
       error: null,
-
     };
-  }
 
   componentDidMount() {
-      this.arrangeTasks();
+    this.arrangeTasks();
   }
-  
+
   arrangeTasks() {
-      let {tasks} = this.props.member
-      let assigned = [];
-      let completed = [];
+    let { tasks } = this.props.member;
+    let assigned = [];
+    let completed = [];
 
-      tasks.map ((task => {
-          task.status === "assigned" ? assigned.push(task) : completed.push(task)
-      }))
+    tasks.map(task => {
+      return task.status === 'assigned' ? assigned.push(task) : completed.push(task);
+    });
 
-      this.setState({assignedTasks: assigned, completedTasks: completed })
+    this.setState({ assignedTasks: assigned, completedTasks: completed });
   }
 
   toggleTaskForm = () => {
@@ -40,31 +38,31 @@ export default class MembersCard extends React.Component {
   };
 
   render() {
-    const { member } = this.props;
-    const { editingTask, editingMember, assignedTasks, completedTasks} = this.state;
+    const { member, householdId, editTask, tasks} = this.props;
+    const {
+      assignedTasks,
+      completedTasks,
+    } = this.state;
 
     return (
       <div className="memberCard">
-        <button onClick={this.toggleTaskForm}>Edit Task</button>
-        <button onClick={this.toggleMemberForm}>Edit Member</button>
-        
-        {editingTask ? <Modal><p>Editing the task</p></Modal> : null}
-        {editingMember ? <Modal><p>Editing the Member</p></Modal> : null}
-        <p>{member.name}</p>
-        <ul>Assigned
-            {assignedTasks.map(task => {
-                return <li key={task.id}>{task.title}
-                </li>
-            })}
-        </ul>
-        <ul>completed
-            {completedTasks.map(task => {
-                return <li key={task.id}>{task.title}
-                <button>Approve!</button>
-                </li>
-            })}
-        </ul>
 
+        <p>{member.name}</p>
+        {/* Put each task as its own component.  */}
+        <ul>
+          Assigned
+          {tasks.map(task => {
+            return task.status === "assigned" ? <Task editTask={editTask} key={task.title} householdId={householdId} task={task}/> : null
+
+          })}
+        </ul>
+        <ul>
+          completed
+          {tasks.map(task => {
+            return task.status === "completed" ? 
+              <Task key={task.title} householdId={householdId} task={task}/> : null
+          })}
+        </ul>
       </div>
     );
   }
