@@ -47,7 +47,7 @@ export default class AddTask extends React.Component {
     ApiService.addTask(householdId, newTask)
       .then(res => handleAdd(res))
       .then(() => handleToggle())
-      .catch(error => this.setState({ error: error.error.message }));
+      // .catch(error => this.setState({ error: error.error.message }));
     };
     
     render() {

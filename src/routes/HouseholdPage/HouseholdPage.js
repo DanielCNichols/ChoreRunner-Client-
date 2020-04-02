@@ -63,6 +63,31 @@ export default class HouseholdPage extends Component {
       .catch(error => this.context.setError(error));
   };
 
+  handleApproveTask = (points, memberId, taskId) => {
+    //find the member
+    let idx = this.findMemberIndex(memberId)
+    let updateMember = this.state.membersList[idx]
+    updateMember.total_score = updateMember.total_score += points;
+    updateMember.tasks = updateMember.tasks.filter(task => task.id !== taskId)
+
+    let newList = this.refreshMemberList(updateMember)
+    this.setState({membersList: newList})
+  }
+
+  handleRejectTask = (memberId, taskId, newStatus) => {
+    let idx = this.findMemberIndex(memberId)
+    let updateMember = this.state.membersList[idx]
+    updateMember.tasks.find(task => task.id === taskId).status = newStatus;
+    let newList = this.refreshMemberList(updateMember)
+    this.setState({membersList: newList})
+  } 
+
+  refreshMemberList(updated) {
+    return this.state.membersList.map(member => {
+      return member.id === updated.id ? updated : member 
+    })
+  }
+
   handleTaskDelete = (task_id, member_id) => {
     const household_id = this.props.match.params.id;
     let tasks = this.context.tasks;
@@ -105,11 +130,12 @@ export default class HouseholdPage extends Component {
 
   //This method takes the response of the fetch call in the handleSubmit function in the AddTasks form. It effectively pushes the new task to the list in the state, under the appropriate member. Errors are handled in the Add Form itself.
   handleAddTasks = newTask => {
-    let updated = this.state.tasks[newTask.member_id];
+    let idx = this.findMemberIndex(newTask.member_id)
+    let updated = this.state.membersList[idx];
     updated.tasks.push(newTask);
-    let newTaskList = this.state.tasks;
-    newTaskList[newTask.member_id] = updated;
-    this.setState({ tasks: newTaskList });
+
+    let newList = this.refreshMemberList(updated)
+    this.setState({ membersList: newList });
   };
 
   handleEditTasks = updatedTask => {
@@ -122,7 +148,6 @@ export default class HouseholdPage extends Component {
       return task.id === updatedTask.id ? updatedTask : task;
     });
 
-    console.log(newList);
 
     let updatedMember = this.state.membersList[idx];
     updatedMember.tasks = newList;
@@ -133,7 +158,6 @@ export default class HouseholdPage extends Component {
       return member.id === updatedMember.id ? updatedMember : member;
     });
 
-    console.log(updated);
 
     this.setState({ membersList: updated });
   };
@@ -152,12 +176,10 @@ export default class HouseholdPage extends Component {
   };
 
   approveTask = id => {
-    console.log('approved');
   };
 
   toggleEditTask = () => {
     this.setState({ editTask: !this.state.editTask });
-    console.log('edit Toggled');
   };
 
   handleEditMember = id => {};
@@ -217,6 +239,8 @@ export default class HouseholdPage extends Component {
           {this.state.membersList.map(member => {
             return (
               <MembersCard
+                rejectTask = {this.handleRejectTask}
+                approveTask = {this.handleApproveTask}
                 deleteTask={this.handleDeleteTask}
                 editTask={this.handleEditTasks}
                 key={member.id}

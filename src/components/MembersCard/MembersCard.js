@@ -38,7 +38,7 @@ export default class MembersCard extends React.Component {
   };
 
   render() {
-    const { member, householdId, editTask, tasks, deleteTask} = this.props;
+    const { member, householdId, editTask, tasks, approveTask, rejectTask, deleteTask} = this.props;
     const {
       assignedTasks,
       completedTasks,
@@ -48,6 +48,7 @@ export default class MembersCard extends React.Component {
       <div className="memberCard">
 
         <p>{member.name}</p>
+        <p>{member.total_score}</p>
         {/* Put each task as its own component.  */}
         <ul>
           Assigned
@@ -60,7 +61,7 @@ export default class MembersCard extends React.Component {
           completed
           {tasks.map(task => {
             return task.status === "completed" ? 
-              <Task key={task.id} householdId={householdId} task={task}/> : null
+              <Task key={task.id} rejectTask={rejectTask} approveTask={approveTask} householdId={householdId} task={task}/> : null
           })}
         </ul>
       </div>
