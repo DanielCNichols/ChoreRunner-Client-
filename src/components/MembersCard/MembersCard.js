@@ -38,7 +38,7 @@ export default class MembersCard extends React.Component {
   };
 
   render() {
-    const { member, householdId, editTask, tasks} = this.props;
+    const { member, householdId, editTask, tasks, deleteTask} = this.props;
     const {
       assignedTasks,
       completedTasks,
@@ -52,7 +52,7 @@ export default class MembersCard extends React.Component {
         <ul>
           Assigned
           {tasks.map(task => {
-            return task.status === "assigned" ? <Task editTask={editTask} key={task.title} householdId={householdId} task={task}/> : null
+            return task.status === "assigned" ? <Task deleteTask={deleteTask} editTask={editTask} key={task.id} householdId={householdId} task={task}/> : null
 
           })}
         </ul>
@@ -60,7 +60,7 @@ export default class MembersCard extends React.Component {
           completed
           {tasks.map(task => {
             return task.status === "completed" ? 
-              <Task key={task.title} householdId={householdId} task={task}/> : null
+              <Task key={task.id} householdId={householdId} task={task}/> : null
           })}
         </ul>
       </div>

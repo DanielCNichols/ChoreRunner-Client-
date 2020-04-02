@@ -4,10 +4,10 @@ import ApiService from '../../services/api-service';
 import HouseholdContext from '../../contexts/HouseHoldContext';
 import MembersList from '../../components/MembersList/MembersList';
 import Modal from '../../components/Modal/Modal';
-import MembersCard from '../../components/MembersCard/MembersCard'
+import MembersCard from '../../components/MembersCard/MembersCard';
 import './HouseholdPage.css';
 
-//Can this be simplified to send a fetch that just grabs ALL of the information and inlcudes the tasks in the array? state.membersList and state.tasks look very similar, and it seems confusing. 
+//Can this be simplified to send a fetch that just grabs ALL of the information and inlcudes the tasks in the array? state.membersList and state.tasks look very similar, and it seems confusing.
 
 export default class HouseholdPage extends Component {
   state = {
@@ -25,13 +25,13 @@ export default class HouseholdPage extends Component {
     ApiService.getMembers(household_id).then(members => {
       this.setState({
         membersList: members,
-      })
-    })
+      });
+    });
   }
 
   //Member callbacks
 
-  //handles updating the various properties in state that deal with the member. Currently, editing a member requires updating the member info in both the tasks and memberList keys. 
+  //handles updating the various properties in state that deal with the member. Currently, editing a member requires updating the member info in both the tasks and memberList keys.
   updateMembersList = updatedMember => {
     let newMembers = this.state.membersList.map(member =>
       member.id !== updatedMember.id ? member : updatedMember
@@ -42,7 +42,7 @@ export default class HouseholdPage extends Component {
     let tasks = this.state.tasks;
     tasks[updatedMember.id].name = updatedMember.name;
     tasks[updatedMember.id].username = updatedMember.username;
-    this.setState({tasks: tasks});
+    this.setState({ tasks: tasks });
   };
 
   toggleEditMember = () => {
@@ -79,6 +79,26 @@ export default class HouseholdPage extends Component {
       .catch(error => this.context.setError(error));
   };
 
+  handleDeleteTask = (task_id, member_id) => {
+    const { membersList } = this.state;
+
+    let idx = this.findMemberIndex(member_id);
+    let newList = membersList[idx].tasks.filter(task => task.id !== task_id);
+
+    let updatedMember = membersList[idx];
+    updatedMember.tasks = newList;
+
+    let updated = membersList.map(member => {
+      return member.id === updatedMember.id ? updatedMember : member;
+    });
+
+    this.setState({ membersList: updated });
+  };
+
+  findMemberIndex(id) {
+    return this.state.membersList.findIndex(member => member.id === id);
+  }
+
   toggleAddTasks = () => {
     this.setState({ addTask: !this.state.addTask });
   };
@@ -93,28 +113,30 @@ export default class HouseholdPage extends Component {
   };
 
   handleEditTasks = updatedTask => {
-    //find the appropriate member in the list 
-    let idx = this.state.membersList.findIndex(member => member.id === updatedTask.member_id)
+    //find the appropriate member in the list
+    let idx = this.state.membersList.findIndex(
+      member => member.id === updatedTask.member_id
+    );
 
     let newList = this.state.membersList[idx].tasks.map(task => {
       return task.id === updatedTask.id ? updatedTask : task;
-    })
+    });
 
-    console.log(newList)
+    console.log(newList);
 
-    let updatedMember = this.state.membersList[idx]
+    let updatedMember = this.state.membersList[idx];
     updatedMember.tasks = newList;
 
     //update the list and set state
 
-    let updated = this.state.membersList.map( member => {
-        return member.id === updatedMember.id ? updatedMember : member
-    }) 
+    let updated = this.state.membersList.map(member => {
+      return member.id === updatedMember.id ? updatedMember : member;
+    });
 
-    console.log(updated)
+    console.log(updated);
 
-    this.setState({membersList: updated})
-  }
+    this.setState({ membersList: updated });
+  };
 
   handleResetScores = () => {
     let household_id = this.props.match.params.id;
@@ -130,17 +152,15 @@ export default class HouseholdPage extends Component {
   };
 
   approveTask = id => {
-    console.log("approved")
-  }
-  
+    console.log('approved');
+  };
+
   toggleEditTask = () => {
-    this.setState({editTask: !this.state.editTask})
-    console.log("edit Toggled")
-  }
+    this.setState({ editTask: !this.state.editTask });
+    console.log('edit Toggled');
+  };
 
-  handleEditMember = (id) => {
-
-  }
+  handleEditMember = id => {};
 
   // Editing tasks should be held outside of the member list to pass less things down. It will follow the modal design pattern.
 
@@ -155,7 +175,7 @@ export default class HouseholdPage extends Component {
   // 1. Moved the task source from context to the state, because now we can directly manipulate it withinin the class and pass the handler as props. (We will need to mark its status and update name/points eventually.)
 
   render() {
-    const { addTask} = this.state;
+    const { addTask } = this.state;
     // const data = Object.values(tasks);
     const household_id = this.props.match.params.id;
 
@@ -195,7 +215,16 @@ export default class HouseholdPage extends Component {
 
         <section className="membersList">
           {this.state.membersList.map(member => {
-            return <MembersCard editTask={this.handleEditTasks} key={member.id} householdId={household_id} member={member} tasks={member.tasks}></MembersCard>
+            return (
+              <MembersCard
+                deleteTask={this.handleDeleteTask}
+                editTask={this.handleEditTasks}
+                key={member.id}
+                householdId={household_id}
+                member={member}
+                tasks={member.tasks}
+              ></MembersCard>
+            );
           })}
         </section>
       </section>
