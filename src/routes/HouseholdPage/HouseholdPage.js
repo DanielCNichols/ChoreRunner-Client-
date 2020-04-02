@@ -65,27 +65,27 @@ export default class HouseholdPage extends Component {
 
   handleApproveTask = (points, memberId, taskId) => {
     //find the member
-    let idx = this.findMemberIndex(memberId)
-    let updateMember = this.state.membersList[idx]
+    let idx = this.findMemberIndex(memberId);
+    let updateMember = this.state.membersList[idx];
     updateMember.total_score = updateMember.total_score += points;
-    updateMember.tasks = updateMember.tasks.filter(task => task.id !== taskId)
+    updateMember.tasks = updateMember.tasks.filter(task => task.id !== taskId);
 
-    let newList = this.refreshMemberList(updateMember)
-    this.setState({membersList: newList})
-  }
+    let newList = this.refreshMemberList(updateMember);
+    this.setState({ membersList: newList });
+  };
 
   handleRejectTask = (memberId, taskId, newStatus) => {
-    let idx = this.findMemberIndex(memberId)
-    let updateMember = this.state.membersList[idx]
+    let idx = this.findMemberIndex(memberId);
+    let updateMember = this.state.membersList[idx];
     updateMember.tasks.find(task => task.id === taskId).status = newStatus;
-    let newList = this.refreshMemberList(updateMember)
-    this.setState({membersList: newList})
-  } 
+    let newList = this.refreshMemberList(updateMember);
+    this.setState({ membersList: newList });
+  };
 
   refreshMemberList(updated) {
     return this.state.membersList.map(member => {
-      return member.id === updated.id ? updated : member 
-    })
+      return member.id === updated.id ? updated : member;
+    });
   }
 
   handleTaskDelete = (task_id, member_id) => {
@@ -130,11 +130,11 @@ export default class HouseholdPage extends Component {
 
   //This method takes the response of the fetch call in the handleSubmit function in the AddTasks form. It effectively pushes the new task to the list in the state, under the appropriate member. Errors are handled in the Add Form itself.
   handleAddTasks = newTask => {
-    let idx = this.findMemberIndex(newTask.member_id)
+    let idx = this.findMemberIndex(newTask.member_id);
     let updated = this.state.membersList[idx];
     updated.tasks.push(newTask);
 
-    let newList = this.refreshMemberList(updated)
+    let newList = this.refreshMemberList(updated);
     this.setState({ membersList: newList });
   };
 
@@ -148,7 +148,6 @@ export default class HouseholdPage extends Component {
       return task.id === updatedTask.id ? updatedTask : task;
     });
 
-
     let updatedMember = this.state.membersList[idx];
     updatedMember.tasks = newList;
 
@@ -157,7 +156,6 @@ export default class HouseholdPage extends Component {
     let updated = this.state.membersList.map(member => {
       return member.id === updatedMember.id ? updatedMember : member;
     });
-
 
     this.setState({ membersList: updated });
   };
@@ -175,14 +173,18 @@ export default class HouseholdPage extends Component {
       .catch(error => this.context.setError(error));
   };
 
-  approveTask = id => {
-  };
+  approveTask = id => {};
 
   toggleEditTask = () => {
     this.setState({ editTask: !this.state.editTask });
   };
 
-  handleEditMember = id => {};
+  handleEditMember = updatedMember => {
+    let list = this.refreshMemberList(updatedMember);
+    console.log(list)
+
+    this.setState({ membersList: list });
+  };
 
   // Editing tasks should be held outside of the member list to pass less things down. It will follow the modal design pattern.
 
@@ -239,8 +241,9 @@ export default class HouseholdPage extends Component {
           {this.state.membersList.map(member => {
             return (
               <MembersCard
-                rejectTask = {this.handleRejectTask}
-                approveTask = {this.handleApproveTask}
+                editMember = {this.handleEditMember}
+                rejectTask={this.handleRejectTask}
+                approveTask={this.handleApproveTask}
                 deleteTask={this.handleDeleteTask}
                 editTask={this.handleEditTasks}
                 key={member.id}

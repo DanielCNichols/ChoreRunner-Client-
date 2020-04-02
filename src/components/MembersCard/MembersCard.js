@@ -1,6 +1,6 @@
 import React from 'react';
-// import Modal from '../Modal/Modal';
-// import EditMember from '../EditMember/EditMember';
+import Modal from '../Modal/Modal';
+import EditMember from '../EditMember/EditMember';
 import Task from '../Task/Task'
 
 export default class MembersCard extends React.Component {
@@ -8,7 +8,6 @@ export default class MembersCard extends React.Component {
     state = {
       assignedTasks: [],
       completedTasks: [],
-      editingTask: false,
       editingMember: false,
       error: null,
     };
@@ -38,10 +37,11 @@ export default class MembersCard extends React.Component {
   };
 
   render() {
-    const { member, householdId, editTask, tasks, approveTask, rejectTask, deleteTask} = this.props;
+    const { member, householdId, editMember, editTask, tasks, approveTask, rejectTask, deleteTask} = this.props;
     const {
       assignedTasks,
       completedTasks,
+      editingMember
     } = this.state;
 
     return (
@@ -49,6 +49,8 @@ export default class MembersCard extends React.Component {
 
         <p>{member.name}</p>
         <p>{member.total_score}</p>
+        <button onClick={this.toggleMemberForm}>Edit Member</button>
+        {editingMember ? <Modal><EditMember householdId={householdId} editMember={editMember} handleCancel={this.toggleMemberForm} member={member}></EditMember></Modal> : null}
         {/* Put each task as its own component.  */}
         <ul>
           Assigned
