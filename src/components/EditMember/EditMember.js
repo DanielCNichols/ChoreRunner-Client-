@@ -1,9 +1,8 @@
 import React from 'react';
 import ApiService from '../../services/api-service';
-//import HouseHoldContext from '../../contexts/HouseHoldContext'
 import './EditMember.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default class EditMember extends React.Component {
   constructor(props) {

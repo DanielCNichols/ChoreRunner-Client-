@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import ApiService from '../../services/api-service';
 import EditTask from '../EditTask/EditTask';
 import Modal from '../Modal/Modal';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {
-//   faPencilAlt,
-//   faTrashAlt,
-//   faSave,
-// } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPencilAlt,
+  faTrashAlt,
+  faSave,
+} from '@fortawesome/free-solid-svg-icons';
+import './Task.css'
 
 export default class Task extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class Task extends Component {
       .then(() => this.props.deleteTask(taskId, memberId))
       .catch(error => this.setState(error));
   };
-  //WE WILL PASS IN THE METHODS FOR MANIPULATING THE TASK LIST THROUGH PROPS FROM THE HOUSHOLD PAGE. KEEP IT SIMPLE.
+
 
   handleUpdateStatus = (newStatus, points, memberId, taskId) => {
     const { householdId, approveTask, rejectTask } = this.props;
@@ -57,21 +58,22 @@ export default class Task extends Component {
             ></EditTask>
           </Modal>
         ) : null}
-        <p>{task.title}</p>
-        <p>{task.points}</p>
+        <p className="task-item-title">{task.title}</p>
+        <p className="task-item-points">Points: {task.points}</p>
     
         {task.status === 'completed' ? (
-          <>
+          <div className="task-item-buttons">
             <button onClick={() => this.handleUpdateStatus("approved", task.points, task.member_id, task.id)}>Approve</button>
             <button onClick={() => this.handleUpdateStatus("assigned", task.points, task.member_id, task.id)}>Disapprove</button>
-          </>
+          </div>
         ) : (
-          <>
-          <button onClick={this.toggleEdit}>Edit Task</button>
+          <div className="task-item-buttons">
+          <button onClick={this.toggleEdit}><FontAwesomeIcon className="pen-icon" icon={faPencilAlt} size="1x" color="#b1b1b1"/><span>Edit</span></button>
           <button onClick={() => this.handleDelete(task.id, task.member_id)}>
-            Delete
+          <FontAwesomeIcon className="trash-icon" icon={faTrashAlt} size="1x" color="#b1b1b1"/>
+          <span>Delete</span>
           </button>
-          </>
+          </div>
         )}
         {error ? (
           <div className="alert">
