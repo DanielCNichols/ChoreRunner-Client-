@@ -1,0 +1,91 @@
+/* div.valid-error {
+  color: white;
+  font-weight: 600;
+} */
+
+.edit-task-form {
+    box-sizing: border-box;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* padding: 10px 20px; */
+      border: none;
+  }
+  
+  .edit-task-form fieldset {
+    border: none;
+      margin: 0 auto;
+      padding: 0 10px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .edit-task-form input {
+    margin: 0 auto;
+    width: 80%;
+  }
+  
+  .edit-task-form label {
+    font-size: 20px;
+    color: rgb(255, 217, 0);
+    padding-bottom: 5px;
+    font-family: 'Electrolize', sans-serif;
+    margin: 10px auto 5px auto;
+    width: 80%;
+  }
+  
+  
+  
+  .edit-task-form button {
+    text-align: center;
+    margin: 20px auto;
+    font-family: 'Electrolize', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(255, 217, 0);
+    text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+    color: #725f00;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 0.3em rgb(134, 112, 0);
+    cursor: pointer;
+  }
+  
+  .edit-task-form legend {
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(255, 217, 0);
+    line-height: 25px;
+    margin: 5px auto;
+    text-align: center;
+  }
+  
+  .alert p {
+    font-family: 'Electrolize', sans-serif;
+    color: white;
+    max-width: 245px;
+    word-wrap: break-word;
+  }
+  
+  .alert button {
+    text-align: center;
+    margin: 20px auto;
+    font-family: 'Electrolize', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(255, 217, 0);
+    text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+    color: #725f00;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 0.3em rgb(134, 112, 0);
+    cursor: pointer;
+  }

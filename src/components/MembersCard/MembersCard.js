@@ -65,6 +65,7 @@ export default class MembersCard extends React.Component {
               editMember={editMember}
               handleCancel={this.toggleMemberForm}
               member={member}
+              toggleForm={this.toggleMemberForm}
             ></EditMember>
           </Modal>
         ) : null}

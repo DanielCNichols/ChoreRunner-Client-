@@ -44,3 +44,20 @@
 .task-item-buttons svg {
     font-size: 1.3em;
 }
+
+@media screen and (min-width: 450px) {
+    .task-item {
+        width: 80%;
+    }
+
+    .task-item-buttons {
+        justify-content: flex-end;
+    }
+}
+
+
+@media screen and (min-width: 800px) {
+    .task-item-buttons {
+        justify-content: flex-end;
+    }
+}

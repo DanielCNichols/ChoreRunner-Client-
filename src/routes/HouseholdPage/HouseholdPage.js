@@ -142,12 +142,11 @@ export default class HouseholdPage extends Component {
 
   render() {
     const { addTask } = this.state;
-    // const data = Object.values(tasks);
     const household_id = this.props.match.params.id;
 
     return (
       <section className="household-page">
-        <h3>Household page</h3>
+        <h3>Group Page</h3>
         <div className="dash-buttons">
           <button onClick={this.toggleAddTasks}>+ Assign Tasks</button>
           <button onClick={this.handleResetScores} className="reset-all-scores">

@@ -6,7 +6,6 @@ import './EditMember.css';
 
 export default class EditMember extends React.Component {
   constructor(props) {
-    console.log(props.member);
     let { id, name, username, password } = props.member;
     super(props);
     this.state = {
@@ -39,12 +38,12 @@ export default class EditMember extends React.Component {
     let usernameError = '';
     let passwordError ='';
 
-    if (this.state.name.length <= 2) {
+    if (name.length <= 2) {
       nameError = 'Please enter 3 characters or more';
     }
 
     // Validates child's username
-    if (username.length > 50) {
+    if (username.length > 50 || username.length < 3) {
       usernameError = 'Your name must be less than 50 characters';
     }
 
@@ -75,13 +74,12 @@ export default class EditMember extends React.Component {
     };
     
     let isValid = this.validate(updatedMember.name, updatedMember.username, updatedMember.password);
-    console.log('This is the password being sent', updatedMember.password)
 
     if (isValid) {
       ApiService.editMember(updatedMember, householdId, this.state.id)
         .then(res => {
-          //This.handleSomething
-          this.props.editMember(res)
+          this.props.editMember(res);
+          this.props.toggleForm();
         })
         .catch(error => this.setState({ error: error.error }));
     }
@@ -92,7 +90,7 @@ export default class EditMember extends React.Component {
     const { usernameError, nameError, passwordError } = this.state.validateError;
     const { error, name, username} = this.state;
     return (
-      <form onSubmit={this.handleSubmit} id="edit-member-form">
+      <form onSubmit={this.handleSubmit} className="edit-member-form">
         <fieldset>
           <legend>Edit Member</legend>
           <label htmlFor="member-name">Name</label>

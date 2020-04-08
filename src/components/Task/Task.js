@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPencilAlt,
   faTrashAlt,
-  faSave,
 } from '@fortawesome/free-solid-svg-icons';
 import './Task.css'
 

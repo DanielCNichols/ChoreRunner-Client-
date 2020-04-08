@@ -4,8 +4,6 @@
   min-width: 300px;
   min-height: 250px;
   margin: 10px auto 20px auto;
-  /* font-family: 'Fredoka One', cursive;
-    font-size: 23px; */
   background-color: #3e5ad6;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -17,10 +15,9 @@
   box-sizing: border-box;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto auto auto;
-  /* padding: 20px 10px; */
   border: 3px solid white;
   border-radius: 10px;
-  min-width: 310px;
+  min-width: 300px;
   font-family: 'Electrolize', sans-serif;
   color: white;
 }
@@ -104,4 +101,20 @@
   cursor: pointer;
   min-width: 123px;
   max-width: 123px;
+}
+
+@media screen and (min-width: 450px) {
+  .memberCard {
+  width: 100%;
+  }
+}
+
+
+
+@media screen and (min-width: 800px) {
+  .memberCard {
+    width: 40%;
+    max-width: 600px;
+    min-width: 500px;
+  }
 }
