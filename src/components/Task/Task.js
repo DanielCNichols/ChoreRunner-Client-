@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPencilAlt,
   faTrashAlt,
+  faThumbsUp,
+  faThumbsDown
 } from '@fortawesome/free-solid-svg-icons';
 import './Task.css'
 
@@ -62,8 +64,10 @@ export default class Task extends Component {
     
         {task.status === 'completed' ? (
           <div className="task-item-buttons">
-            <button onClick={() => this.handleUpdateStatus("approved", task.points, task.member_id, task.id)}>Approve</button>
-            <button onClick={() => this.handleUpdateStatus("assigned", task.points, task.member_id, task.id)}>Disapprove</button>
+            <button onClick={() => this.handleUpdateStatus("approved", task.points, task.member_id, task.id)}><FontAwesomeIcon className="thumb-icon" icon={faThumbsUp} size="1x"
+                color="#b1b1b1"></FontAwesomeIcon></button>
+            <button onClick={() => this.handleUpdateStatus("assigned", task.points, task.member_id, task.id)}><FontAwesomeIcon className="thumb-icon" icon={faThumbsDown} size="1x"
+                color=" #b1b1b1"></FontAwesomeIcon></button>
           </div>
         ) : (
           <div className="task-item-buttons">
