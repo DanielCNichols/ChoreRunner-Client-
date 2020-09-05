@@ -1,0 +1,13 @@
+:root {
+  --color-backgroundGradient: linear-gradient(
+    180deg,
+    rgba(86, 74, 216, 1) 0%,
+    rgba(125, 171, 245, 1) 85%
+  );
+  --color-menus: #3022ce;
+  --color-mainHeader: #ffd900;
+  --color-bodyText: white;
+  --color-buttonText: #725f00;
+  --font-headers: 'Press Start 2P', cursive;
+  --font-body: 'Electrolize', sans-serif;
+}

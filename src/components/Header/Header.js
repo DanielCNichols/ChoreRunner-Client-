@@ -1,77 +1,104 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import UserContext from '../../contexts/UserContext';
-import './Header.css';
+import s from './Header.module.css';
 
-class Header extends Component {
-  static contextType = UserContext;
+export default function NavBar(props) {
+  const context = useContext(UserContext);
 
-  handleLogoutClick = () => {
-    this.context.processLogout();
+  const handleLogoutClick = () => {
+    context.processLogout();
   };
 
-  renderLogoutLink() {
-    return (
-      <div className="loggedin-info">
-        <span>Hi Owner!</span>
-        <nav>
-          <Link
-            style={{ textDecoration: 'none' }}
-            onClick={this.handleLogoutClick}
-            to="/"
-          >
-            Logout
-          </Link>
-        </nav>
-      </div>
-    );
+  function renderLogoutLink() {
+    return <p onClick={handleLogoutClick}>Logout</p>;
   }
 
-  renderLoginLink() {
-    return (
-      <nav>
-        <Link style={{ textDecoration: 'none' }} to="/login">
-          Login
-        </Link>{' '}
-        <Link style={{ textDecoration: 'none' }} to="/register">
-          Sign up
-        </Link>
-      </nav>
-    );
-  }
-
-  render() {
-    let display = (
-      <h1>
-        {TokenService.hasAuthToken() ? (
-          <Link
-            to={
-              this.context.user.type === 'user'
-                ? '/parent-dashboard'
-                : '/member-dashboard'
-            }
-            style={{ textDecoration: 'none' }}
-          >
-            Chore Runner
-          </Link>
-        ) : (
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            Chore Runner
-          </Link>
-        )}
-      </h1>
-    );
-
+  function renderLoginLinks() {
     return (
       <>
-        {display}
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
+        <Link to='/login'>Login</Link>
+        <Link to='/register'>Sign Up</Link>
       </>
     );
   }
+
+  return (
+    <nav className={s.navBar}>
+      <div className={s.logo}>
+        <Link to='/'>Chore Runner</Link>
+      </div>
+
+      <div className={s.navLinks}>
+        {context.user.id ? renderLogoutLink() : renderLoginLinks()}
+      </div>
+    </nav>
+  );
 }
 
-export default Header;
+// class Header extends Component {
+//   static contextType = UserContext;
+
+//   handleLogoutClick = () => {
+//     this.context.processLogout();
+//   };
+
+//   renderLogoutLink() {
+//     return (
+//       <div className={s.loggedinInfo}>
+//         <span>Hi Owner!</span>
+//         <nav>
+//           <Link onClick={this.handleLogoutClick} to='/'>
+//             Logout
+//           </Link>
+//         </nav>
+//       </div>
+//     );
+//   }
+
+//   renderLoginLink() {
+//     return (
+//       <nav>
+//         <Link style={{ textDecoration: 'none' }} to='/login'>
+//           Login
+//         </Link>{' '}
+//         <Link style={{ textDecoration: 'none' }} to='/register'>
+//           Sign up
+//         </Link>
+//       </nav>
+//     );
+//   }
+
+//   render() {
+//     let display = (
+//       <h1>
+//         {TokenService.hasAuthToken() ? (
+//           <Link
+//             to={
+//               this.context.user.type === 'user'
+//                 ? '/parent-dashboard'
+//                 : '/member-dashboard'
+//             }
+//             style={{ textDecoration: 'none' }}
+//           >
+//             Chore Runner
+//           </Link>
+//         ) : (
+//           <Link to='/' style={{ textDecoration: 'none' }}>
+//             Chore Runner
+//           </Link>
+//         )}
+//       </h1>
+//     );
+
+//     return (
+//       <>
+//         {display}
+//         {TokenService.hasAuthToken()
+//           ? this.renderLogoutLink()
+//           : this.renderLoginLink()}
+//       </>
+//     );
+//   }
+// }

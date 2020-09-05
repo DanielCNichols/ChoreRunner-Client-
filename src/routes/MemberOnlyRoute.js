@@ -3,13 +3,14 @@ import { Route, Redirect } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 
 export default function MemberOnlyRoute({ component, ...props }) {
+  //TODO: yeet
   const Component = component;
   return (
     <Route
       {...props}
-      render={componentProps => (
+      render={(componentProps) => (
         <UserContext.Consumer>
-          {userContext =>
+          {(userContext) =>
             !!userContext.user.id && userContext.user.type === 'member' ? (
               <Component {...componentProps} />
             ) : (

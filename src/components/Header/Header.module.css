@@ -1,0 +1,88 @@
+@import '../../vars.css';
+
+.navBar {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  background-color: rgb(48, 34, 206);
+  padding: 0 20px;
+  font-size: 1em;
+  color: white;
+}
+
+.logo {
+  font-size: 1.1em;
+  composes: videoGameTitles from '../../index.css';
+  width: 40%;
+  text-align: left;
+}
+
+.navLinks {
+  font-size: 1.1em;
+  font-family: var(--font-body);
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .header {
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+.header > h1 {
+  line-height: 11px;
+  width: 40%;
+}
+
+.h1 > a {
+  color: #ffd900;
+  font-size: 15px;
+  padding-left: 10px;
+  font-family: 'Press Start 2P', cursive;
+}
+.nav a {
+  color: #ffd900;
+  font-weight: 600px;
+  padding: 0 20px;
+  font-size: 18px;
+  font-family: 'Electrolize', sans-serif;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.loggedinInfo {
+  display: flex;
+}
+
+.loggedin-info span {
+  color: black;
+  padding-right: 20px;
+  display: none;
+}
+
+@media (min-width: 475px) {
+  .header > h1 {
+    line-height: 11px;
+    width: 200px;
+  }
+
+  .h1 > a {
+    color: #ffd900;
+    font-size: 15px;
+    padding-left: 10px;
+    font-family: 'Press Start 2P', cursive;
+  }
+} */ ;
