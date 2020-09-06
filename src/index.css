@@ -91,6 +91,12 @@ code {
   cursor: pointer;
 }
 
+.arcadeButton:active {
+  box-shadow: none;
+  position: relative;
+  top: 0.2em;
+}
+
 .videoGameTitles {
   color: var(--color-mainHeader);
   font-family: var(--font-headers);

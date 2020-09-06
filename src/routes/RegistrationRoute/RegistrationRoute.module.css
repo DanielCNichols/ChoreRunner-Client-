@@ -1,0 +1,23 @@
+.registrationContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* 
+.registrationImage {
+  display: none;
+} */
+
+@media screen and (min-width: 500px) {
+  /* .registrationImage {
+    display: flex;
+  }
+  .registrationContainer {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  } */
+}

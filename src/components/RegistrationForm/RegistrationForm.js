@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { Input, Required, Label } from '../Form/Form';
+import {
+  Input,
+  Required,
+  Label,
+  FormElement,
+  Fieldset,
+  Legend,
+} from '../Form/Form';
 import AuthApiService from '../../services/auth-api-service';
 import Button from '../Button/Button';
-import './RegistrationForm.css';
+import s from './RegistrationForm.module.css';
 
 class RegistrationForm extends Component {
   static defaultProps = {
@@ -59,37 +66,35 @@ class RegistrationForm extends Component {
     return true;
   };
 
-  handleSubmit = ev => {
-    ev.preventDefault();
-    const isValid = this.validateForm();
-    const formError = this.state.error;
+  handleSubmit = async ev => {
+    try {
+      ev.preventDefault();
+      const isValid = this.validateForm();
+      const formError = this.state.error;
 
-    const { name, username, password } = ev.target;
+      const { name, username, password } = ev.target;
 
-    if (isValid) {
-      AuthApiService.postUser({
-        name: name.value,
-        username: username.value,
-        password: password.value,
-      })
-        .then(user => {
-          name.value = '';
-          username.value = '';
-          password.value = '';
-          this.props.onRegistrationSuccess();
-        })
-        .catch(res => {
-          this.setState({ error: res.error });
+      if (isValid) {
+        let res = await AuthApiService.postUser({
+          name: name.value,
+          username: username.value,
+          password: password.value,
         });
-    }
-    if (formError) {
-      this.setState({
-        name: '',
-        username: '',
-        password: '',
-        error: null,
-        validateError: {},
-      });
+
+        this.props.onRegistrationSuccess();
+      }
+
+      if (formError) {
+        this.setState({
+          name: '',
+          username: '',
+          password: '',
+          error: null,
+          validateError: {},
+        });
+      }
+    } catch (error) {
+      this.setState({ error: error.error });
     }
   };
 
@@ -98,19 +103,19 @@ class RegistrationForm extends Component {
     const { nameError, usernameError } = this.state.validateError;
 
     return (
-      <div className="box">
-        <form
-          className="registration"
-          onSubmit={this.handleSubmit}
-          name="registration-form"
-        >
-          <div className="formItem">
+      <form
+        className={s.registerForm}
+        onSubmit={this.handleSubmit}
+        name="registration-form"
+      >
+        <Fieldset>
+          <Legend>Sign Up</Legend>
+          <FormElement className={s.formElement}>
             <Label htmlFor="registration-name-input">
               Enter your name
               <Required />
             </Label>
             <Input
-              className="formBox"
               ref={this.firstInput}
               id="registration-name-input"
               name="name"
@@ -119,14 +124,13 @@ class RegistrationForm extends Component {
               required
             />
             <div role="alert">{nameError}</div>
-          </div>
-          <div className="formItem">
+          </FormElement>
+          <FormElement className={s.formElement}>
             <Label htmlFor="registration-username-input">
               Choose a username
               <Required />
             </Label>
             <Input
-              className="formBox"
               id="registration-username-input"
               name="username"
               value={username}
@@ -134,14 +138,13 @@ class RegistrationForm extends Component {
               required
             />
             <div role="alert">{usernameError}</div>
-          </div>
-          <div className="formItem">
+          </FormElement>
+          <FormElement className={s.formElement}>
             <Label htmlFor="registration-password-input">
               Choose a password
               <Required />
             </Label>
             <Input
-              className="formBox"
               id="registration-password-input"
               name="password"
               type="password"
@@ -149,16 +152,13 @@ class RegistrationForm extends Component {
               onChange={this.onChangeHandle}
               required
             />
-          </div>
+          </FormElement>
           <div role="alert">{error && <p className="alertMsg">{error}</p>}</div>
-          <footer className="formFooter">
-            <Button type="submit" className="basicBtn">
-              Sign up
-            </Button>{' '}
-            <br />
-          </footer>
-        </form>
-      </div>
+          <Button type="submit" className="arcadeButton">
+            Sign up
+          </Button>
+        </Fieldset>
+      </form>
     );
   }
 }

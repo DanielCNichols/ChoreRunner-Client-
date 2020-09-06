@@ -4,32 +4,26 @@ font-family: 'Fredoka One', cursive;
 font-family: 'Concert One', cursive;
 font-family: 'Electrolize', sans-serif; */
 
-
-button{
-    background-color: transparent;
-    border:none;
-    cursor:pointer;
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-button:hover {
-  animation: bounce 500ms infinite alternate;
-  -webkit-animation: bounce 500ms infinite alternate;
-} 
-
 .household-page {
-	flex-direction: column;
-	height: 88vh;
-	padding-top: 12vh;
-	overflow-y: auto;
+  flex-direction: column;
+  height: 88vh;
+  padding-top: 12vh;
+  overflow-y: auto;
 }
 
 .household-page h3 {
-  font-family: "Press Start 2P", cursive;
-  color: #FFD900;
-
+  font-family: 'Press Start 2P', cursive;
+  color: #ffd900;
 }
 
-.tasks-to-approve h3, .assigned-tasks h3{
+.tasks-to-approve h3,
+.assigned-tasks h3 {
   font-family: 'Electrolize', sans-serif;
   letter-spacing: 2px;
   color: white;
@@ -37,13 +31,13 @@ button:hover {
   color: rgb(255, 217, 0);
 }
 
-.household-page-container p{
-	font-family: 'Fredoka One', cursive;
-	font-size: 25px;
-	letter-spacing: 2px;
-	color:white;
-	margin: auto;
-	padding: 5px
+.household-page-container p {
+  font-family: 'Fredoka One', cursive;
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: white;
+  margin: auto;
+  padding: 5px;
 }
 
 .member-name {
@@ -57,10 +51,10 @@ button:hover {
 }
 
 .household-page-container button {
-	font-size: 12px;
-	/* width: 100px; */
-	margin: 5px;
-	font-family: 'Electrolize', sans-serif;
+  font-size: 12px;
+  /* width: 100px; */
+  margin: 5px;
+  font-family: 'Electrolize', sans-serif;
 }
 
 .top-buttons-cont {
@@ -71,7 +65,7 @@ button:hover {
   margin: 20px auto 10px auto;
 }
 
- .top-buttons-cont button{
+.top-buttons-cont button {
   text-align: center;
   margin: 15px auto;
   font-family: 'Electrolize', sans-serif;
@@ -97,177 +91,173 @@ button:hover {
   margin: 10px auto;
 }
 
-
 .member-card {
-	display: flex;
-	flex-direction: column;
-	width: 80%;
-	margin: 10px auto;
-	background-color: #3E5AD6;
-	border-radius: 9px;
-  border: #334AB0 solid 1px;
-  box-shadow: 0 .3em #334AB0; 
-  position:relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 10px auto;
+  background-color: #3e5ad6;
+  border-radius: 9px;
+  border: #334ab0 solid 1px;
+  box-shadow: 0 0.3em #334ab0;
+  position: relative;
   padding-bottom: 15px;
 }
 
 .member-card > p {
-  text-align:center;
+  text-align: center;
   padding-top: 80px;
   font-size: 23px;
 }
 
 .delete-edit-name {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position:absolute;
-  width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
 }
 .delete-edit-name button {
-	width: 40px;
-	height: 40px;
-	background-color: transparent;
-	border: none;
-	box-shadow: none;
-	margin: 0;
-	justify-content: flex-end;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  justify-content: flex-end;
 }
 
 .pen-button {
-	position: absolute;
-	right: 50px;
+  position: absolute;
+  right: 50px;
 }
 
 .trash-button {
-	position: absolute;
-	right: 10px;
+  position: absolute;
+  right: 10px;
 }
 
-.trash-button:hover, .pen-button:hover{
+.trash-button:hover,
+.pen-button:hover {
   animation: bounce 500ms infinite alternate;
   -webkit-animation: bounce 500ms infinite alternate;
-  color: rgb(255, 217, 0); 
+  color: rgb(255, 217, 0);
   cursor: pointer;
 }
 
 .householdpage-member-task-list {
-	list-style-type: none;
-	padding: 0;
-  font-family: 'Electrolize', sans-serif; 
+  list-style-type: none;
+  padding: 0;
+  font-family: 'Electrolize', sans-serif;
   font-size: 20px;
   color: white;
-  width:90%;
-  margin:auto;
+  width: 90%;
+  margin: auto;
 }
 
 .assigned-task {
-	display: flex;
-  flex-direction:column;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 5px 10px;
-  }
+}
 
 .assigned-task div {
   padding: 5px 0;
 }
 .title-points {
-  width:100%;
+  width: 100%;
 }
 
-.tasks-to-approve p, .assigned-tasks p{
+.tasks-to-approve p,
+.assigned-tasks p {
   font-size: 20px;
   font-family: 'Electrolize', sans-serif;
-    font-size: 18px;
-    color: #b1b1b1;
-    text-align: center;
+  font-size: 18px;
+  color: #b1b1b1;
+  text-align: center;
 }
 
 .delete-task-cont {
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 .delete-task-cont p {
-  font-family: 'Electrolize', sans-serif; 
+  font-family: 'Electrolize', sans-serif;
   font-size: 18px;
   color: #b1b1b1;
-
 }
 
 .completed-task-container {
-	display: flex;
-	justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .thumb-container {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-
-.hhp-title, .hhp-points {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width:100%;
+.hhp-title,
+.hhp-points {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
-
 
 .completed-task-container .hhp-points span {
-	text-align: right;
-	padding-left: 10px;
-  width:100%;
+  text-align: right;
+  padding-left: 10px;
+  width: 100%;
 }
 
 .completed-task-container .hhp-title span {
-	text-align: left;
-	padding: 0 10px;
-  width:100%;
+  text-align: left;
+  padding: 0 10px;
+  width: 100%;
 }
 
-
-.hhp-title span, .hhp-points span {
+.hhp-title span,
+.hhp-points span {
   display: block;
-    overflow-wrap: break-word;
-    text-align: left;
+  overflow-wrap: break-word;
+  text-align: left;
 }
 
 /* ----------- edit member form 0------------ */
 .delete-edit-name .edit-member-container {
-	padding-bottom: 7px;
-	border-radius: 7px; 
-	width: 80%;
-	background-color: rgb(255, 217, 0);
-	position: absolute;
-	top: 220px;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  padding-bottom: 7px;
+  border-radius: 7px;
+  width: 80%;
+  background-color: rgb(255, 217, 0);
+  position: absolute;
+  top: 220px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1;
-    box-shadow: 0px 0px 20px;
-
+  box-shadow: 0px 0px 20px;
 }
 
-.edit-member-container >p{
+.edit-member-container > p {
   font-size: 23px;
-  color: #3653D4;
+  color: #3653d4;
   text-align: center;
-  
 }
-
-
 
 /* ----------- edit member form 0------------ */
 
-.update-title, .update-points {
-	display: block;
-	width: 75%;
-	padding: 0 10px 5px;
+.update-title,
+.update-points {
+  display: block;
+  width: 75%;
+  padding: 0 10px 5px;
 }
 
 #assignee {
-	margin: 0;
+  margin: 0;
 }
 
 .add-task-form label {
@@ -275,63 +265,63 @@ button:hover {
 }
 
 .add-task-form {
-  	padding-bottom: 7px;
-	border-radius: 7px; 
-	background-color: rgb(255, 217, 0);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 25px 0;
-    z-index: 1;
-    width: 300px;
-      position: absolute;
+  padding-bottom: 7px;
+  border-radius: 7px;
+  background-color: rgb(255, 217, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0;
+  z-index: 1;
+  width: 300px;
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-    font-size: 23px;
+  font-size: 23px;
   color: black;
   text-align: center;
   box-shadow: 0px 0px 20px;
-
 }
 .add-task-buttons {
-  width:100%;
+  width: 100%;
   text-shadow: 0;
 }
-.add-task-buttons .submit, .add-task-buttons .cancel {
+.add-task-buttons .submit,
+.add-task-buttons .cancel {
   display: block;
   width: 80%;
-   margin: 10px auto;
+  margin: 10px auto;
   font-size: 18px;
   text-shadow: none;
-  box-shadow:none;
+  box-shadow: none;
   border-radius: 0px;
-  color:black;
+  color: black;
 }
 .add-task-buttons .submit {
   background-color: rgb(92, 211, 81);
 }
 .add-task-buttons .cancel {
-  background-color:grey;
+  background-color: grey;
 }
 .add-task-form p {
-  color:#3653D4;
+  color: #3653d4;
 }
 
 button.delete-task {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
-@media screen and (min-width:500px) {
-	.member-card {
-		width: 70%;
-	}
-	.household-page-container p {
+@media screen and (min-width: 500px) {
+  .member-card {
+    width: 70%;
+  }
+  .household-page-container p {
     width: 80%;
-	}
-  .member-name{
+  }
+  .member-name {
     font-size: 28px;
   }
 
@@ -340,72 +330,67 @@ button.delete-task {
   }
 }
 
-@media screen and (min-width:800px) {
-	.member-card {
-		width: 60%;
-	}
+@media screen and (min-width: 800px) {
+  .member-card {
+    width: 60%;
+  }
 
-	.household-page-container p {
+  .household-page-container p {
     width: 80%;
-	}
-  .householdpage-member-task-list{
+  }
+  .householdpage-member-task-list {
     padding: 0 25px;
   }
 
-	.edit-member-container {
-		left: 80px;
-		width: 60%;
-		margin-bottom: 20px;
-		border-radius: 7px;
-	}
+  .edit-member-container {
+    left: 80px;
+    width: 60%;
+    margin-bottom: 20px;
+    border-radius: 7px;
+  }
   .completed-task {
     display: flex;
     justify-content: space-between;
   }
   .completed-task-container {
-    width: 80%
+    width: 80%;
   }
-  .thumb-container{
-    width:20%;
+  .thumb-container {
+    width: 20%;
     justify-content: space-evenly;
   }
-  .hhp-title{
+  .hhp-title {
     width: 100%;
   }
-  .hhp-points{
+  .hhp-points {
     width: 50%;
   }
-  .title-points{
-    display:flex;
+  .title-points {
+    display: flex;
   }
-  .hhp-title, .hhp-points{
+  .hhp-title,
+  .hhp-points {
     justify-content: flex-start;
-
   }
-
-
-
 }
 
-@media screen and (min-width:1100px) {
-	.member-card {
-		width: 50%;
-	} 
-
+@media screen and (min-width: 1100px) {
+  .member-card {
+    width: 50%;
+  }
 }
 
-@media screen and (min-width:1400px) {
-	.member-card {
-		width: 80%;
-  } 
-  	/* .add-task-form {
+@media screen and (min-width: 1400px) {
+  .member-card {
+    width: 80%;
+  }
+  /* .add-task-form {
 		position: absolute;
 		left: 2%;
 	} */
 
-  .member-name{
-   text-align:left;
-   padding: 0 50px;
+  .member-name {
+    text-align: left;
+    padding: 0 50px;
   }
-
 }
