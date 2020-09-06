@@ -11,20 +11,20 @@ export default function LandingPage(props) {
       <div className={s.heroWrapper}>
         <div className={s.hero}>
           <header>
-            <h1 className='bounce'>Chore Runner</h1>
+            <h1 className="bounce">Chore Runner</h1>
             <p>
               The <em>Smart</em> Shared To-Do List
             </p>
           </header>
 
           <div className={s.linkButtons}>
-            <Link className='arcadeButton' tabIndex={1} to='/kidLogin'>
+            <Link className="arcadeButton" tabIndex={1} to="/kidLogin">
               I am a kid
             </Link>
-            <Link className='arcadeButton' tabIndex={2} to='/login'>
+            <Link className="arcadeButton" tabIndex={2} to="/login">
               I am a parent
             </Link>
-            <Link className='arcadeButton' tabIndex={3} to='/register'>
+            <Link className="arcadeButton" tabIndex={3} to="/register">
               I am new
             </Link>
           </div>
@@ -32,10 +32,10 @@ export default function LandingPage(props) {
             <a href={'#about-info'}>
               How does it work?
               <FontAwesomeIcon
-                className='down-arrow'
+                className="down-arrow"
                 icon={faCaretDown}
-                size='5x'
-                color='white'
+                size="5x"
+                color="white"
               />
             </a>
           </div>
@@ -47,7 +47,7 @@ export default function LandingPage(props) {
           <h3>For Kids!</h3>
         </header>
         <div className={s.kidImage}>
-          <img src={images.kidScreen} alt='Badge' />
+          <img src={images.kidScreen} alt="Badge" />
         </div>
         <div className={s.onBoardingContent}>
           <h4>Complete challenges, get badges!</h4>
@@ -64,10 +64,10 @@ export default function LandingPage(props) {
           </p>
 
           <Link
-            className='arcadeButton'
+            className="arcadeButton"
             tabIndex={4}
             style={{ textDecoration: 'none' }}
-            to='/kidLogin'
+            to="/kidLogin"
           >
             I am a kid
           </Link>
@@ -77,7 +77,7 @@ export default function LandingPage(props) {
           <h3>For Parents!</h3>
         </header>
         <div className={s.parentImage}>
-          <img src={images.parentScreen} alt='parent dashboard' />
+          <img src={images.parentScreen} alt="parent dashboard" />
         </div>
         <div className={s.onBoardingContent}>
           <h4>Make chores easy and fun!</h4>
@@ -100,18 +100,18 @@ export default function LandingPage(props) {
             get started!
           </p>
           <Link
-            className='arcadeButton'
+            className="arcadeButton"
             tabIndex={2}
             style={{ textDecoration: 'none' }}
-            to='/login'
+            to="/login"
           >
             I am a parent
           </Link>
           <Link
-            className='arcadeButton'
+            className="arcadeButton"
             tabIndex={3}
             style={{ textDecoration: 'none' }}
-            to='/register'
+            to="/register"
           >
             I am new
           </Link>

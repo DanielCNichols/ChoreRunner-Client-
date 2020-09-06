@@ -1,0 +1,107 @@
+@import '../../vars.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  margin: 0 auto 50px auto;
+  padding-top: 100px;
+}
+
+.parentForm {
+  border: 2px solid white;
+  background-color: var(--color-menus);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding: 25px 0;
+}
+
+.parentForm fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+}
+
+.parentForm legend {
+  font-family: var(--font-headers);
+  color: var(--color-mainHeader);
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+.parentForm label {
+  margin-bottom: 10px;
+  font-family: var(--font-body);
+  color: var(--color-bodyText);
+}
+
+.formElement {
+  margin-bottom: 20px;
+}
+
+div[role='alert'] > p {
+  color: white;
+  width: auto;
+  margin: auto;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Electrolize', sans-serif;
+}
+
+.parentForm button {
+  width: 120px;
+  text-align: center;
+  margin: 10px auto;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  padding: 7px;
+  background-color: rgb(255, 217, 0);
+  text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+  color: #725f00;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0.3em rgb(134, 112, 0);
+  cursor: pointer;
+}
+
+.demo {
+  width: 260px;
+  margin: 0 auto 30px auto;
+  display: flex;
+  font-family: 'Electrolize', sans-serif;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px 30px 10px;
+  background: rgb(0, 0, 0, 0.5);
+  position: relative;
+  animation: bounce 500ms infinite alternate;
+  -webkit-animation: bounce 500ms infinite alternate;
+  border-radius: 10px;
+}
+.demo p {
+  margin: 0;
+}
+
+@media (min-width: 450px) {
+  .parentForm {
+    width: 40%;
+    min-width: 350px;
+  }
+}
+
+@media (min-width: 875px) {
+  .parentForm {
+    width: 400px;
+  }
+}

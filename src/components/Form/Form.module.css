@@ -1,0 +1,25 @@
+@import '../../vars.css';
+
+.FormElement {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.Input,
+.TextArea {
+  height: 35px;
+  border-radius: 3px;
+}
+
+.Label {
+  font-size: 1.1em;
+}
+
+.Fieldset {
+  border: none;
+}
+
+.Legend {
+  font-family: var(--font-button);
+}

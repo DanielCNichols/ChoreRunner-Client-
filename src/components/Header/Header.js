@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import TokenService from '../../services/token-service';
+import { Link, withRouter } from 'react-router-dom';
 import UserContext from '../../contexts/UserContext';
 import s from './Header.module.css';
 
-export default function NavBar(props) {
+function NavBar(props) {
   const context = useContext(UserContext);
 
   const handleLogoutClick = () => {
@@ -18,8 +17,8 @@ export default function NavBar(props) {
   function renderLoginLinks() {
     return (
       <>
-        <Link to='/login'>Login</Link>
-        <Link to='/register'>Sign Up</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/register">Sign Up</Link>
       </>
     );
   }
@@ -27,7 +26,7 @@ export default function NavBar(props) {
   return (
     <nav className={s.navBar}>
       <div className={s.logo}>
-        <Link to='/'>Chore Runner</Link>
+        <Link to="/">Chore Runner</Link>
       </div>
 
       <div className={s.navLinks}>
@@ -36,3 +35,5 @@ export default function NavBar(props) {
     </nav>
   );
 }
+
+export default withRouter(NavBar);
