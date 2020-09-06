@@ -81,14 +81,14 @@ export default function LandingPage(props) {
         </div>
         <div className={s.onBoardingContent}>
           <h4>Make chores easy and fun!</h4>
-          <p>
+          {/* <p>
             "Who's turn is it to do the dishes? Didn't you ask them to finish
             this two days ago?""
           </p>
           <p>
             Sound familiar? We know that managing and delegating household
             chores can be a struggle. Let Chorerunner help!
-          </p>
+          </p> */}
           <p>
             Chorerunner makes chores a fun competition between kids and family
             members. Simply sign up, add household members, assign tasks, and

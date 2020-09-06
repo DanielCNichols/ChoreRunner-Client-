@@ -28,6 +28,15 @@
   justify-content: space-between;
 }
 
+@media screen and (min-width: 450px) {
+  .navBar {
+    height: 5vh;
+  }
+  .navLinks {
+    width: 150px;
+  }
+}
+
 /* .header {
   height: 55px;
   display: flex;
@@ -76,7 +85,7 @@
 @media (min-width: 475px) {
   .header > h1 {
     line-height: 11px;
-    width: 200px;
+    width : 200px;
   }
 
   .h1 > a {
