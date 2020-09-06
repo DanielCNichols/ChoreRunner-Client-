@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import UserContext from '../../contexts/UserContext';
+import { Fieldset, Input, FormElement, Label, Legend } from '../Form/Form';
+import s from './MemberLogin.module.css';
 
 export default class MemberLogin extends Component {
   static contextType = UserContext;
@@ -23,65 +25,66 @@ export default class MemberLogin extends Component {
     history.push(destination);
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { username, password } = e.target;
+  handleSubmit = async e => {
+    try {
+      e.preventDefault();
+      const { username, password } = e.target;
 
-    this.setState({ error: null });
+      this.setState({ error: null });
 
-    AuthApiService.postMemberLogin({
-      username: username.value,
-      password: password.value,
-    })
-      .then(res => {
-        username.value = '';
-        password.value = '';
-        this.context.processLogin(res.authToken, res.type);
-        this.onLoginSuccess();
-      })
-      .catch(res => {
-        this.setState({ error: res.error });
+      let res = await AuthApiService.postMemberLogin({
+        username: username.value,
+        password: password.value,
       });
+
+      this.context.processLogin(res.authToken, res.type);
+      this.onLoginSuccess();
+    } catch (error) {
+      this.setState({ error: error });
+    }
   };
 
   render() {
     const { error, username, password } = this.state;
 
     return (
-      <div className="parent-login">
-        <h2>Member login</h2>
-        <div className="demo">
-          <h3>Demo:</h3>
-          <p>username: bartman</p>
-          <p>password: bartman</p>
-        </div>
+      <div className={s.container}>
         <form
-          className="parent-form-container"
+          className={s.memberForm}
           id="member-login"
           onSubmit={this.handleSubmit}
         >
-          <div>
-            <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              type="text"
-              onChange={this.onChangeHandle}
-              value={username}
-              required
-            ></input>
+          <div className={s.demo}>
+            <h3>Demo:</h3>
+            <p>username: bartman</p>
+            <p>password: bartman</p>
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input
-              name="password"
-              type="password"
-              onChange={this.onChangeHandle}
-              value={password}
-              required
-            ></input>
-          </div>
-          <div role="alert">{error && <p>{error}</p>}</div>
-          <button type="submit">login</button>
+
+          <Fieldset>
+            <Legend>Member Login</Legend>
+            <FormElement className={s.formElement}>
+              <Label htmlFor="username">Username</Label>
+              <Input
+                name="username"
+                type="text"
+                onChange={this.onChangeHandle}
+                value={username}
+                required
+              />
+            </FormElement>
+            <FormElement className={s.formElement}>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                name="password"
+                type="password"
+                onChange={this.onChangeHandle}
+                value={password}
+                required
+              />
+            </FormElement>
+            <div role="alert">{error && <p>{error}</p>}</div>
+            <button type="submit">login</button>
+          </Fieldset>
         </form>
       </div>
     );
