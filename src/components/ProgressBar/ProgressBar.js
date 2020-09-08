@@ -1,31 +1,37 @@
 import React from 'react';
 
-export default function ProgressBar({ points }) {
+export default function ProgressBar({ progressPercent, progressPoints }) {
+  console.log(progressPercent);
   const containerStyle = {
     height: '30px',
     width: '100%',
-    backgroundColor: 'none',
+    position: 'relative',
+    backgroundColor: 'blue',
     border: '2px solid white',
   };
 
   const filledStyle = {
     height: '100%',
-    width: '10%',
+    width: `${progressPercent}%`,
     backgroundColor: 'white',
     textAlign: 'right',
   };
 
   const labelStyle = {
     padding: 5,
-    color: 'black',
+    color: '#ffd900',
     fontWeight: 'bold',
+    position: 'absolute',
+    display: 'inline-block',
+    width: '100%',
+    textAlign: 'center',
+    verticalAlign: 'middle',
   };
 
   return (
     <div style={containerStyle}>
-      <div style={filledStyle}>
-        <span style={labelStyle}>{`1 / 10`}</span>
-      </div>
+      <span style={labelStyle}>{`${progressPoints} / 10`}</span>
+      <div style={filledStyle}></div>
     </div>
   );
 }

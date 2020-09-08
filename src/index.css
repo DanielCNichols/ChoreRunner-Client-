@@ -25,11 +25,10 @@ body {
     rgba(86, 74, 216, 1) 0%,
     rgba(125, 171, 245, 1) 85%
   );
-}
 
-/* .html {
-  height: 100%;
-} */
+  /* Gets the background to cover. */
+  min-height: 100vh;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

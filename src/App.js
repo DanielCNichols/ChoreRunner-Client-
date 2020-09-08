@@ -7,7 +7,7 @@ import ParentOnlyRoute from './routes/ParentOnlyRoute';
 import Landing from './components/Landing/Landing';
 import ParentLogin from './components/ParentLogin/ParentLogin';
 import RegistrationRoute from './routes/RegistrationRoute/RegistrationRoute';
-import ParentDashboard from './components/ParentDashboard/ParentDashboard';
+import ParentDashRoute from './routes/ParentDashRoute/ParentDashRoute';
 import MemberOnlyRoute from './routes/MemberOnlyRoute';
 import NavBar from './components/Header/Header';
 import HouseholdPage from './routes/HouseholdPage/HouseholdPage';
@@ -30,7 +30,7 @@ function App() {
           <ParentOnlyRoute
             exact
             path={'/parent-dashboard'}
-            component={ParentDashboard}
+            component={ParentDashRoute}
           />
           <MemberOnlyRoute
             exact

@@ -8,7 +8,7 @@ import {
   Legend,
 } from '../Form/Form';
 import AuthApiService from '../../services/auth-api-service';
-import Button from '../Button/Button';
+import Button from '../FloatingButton/FloatingButton';
 import s from './RegistrationForm.module.css';
 
 class RegistrationForm extends Component {
@@ -154,9 +154,9 @@ class RegistrationForm extends Component {
             />
           </FormElement>
           <div role="alert">{error && <p className="alertMsg">{error}</p>}</div>
-          <Button type="submit" className="arcadeButton">
+          <button type="submit" className="arcadeButton">
             Sign up
-          </Button>
+          </button>
         </Fieldset>
       </form>
     );

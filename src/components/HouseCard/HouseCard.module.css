@@ -1,0 +1,73 @@
+@import '../../vars.css';
+
+.houseCard {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-menus);
+  color: white;
+  border: 2px solid white;
+  border-radius: 6px;
+  margin: 20px auto;
+  font-family: var(--font-body);
+}
+
+.cardHeader {
+  width: 100%;
+  border-bottom: 2px solid white;
+}
+
+.cardHeader header {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.cardHeader h4 {
+  margin: 0;
+}
+
+.cardBody {
+  display: grid;
+  grid-template-rows: 2;
+  grid-template-columns: 1fr 30% 1fr;
+  padding: 10px 20px;
+}
+
+.cardBody > p {
+  grid-row: 1;
+  margin: 0;
+  text-align: left;
+}
+
+.membersList {
+  margin: 10px 0;
+  padding: 0;
+  grid-column: span 3;
+}
+
+.memberDetails {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 30% 1fr;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.memberDetails p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 450px) {
+  .houseCard {
+    width: 50%;
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .houseCard {
+    width: 100%;
+  }
+}
