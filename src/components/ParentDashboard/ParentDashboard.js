@@ -11,6 +11,7 @@ import AddMembers from '../AddMembers/AddMembers';
 import './ParentDashboard.css';
 import Modal from '../Modal/Modal';
 import AddHouseHoldForm from '../AddHouseHoldForm/AddHouseHoldForm';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 export default class ParentDashboard extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class ParentDashboard extends Component {
   componentDidMount() {
     ApiService.getHouseholds()
       .then(res => {
+        console.log(res);
         this.context.setHouseholds(res);
       })
       .catch(error =>
@@ -182,23 +184,21 @@ export default class ParentDashboard extends Component {
             </button>
           </div>
 
-            <hr className="rule" />
-
+          <hr className="rule" />
 
           <h4>Members</h4>
 
           {/* Render the names */}
           {this.state.members && this.state.members[household.id] ? (
             <ul className="card-members">
+              <ProgressBar></ProgressBar>
               {this.state.members[household.id].members.map(member => {
                 return <li key={member.id}>{member.name}</li>;
               })}
             </ul>
           ) : (
             <ul className="card-empty">
-              <li>
-                This group has no members{' '}
-              </li>
+              <li>This group has no members </li>
             </ul>
           )}
 
