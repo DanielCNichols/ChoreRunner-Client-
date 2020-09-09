@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function ProgressBar({ progressPercent, progressPoints }) {
-  console.log(progressPercent);
   const containerStyle = {
     height: '30px',
     width: '100%',

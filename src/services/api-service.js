@@ -7,15 +7,12 @@ const ApiService = {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`
+        authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify(newMember)
-    })
-    .then(res =>
-      (!res.ok)
-        ? res.json().then(e => Promise.reject(e))
-        : res.json()
-    )
+      body: JSON.stringify(newMember),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
   },
 
   postHousehold(householdName) {
@@ -26,7 +23,7 @@ const ApiService = {
         'content-type': 'application/json',
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({ name }), 
+      body: JSON.stringify({ name }),
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
@@ -133,7 +130,7 @@ const ApiService = {
     );
   },
 
-  //Refactor this to return all things members and their tasks. 
+  //Refactor this to return all things members and their tasks.
   getMembers(household_id) {
     return fetch(`${config.API_ENDPOINT}/households/${household_id}/members`, {
       method: 'GET',
@@ -190,7 +187,6 @@ const ApiService = {
     );
   },
 
-
   addTask(id, newTask) {
     return fetch(`${config.API_ENDPOINT}/households/${id}/tasks`, {
       method: 'POST',
@@ -199,8 +195,9 @@ const ApiService = {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(newTask),
-    }).then(res => 
-      !res.ok ? res.json().then(e=> Promise.reject(e)) : res.json())
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
   },
 
   completeTask(id) {
@@ -243,7 +240,6 @@ const ApiService = {
     );
   },
 
-
   updateTask(household_id, reqBody) {
     return fetch(`${config.API_ENDPOINT}/households/${household_id}/tasks`, {
       method: 'PATCH',
@@ -253,7 +249,7 @@ const ApiService = {
       },
       body: JSON.stringify(reqBody),
     }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json() 
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
 

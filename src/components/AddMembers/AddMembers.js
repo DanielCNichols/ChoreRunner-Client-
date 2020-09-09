@@ -37,6 +37,7 @@ export default class AddMembers extends React.Component {
       this.setState({ validateError: { usernameError, householdError } });
       return false;
     }
+
     return true;
   };
 
@@ -58,18 +59,17 @@ export default class AddMembers extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     let isValid = this.validate();
-    const householdId = this.state.household_id;
+    const { household_id } = this.state;
 
     let newMember = {
       name: this.state.name,
       username: this.state.username,
       password: this.state.password,
-      household_id: householdId,
+      household_id: household_id,
     };
 
-    console.log(newMember);
     if (isValid) {
-      ApiService.addHouseholdMember(householdId, newMember)
+      ApiService.addHouseholdMember(household_id, newMember)
         .then(member => {
           this.setState({
             name: '',
@@ -77,7 +77,7 @@ export default class AddMembers extends React.Component {
             password: '',
             error: null,
           });
-          this.props.handleRenderUpdate(member);
+          this.props.handleAdd(member);
         })
         .catch(res => this.setState({ error: res.error }));
       this.setState({ error: 'Success!' });
@@ -85,7 +85,7 @@ export default class AddMembers extends React.Component {
   };
 
   render() {
-    const { households } = this.context;
+    const { households } = this.props;
     const { error } = this.state;
     const { usernameError, householdError } = this.state.validateError;
     return (

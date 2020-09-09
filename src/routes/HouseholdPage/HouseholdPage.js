@@ -55,7 +55,6 @@ export default class HouseholdPage extends Component {
 
   handleEditMember = updatedMember => {
     let list = this.refreshMemberList(updatedMember);
-    console.log(list);
 
     this.setState({ membersList: list });
   };

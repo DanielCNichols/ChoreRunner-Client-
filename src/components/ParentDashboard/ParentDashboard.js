@@ -37,7 +37,6 @@ export default class ParentDashboard extends Component {
   componentDidMount() {
     ApiService.getHouseholds()
       .then(res => {
-        console.log(res);
         this.context.setHouseholds(res);
       })
       .catch(error =>

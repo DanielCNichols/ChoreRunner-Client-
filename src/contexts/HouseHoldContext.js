@@ -38,17 +38,14 @@ export class HouseholdProvider extends Component {
     this.setHouseholds([...this.state.households, newHousehold]);
   };
 
-  updateHousehold = (id, updateHouse) =>  {
-    console.log(updateHouse)
-    let newHouses = this.state.households.map(household => (
-      household.id !== id) ? household : household = updateHouse
-    )
-    console.log(newHouses)
+  updateHousehold = (id, updateHouse) => {
+    let newHouses = this.state.households.map(household =>
+      household.id !== id ? household : (household = updateHouse)
+    );
     this.setState({
       households: newHouses,
-    })
-    console.log(this.state.households)
-  }
+    });
+  };
 
   deleteHousehold = (event, householdId) => {
     event.preventDefault();
