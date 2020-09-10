@@ -1,11 +1,4 @@
 import React, { Component, useState, useContext, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-// import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-// import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-// import HouseholdContext from '../../contexts/HouseHoldContext';
-// import EditHouseholdInput from '../../components/EditHouseholdInput/EditHouseholdInput';
 import ApiService from '../../services/api-service.js';
 import AddMembers from '../../components/AddMembers/AddMembers';
 import '../../components/ParentDashboard/ParentDashboard.css';
@@ -17,7 +10,7 @@ import FloatingButton from '../../components/FloatingButton/FloatingButton';
 import HouseCard from '../../components/HouseCard/HouseCard';
 
 export default function ParentDashRoute(props) {
-  const [households, setHouseholds] = useState(null);
+  const [households, setHouseholds] = useState([]);
   const [houseAdd, setHouseAdd] = useState(false);
   const [memberAdd, setMemberAdd] = useState(false);
   const [editHouse, setEditHouse] = useState(false);
@@ -106,29 +99,18 @@ export default function ParentDashRoute(props) {
         <h3>Your Groups</h3>
       </header>
 
+      {/* !I think we can refactor this and just put the add member button in the card! */}
       <div className={s.addControls}>
-        {households && (
-          <button onClick={() => toggleAddMember()} className="arcadeButton">
-            Add Member
-          </button>
-        )}
         <button className="arcadeButton" onClick={() => toggleAddHouse()}>
           Add Household
         </button>
       </div>
 
       <div className={s.formContainer}>
-        {houseAdd && !memberAdd && (
+        {houseAdd && (
           <AddHouseHoldForm
             handleCancel={toggleAddHouse}
             handleAdd={handleAddHousehold}
-          />
-        )}
-        {!houseAdd && memberAdd && (
-          <AddMembers
-            households={households}
-            handleCancel={toggleAddMember}
-            handleAdd={handleAddMembers}
           />
         )}
       </div>
@@ -145,6 +127,7 @@ export default function ParentDashRoute(props) {
               toggleEdit={toggleEditHouse}
               handleEdit={handleEditHousehold}
               handleDelete={handleDeleteHousehold}
+              handleAddMembers={handleAddMembers}
             />
           );
         })

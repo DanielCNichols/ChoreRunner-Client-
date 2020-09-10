@@ -8,7 +8,7 @@ export default class AddMembers extends React.Component {
     name: '',
     username: '',
     password: '',
-    household_id: 28,
+    household_id: this.props.id,
     error: null,
     validateError: {
       usernameError: '',
@@ -77,7 +77,8 @@ export default class AddMembers extends React.Component {
             password: '',
             error: null,
           });
-          this.props.handleAdd(member);
+          this.props.handleAddMembers(member);
+          this.props.toggleAddMember();
         })
         .catch(res => this.setState({ error: res.error }));
       this.setState({ error: 'Success!' });
@@ -96,7 +97,6 @@ export default class AddMembers extends React.Component {
       >
         <fieldset>
           <legend>Add a Member</legend>
-          {/* <p>{this.props.houseName}</p> */}
           <label htmlFor="member-name">Name</label>
           <input
             type="text"
@@ -106,22 +106,6 @@ export default class AddMembers extends React.Component {
             onChange={this.onChangeHandle}
             value={this.state.name}
           ></input>
-
-          <label htmlFor="household">Household</label>
-          <select
-            className="select-css"
-            name="household_id"
-            onChange={this.onSelectChangeHandle}
-            defaultValue="Select household"
-            required
-          >
-            <option value="">Select Household</option>
-            {households.map((hh, index) => (
-              <option key={index} value={hh.id}>
-                {hh.name}
-              </option>
-            ))}
-          </select>
 
           <label htmlFor="child-username">Member Username</label>
           <input
@@ -144,7 +128,7 @@ export default class AddMembers extends React.Component {
           <button type="submit" className="submitHH">
             + Add New Member
           </button>
-          <button type="button" onClick={this.props.handleCancel}>
+          <button type="button" onClick={() => this.props.toggleAddMember()}>
             Cancel
           </button>
           <div role="alert">
