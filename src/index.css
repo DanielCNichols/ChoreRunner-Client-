@@ -76,8 +76,8 @@ code {
 }
 
 .arcadeButton {
-  font-family: 'Fredoka One', cursive;
   font-size: 35px;
+  font-family: 'Press Start 2P', cursive;
   padding: 10px 0 10px 0px;
   background-color: rgb(255, 217, 0);
   text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;

@@ -172,7 +172,7 @@ export default function HouseCard({
           ) : (
             <p>You have not added any members to this household</p>
           )}
-          <div>
+          <div className={s.detailsLink}>
             <Link to={`/household/${house.id}`}>
               Manage Tasks
               <MdChevronRight />

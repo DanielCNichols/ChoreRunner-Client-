@@ -104,15 +104,28 @@
   align-items: center;
 }
 
+.detailsLink {
+  width: auto;
+  margin-left: auto;
+  padding: 10px 20px;
+}
+
+.detailsLink a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media screen and (min-width: 450px) {
   .houseCard {
     width: 50%;
-    max-width: 400px;
+    max-width: 500px;
+    min-width: 270px;
   }
 }
 
 @media screen and (min-width: 800px) {
   .houseCard {
-    width: 100%;
+    width: 500px;
   }
 }

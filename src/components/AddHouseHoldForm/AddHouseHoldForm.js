@@ -12,6 +12,7 @@ import ApiService from '../../services/api-service';
 export default class AddHouseHoldForm extends Component {
   state = {
     householdName: '',
+    feedback: null,
     errors: {
       inputErrors: null,
       error: null,
@@ -40,7 +41,12 @@ export default class AddHouseHoldForm extends Component {
 
       res.members = [];
       this.props.handleAdd(res);
-      this.props.toggleAdd();
+
+      this.setState({ feedback: 'success!' });
+
+      setTimeout(() => {
+        this.props.toggleAdd();
+      }, 500);
     } catch (error) {
       this.setState({ errors: { error: error } });
     }
@@ -69,6 +75,10 @@ export default class AddHouseHoldForm extends Component {
               ref={input => (this.householdName = input)}
             />
           </FormElement>
+
+          {this.state.feedback && (
+            <p style={{ color: 'white' }}> {this.state.feedback}</p>
+          )}
 
           <div className={s.formButtons}>
             <button

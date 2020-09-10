@@ -1,7 +1,8 @@
 import React from 'react';
 import ApiService from '../../services/api-service';
 import HouseholdContext from '../../contexts/HouseHoldContext';
-import './AddMembers.css';
+import { FormElement, Label, Input, Fieldset, Legend } from '../Form/Form';
+import s from './AddMembers.module.css';
 
 export default class AddMembers extends React.Component {
   state = {
@@ -86,51 +87,58 @@ export default class AddMembers extends React.Component {
   };
 
   render() {
-    const { households } = this.props;
     const { error } = this.state;
     const { usernameError, householdError } = this.state.validateError;
     return (
-      <form
-        onSubmit={this.handleSubmit}
-        className="add-member container"
-        id="add-household-form"
-      >
-        <fieldset>
-          <legend>Add a Member</legend>
-          <label htmlFor="member-name">Name</label>
-          <input
-            type="text"
-            id="member-name"
-            name="name"
-            required
-            onChange={this.onChangeHandle}
-            value={this.state.name}
-          ></input>
+      <form onSubmit={this.handleSubmit} className={s.addMemberForm}>
+        <Fieldset>
+          <Legend className="videoGameTitles">Add Member</Legend>
+          <FormElement className={s.formElement}>
+            <Label htmlFor="member-name">Name</Label>
+            <Input
+              type="text"
+              id="member-name"
+              name="name"
+              required
+              onChange={this.onChangeHandle}
+              value={this.state.name}
+            />
+          </FormElement>
+          <FormElement className={s.formElement}>
+            <Label htmlFor="child-username">Member Username</Label>
+            <Input
+              type="text"
+              id="child-username"
+              name="username"
+              required
+              onChange={this.onChangeHandle}
+              value={this.state.username}
+            />
+          </FormElement>
+          <FormElement className={s.formElement}>
+            <Label htmlFor="child-password">Member Password</Label>
+            <Input
+              type="password"
+              id="child-password"
+              name="password"
+              required
+              onChange={this.onChangeHandle}
+              value={this.state.password}
+            />
+          </FormElement>
 
-          <label htmlFor="child-username">Member Username</label>
-          <input
-            type="text"
-            id="child-username"
-            name="username"
-            required
-            onChange={this.onChangeHandle}
-            value={this.state.username}
-          ></input>
-          <label htmlFor="child-password">Member Password</label>
-          <input
-            type="password"
-            id="child-password"
-            name="password"
-            required
-            onChange={this.onChangeHandle}
-            value={this.state.password}
-          ></input>
-          <button type="submit" className="submitHH">
-            + Add New Member
-          </button>
-          <button type="button" onClick={() => this.props.toggleAddMember()}>
-            Cancel
-          </button>
+          <div className={s.formButtons}>
+            <button type="submit" className="arcadeButton">
+              Add Member
+            </button>
+            <button
+              className="arcadeButton"
+              type="button"
+              onClick={() => this.props.toggleAddMember()}
+            >
+              Cancel
+            </button>
+          </div>
           <div role="alert">
             {
               <p className="alertMsg">
@@ -138,7 +146,7 @@ export default class AddMembers extends React.Component {
               </p>
             }
           </div>
-        </fieldset>
+        </Fieldset>
       </form>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component, useState, useContext, useEffect } from 'react';
 import ApiService from '../../services/api-service.js';
-import '../../components/ParentDashboard/ParentDashboard.css';
+import FloatingButton from '../../components/FloatingButton/FloatingButton';
 import AddHouseHoldForm from '../../components/AddHouseHoldForm/AddHouseHoldForm';
 import s from './ParentDashRoute.module.css';
 
@@ -9,7 +9,6 @@ import HouseCard from '../../components/HouseCard/HouseCard';
 export default function ParentDashRoute(props) {
   const [households, setHouseholds] = useState([]);
   const [houseAdd, setHouseAdd] = useState(false);
-  const [memberAdd, setMemberAdd] = useState(false);
   const [editHouse, setEditHouse] = useState(false);
   const [error, setError] = useState(null);
 
@@ -96,7 +95,7 @@ export default function ParentDashRoute(props) {
   return (
     <section className={s.parentDashboard}>
       <header>
-        <h3>Your Groups</h3>
+        <h3 className="videoGameTitles">Your Groups</h3>
       </header>
 
       {/* !I think we can refactor this and just put the add member button in the card! */}
@@ -105,6 +104,11 @@ export default function ParentDashRoute(props) {
           Add Group
         </button>
       </div>
+
+      <FloatingButton
+        className={s.floatingButton}
+        onClick={() => toggleAddHouse()}
+      ></FloatingButton>
 
       <div className={s.formContainer}>
         {houseAdd && (
