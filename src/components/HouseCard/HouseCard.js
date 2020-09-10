@@ -18,6 +18,7 @@ export default function HouseCard({
   handleDelete,
   handleEdit,
   handleAddMembers,
+  deleteMember,
 }) {
   const [name, setName] = useState(house.name);
   const [addMember, setAddMember] = useState(false);
@@ -61,8 +62,14 @@ export default function HouseCard({
     setAddMember(!addMember);
   };
 
-  const handleDeleteMember = async id => {
-    console.log('do stuff');
+  const handleDeleteMember = async (memberId, householdId) => {
+    try {
+      await ApiService.deleteMember(memberId);
+
+      deleteMember(memberId, householdId);
+    } catch (error) {
+      setError(error);
+    }
   };
 
   return (
@@ -85,14 +92,14 @@ export default function HouseCard({
             </header>
             <div className={s.buttonContainer}>
               {editing ? (
-                <>
+                <div className={s.editButtons}>
                   <button onClick={() => setEditing(false)}>
                     <MdCancel />
                   </button>
                   <button onClick={() => handleSubmit()}>
                     <MdSave />
                   </button>
-                </>
+                </div>
               ) : (
                 <>
                   <button onClick={() => setAddMember(true)}>
@@ -124,20 +131,23 @@ export default function HouseCard({
                           width: '100%',
                           display: 'flex',
                           justifyContent: 'space-between',
+                          alignItems: 'center',
                         }}
                       >
                         {editing && (
-                          <p
-                            style={{
-                              justifySelf: 'flex-end',
-                              marginRight: '10px',
-                              marginLeft: '-5px',
-                            }}
-                          >
-                            X
-                          </p>
+                          <div className={s.memberEditButtonContainer}>
+                            <MdDelete
+                              onClick={() =>
+                                handleDeleteMember(member.id, house.id)
+                              }
+                            />
+                            <MdEdit />
+                          </div>
                         )}
-                        <p>{member.name}</p>
+
+                        <p style={{ textAlign: 'left', width: '100%' }}>
+                          {member.name}
+                        </p>
                       </div>
                       <p style={{ justifyContent: 'center' }}>
                         {member.level_id}

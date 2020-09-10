@@ -8,6 +8,7 @@ import s from './ParentDashRoute.module.css';
 import FloatingButton from '../../components/FloatingButton/FloatingButton';
 
 import HouseCard from '../../components/HouseCard/HouseCard';
+import { MdCardMembership } from 'react-icons/md';
 
 export default function ParentDashRoute(props) {
   const [households, setHouseholds] = useState([]);
@@ -93,6 +94,20 @@ export default function ParentDashRoute(props) {
     setHouseholds(newHouseholds);
   };
 
+  const deleteMember = (memberId, householdId) => {
+    let household = households.findIndex(house => house.id === householdId);
+
+    let newHouseholds = [...households];
+
+    let newMembers = newHouseholds[household].members.filter(
+      member => member.id !== memberId
+    );
+
+    newHouseholds[household].members = newMembers;
+
+    setHouseholds(newHouseholds);
+  };
+
   return (
     <section className={s.parentDashboard}>
       <header>
@@ -128,6 +143,7 @@ export default function ParentDashRoute(props) {
               handleEdit={handleEditHousehold}
               handleDelete={handleDeleteHousehold}
               handleAddMembers={handleAddMembers}
+              deleteMember={deleteMember}
             />
           );
         })
