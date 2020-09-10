@@ -1,0 +1,87 @@
+@import '../../vars.css';
+.addHouseholdForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  background-color: var(--color-menus);
+  padding: 20px 20px;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+
+.addHouseholdForm fieldset {
+  width: 80%;
+  min-width: 245px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.addHouseholdForm legend {
+  font-family: 'Press Start 2P', italic;
+  margin: 10px auto;
+  color: #ffd900;
+}
+
+.addHouseholdForm label {
+  color: white;
+  margin-bottom: 5px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 1em;
+}
+
+.formButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addHouseholdForm button {
+  width: 100px;
+  height: 45px;
+  text-align: center;
+  margin: 10px auto;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+  padding: 7px;
+  background-color: rgb(255, 217, 0);
+  text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+  color: #725f00;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0.3em rgb(134, 112, 0);
+  cursor: pointer;
+}
+
+/* 
+.add-household-form button {
+  text-align: center;
+  margin: 10px auto 20px auto;
+  font-family: 'Electrolize', sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  background-color: rgb(255, 217, 0);
+  text-shadow: -1px -1px rgb(105, 90, 0), 1px 1px white;
+  color: #725f00;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0.3em rgb(134, 112, 0);
+  cursor: pointer;
+} */
+
+@media screen and (min-width: 800px) {
+  .add-household-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

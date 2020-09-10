@@ -1,14 +1,10 @@
 import React, { Component, useState, useContext, useEffect } from 'react';
 import ApiService from '../../services/api-service.js';
-import AddMembers from '../../components/AddMembers/AddMembers';
 import '../../components/ParentDashboard/ParentDashboard.css';
-import Modal from '../../components/Modal/Modal';
 import AddHouseHoldForm from '../../components/AddHouseHoldForm/AddHouseHoldForm';
 import s from './ParentDashRoute.module.css';
-import FloatingButton from '../../components/FloatingButton/FloatingButton';
 
 import HouseCard from '../../components/HouseCard/HouseCard';
-import { MdCardMembership } from 'react-icons/md';
 
 export default function ParentDashRoute(props) {
   const [households, setHouseholds] = useState([]);
@@ -30,13 +26,13 @@ export default function ParentDashRoute(props) {
   const UserPrompt = () => {
     return (
       <>
-        <div className="parent_dashboard-feedback">
+        <div className={s.parentDashboardFeedback}>
           <h3>Get Started!</h3>
 
           <p>1. Click the "Add Group" button to create groups</p>
           <p>2. Add members to your groups with the "Add Member" button</p>
           <p>
-            3. Manage your group's tasks by clicking <span>'See Group'</span>{' '}
+            3. Manage your group's tasks by clicking <span>'Manage tasks'</span>{' '}
           </p>
         </div>
       </>
@@ -44,18 +40,7 @@ export default function ParentDashRoute(props) {
   };
 
   const toggleAddHouse = () => {
-    if (memberAdd) {
-      setMemberAdd(!memberAdd);
-    }
     setHouseAdd(!houseAdd);
-  };
-
-  const toggleAddMember = () => {
-    if (houseAdd) {
-      setHouseAdd(!houseAdd);
-    }
-
-    setMemberAdd(!memberAdd);
   };
 
   const toggleEditHouse = () => {
@@ -117,7 +102,7 @@ export default function ParentDashRoute(props) {
       {/* !I think we can refactor this and just put the add member button in the card! */}
       <div className={s.addControls}>
         <button className="arcadeButton" onClick={() => toggleAddHouse()}>
-          Add Household
+          Add Group
         </button>
       </div>
 
@@ -126,11 +111,12 @@ export default function ParentDashRoute(props) {
           <AddHouseHoldForm
             handleCancel={toggleAddHouse}
             handleAdd={handleAddHousehold}
+            toggleAdd={toggleAddHouse}
           />
         )}
       </div>
 
-      {!households ? (
+      {!households.length && !houseAdd ? (
         <UserPrompt />
       ) : (
         households.map(house => {

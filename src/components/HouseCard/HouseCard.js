@@ -4,6 +4,7 @@ import s from './HouseCard.module.css';
 import ApiService from '../../services/api-service';
 import AddMembers from '../../components/AddMembers/AddMembers';
 import { Link } from 'react-router-dom';
+import EditMember from '../EditMember/EditMember';
 import {
   MdSave,
   MdEdit,
@@ -23,6 +24,7 @@ export default function HouseCard({
   const [name, setName] = useState(house.name);
   const [addMember, setAddMember] = useState(false);
   const [editing, setEditing] = useState(false);
+
   const [error, setError] = useState(null);
 
   const handleNameChange = e => {
@@ -141,7 +143,6 @@ export default function HouseCard({
                                 handleDeleteMember(member.id, house.id)
                               }
                             />
-                            <MdEdit />
                           </div>
                         )}
 

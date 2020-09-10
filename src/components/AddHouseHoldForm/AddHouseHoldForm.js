@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import s from './AddHouseHoldForm.css';
+import s from './AddHouseHoldForm.module.css';
+import {
+  Input,
+  FormElement,
+  Fieldset,
+  Label,
+  Legend,
+} from '../../components/Form/Form';
 import ApiService from '../../services/api-service';
 
 export default class AddHouseHoldForm extends Component {
@@ -33,6 +40,7 @@ export default class AddHouseHoldForm extends Component {
 
       res.members = [];
       this.props.handleAdd(res);
+      this.props.toggleAdd();
     } catch (error) {
       this.setState({ errors: { error: error } });
     }
@@ -42,33 +50,39 @@ export default class AddHouseHoldForm extends Component {
     const { handleCancel } = this.props;
     return (
       <form
-        className="add-household-form"
+        className={s.addHouseholdForm}
         onSubmit={ev => this.handleHousholdSubmit(ev)}
       >
-        <fieldset>
-          <legend>Add a Group</legend>
-          <label className="add-house-label" htmlFor="householdName">
-            {' '}
-            Group Name
-          </label>
+        <Fieldset>
+          <Legend>Add a Group</Legend>
+          <Label htmlFor="householdName">Group Name</Label>
           {this.state.errors.inputErrors && (
             <p>{this.state.errors.inputErrors}</p>
           )}
-          <input
-            onBlur={() => this.validateInput()}
-            onChange={ev => this.handleInputChange(ev)}
-            name="householdName"
-            type="text"
-            value={this.state.householdName}
-            ref={input => (this.householdName = input)}
-          ></input>
-          <button className="submitHH" type="submit">
-            Create new group
-          </button>
-          <button type="button" onClick={handleCancel}>
-            Cancel
-          </button>
-        </fieldset>
+          <FormElement>
+            <Input
+              onBlur={() => this.validateInput()}
+              onChange={ev => this.handleInputChange(ev)}
+              name="householdName"
+              type="text"
+              value={this.state.householdName}
+              ref={input => (this.householdName = input)}
+            />
+          </FormElement>
+
+          <div className={s.formButtons}>
+            <button
+              className="arcadeButton"
+              type="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+            <button className="arcadeButton" type="submit">
+              Create
+            </button>
+          </div>
+        </Fieldset>
       </form>
     );
   }
