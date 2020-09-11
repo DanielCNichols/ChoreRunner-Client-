@@ -21,9 +21,9 @@ export default function ProgressBar({ progressPercent, progressPoints }) {
     color: '#ffd900',
     fontWeight: 'bold',
     position: 'absolute',
-    display: 'inline-block',
-    width: '100%',
-    textAlign: 'center',
+    left: '25%',
+    width: 'inherit',
+    textAlign: 'left',
     verticalAlign: 'middle',
   };
 

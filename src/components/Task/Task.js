@@ -1,89 +1,191 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import ApiService from '../../services/api-service';
 import EditTask from '../EditTask/EditTask';
 import Modal from '../Modal/Modal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPencilAlt,
-  faTrashAlt,
-  faThumbsUp,
-  faThumbsDown
-} from '@fortawesome/free-solid-svg-icons';
-import './Task.css'
+import { MdEdit, MdDelete } from 'react-icons/md';
+import { IoMdThumbsUp, IoMdThumbsDown } from 'react-icons/io';
 
-export default class Task extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editing: false,
-      error: null,
-    };
-  }
+import s from './Task.module.css';
 
-  toggleEdit = () => {
-    this.setState({
-      editing: !this.state.editing,
-    });
+export default function Task({
+  task: { id, household_id, member_id, points, title, status },
+  editTask,
+  deleteTask,
+  approveTask,
+  rejectTask,
+}) {
+  const [editing, setEditing] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleDeleteTask = async () => {
+    try {
+      await ApiService.deleteTask(household_id, id);
+      deleteTask(household_id, id);
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  handleDelete = (taskId, memberId) => {
-    const { householdId } = this.props;
-    ApiService.deleteTask(householdId, taskId)
-      .then(() => this.props.deleteTask(taskId, memberId))
-      .catch(error => this.setState(error));
+  const toggleEdit = () => {
+    setEditing(!editing);
   };
 
-
-  handleUpdateStatus = (newStatus, points, memberId, taskId) => {
-    const { householdId, approveTask, rejectTask } = this.props;
-
-    ApiService.parentUpdateTaskStatus(taskId, householdId, newStatus, points, memberId)
-    .then(() => {
-      newStatus === "approved" ? approveTask(points, memberId, taskId) : rejectTask(memberId, taskId, newStatus)
-    }).catch(error => this.setState(error))
+  const handleApproveTask = async () => {
+    try {
+      await ApiService.parentUpdateTaskStatus(
+        id,
+        household_id,
+        'approved',
+        points,
+        member_id
+      );
+      approveTask(points, member_id, id);
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  render() {
-    const { task, editTask, householdId } = this.props;
-    const { editing, error } = this.state;
+  const handleRejectTask = async () => {
+    try {
+      await ApiService.parentUpdateTaskStatus(
+        id,
+        household_id,
+        'assigned',
+        points,
+        member_id
+      );
+      rejectTask(points, member_id, id);
+    } catch (error) {
+      setError(error);
+    }
+  };
 
-    return (
-      <li key={task.id} className="task-item">
-        {editing ? (
-          <Modal>
-            <EditTask
-              editTask={editTask}
-              householdId={householdId}
-              handleToggle={this.toggleEdit}
-              task={task}
-            ></EditTask>
-          </Modal>
-        ) : null}
-        <p className="task-item-title">{task.title}</p>
-        <p className="task-item-points">Points: {task.points}</p>
-    
-        {task.status === 'completed' ? (
-          <div className="task-item-buttons">
-            <button onClick={() => this.handleUpdateStatus("approved", task.points, task.member_id, task.id)}><FontAwesomeIcon className="thumb-icon" icon={faThumbsUp} size="1x"
-                color="#b1b1b1"></FontAwesomeIcon></button>
-            <button onClick={() => this.handleUpdateStatus("assigned", task.points, task.member_id, task.id)}><FontAwesomeIcon className="thumb-icon" icon={faThumbsDown} size="1x"
-                color=" #b1b1b1"></FontAwesomeIcon></button>
-          </div>
-        ) : (
-          <div className="task-item-buttons">
-          <button onClick={this.toggleEdit}><FontAwesomeIcon className="pen-icon" icon={faPencilAlt} size="1x" color="#b1b1b1"/><span>Edit</span></button>
-          <button onClick={() => this.handleDelete(task.id, task.member_id)}>
-          <FontAwesomeIcon className="trash-icon" icon={faTrashAlt} size="1x" color="#b1b1b1"/>
-          <span>Delete</span>
-          </button>
-          </div>
+  return (
+    <li className={s.taskItem}>
+      {/* {editing && (
+        <Modal>
+          <EditTask editTask={editTask} handleToggle={toggleEdit} task={ta />
+        </Modal>
+      )} */}
+
+      <p>{title}</p>
+      <p>Points: {points}</p>
+
+      <div className={s.taskControls}>
+        {status !== 'completed' && (
+          <>
+            <button onClick={() => handleDeleteTask()}>
+              <MdDelete />
+            </button>
+            <button onClick={() => toggleEdit()}>
+              <MdEdit />
+            </button>
+          </>
         )}
-        {error ? (
-          <div className="alert">
-            <p className="alertMsg">{error}</p>
-          </div>
-        ) : null}
-      </li>
-    );
-  }
+
+        {status !== 'assigned' && (
+          <>
+            <button onClick={() => handleApproveTask()}>
+              <IoMdThumbsUp />
+            </button>
+            <button onClick={() => handleRejectTask()}>
+              <IoMdThumbsDown />
+            </button>
+          </>
+        )}
+      </div>
+    </li>
+  );
 }
+
+// export default class Task extends Component {
+//   handleUpdateStatus = (newStatus, points, memberId, taskId) => {
+//     const { householdId, approveTask, rejectTask } = this.props;
+
+//   render() {
+//     const { task, editTask, householdId } = this.props;
+//     const { editing, error } = this.state;
+
+//     return (
+//       <li key={task.id} className="task-item">
+//         {editing ? (
+//           <Modal>
+//             <EditTask
+//               editTask={editTask}
+//               householdId={householdId}
+//               handleToggle={this.toggleEdit}
+//               task={task}
+//             ></EditTask>
+//           </Modal>
+//         ) : null}
+//         <p className="task-item-title">{task.title}</p>
+//         <p className="task-item-points">Points: {task.points}</p>
+
+//         {task.status === 'completed' ? (
+//           <div className="task-item-buttons">
+//             <button
+//               onClick={() =>
+//                 this.handleUpdateStatus(
+//                   'approved',
+//                   task.points,
+//                   task.member_id,
+//                   task.id
+//                 )
+//               }
+//             >
+//               <FontAwesomeIcon
+//                 className="thumb-icon"
+//                 icon={faThumbsUp}
+//                 size="1x"
+//                 color="#b1b1b1"
+//               ></FontAwesomeIcon>
+//             </button>
+//             <button
+//               onClick={() =>
+//                 this.handleUpdateStatus(
+//                   'assigned',
+//                   task.points,
+//                   task.member_id,
+//                   task.id
+//                 )
+//               }
+//             >
+//               <FontAwesomeIcon
+//                 className="thumb-icon"
+//                 icon={faThumbsDown}
+//                 size="1x"
+//                 color=" #b1b1b1"
+//               ></FontAwesomeIcon>
+//             </button>
+//           </div>
+//         ) : (
+//           <div className="task-item-buttons">
+//             <button onClick={this.toggleEdit}>
+//               <FontAwesomeIcon
+//                 className="pen-icon"
+//                 icon={faPencilAlt}
+//                 size="1x"
+//                 color="#b1b1b1"
+//               />
+//               <span>Edit</span>
+//             </button>
+//             <button onClick={() => this.handleDelete(task.id, task.member_id)}>
+//               <FontAwesomeIcon
+//                 className="trash-icon"
+//                 icon={faTrashAlt}
+//                 size="1x"
+//                 color="#b1b1b1"
+//               />
+//               <span>Delete</span>
+//             </button>
+//           </div>
+//         )}
+//         {error ? (
+//           <div className="alert">
+//             <p className="alertMsg">{error}</p>
+//           </div>
+//         ) : null}
+//       </li>
+//     );
+//   }
+// }

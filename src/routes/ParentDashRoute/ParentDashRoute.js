@@ -97,7 +97,6 @@ export default function ParentDashRoute(props) {
       <header>
         <h3 className="videoGameTitles">Your Groups</h3>
       </header>
-
       {/* !I think we can refactor this and just put the add member button in the card! */}
       <div className={s.addControls}>
         <button className="arcadeButton" onClick={() => toggleAddHouse()}>
@@ -109,7 +108,6 @@ export default function ParentDashRoute(props) {
         className={s.floatingButton}
         onClick={() => toggleAddHouse()}
       ></FloatingButton>
-
       <div className={s.formContainer}>
         {houseAdd && (
           <AddHouseHoldForm
@@ -119,7 +117,6 @@ export default function ParentDashRoute(props) {
           />
         )}
       </div>
-
       {!households.length && !houseAdd ? (
         <UserPrompt />
       ) : (

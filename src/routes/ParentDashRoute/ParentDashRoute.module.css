@@ -1,9 +1,10 @@
 .parentDashboard {
   align-items: center;
   width: 90%;
-  margin: 0 auto 150px auto;
-  /* height: 100%; */
+  margin: 0 auto;
+  height: 100%;
   padding-top: 15vh;
+  padding-bottom: 200px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -11,12 +12,6 @@
 
 .addControls {
   display: none;
-}
-
-.floatingButton {
-  position: fixed;
-  bottom: 15%;
-  right: 15%;
 }
 
 .formContainer {
@@ -86,10 +81,6 @@
     align-items: center;
     width: 250px;
     padding: 0 20px;
-  }
-
-  .floatingButton {
-    display: none;
   }
 }
 @keyframes bounce {

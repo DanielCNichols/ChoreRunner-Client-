@@ -5,8 +5,12 @@ import Modal from '../../components/Modal/Modal';
 import MembersCard from '../../components/MembersCard/MembersCard';
 import './HouseholdPage.css';
 
+import FloatingButton from '../../components/FloatingButton/FloatingButton';
+import { faSleigh } from '@fortawesome/free-solid-svg-icons';
+
 export default class HouseholdPage extends Component {
   state = {
+    addTask: false,
     membersList: [],
     error: null,
   };
@@ -147,35 +151,16 @@ export default class HouseholdPage extends Component {
       <section className="household-page">
         <h3>Group Page</h3>
         <div className="dash-buttons">
-          <button onClick={this.toggleAddTasks}>+ Assign Tasks</button>
+          <FloatingButton onClick={this.toggleAddTasks} />
+          <button className="addButton" onClick={this.toggleAddTasks}>
+            + Assign Tasks
+          </button>
           <button onClick={this.handleResetScores} className="reset-all-scores">
             reset all scores
           </button>
         </div>
-        {addTask && this.state.membersList.length ? (
-          <Modal>
-            <AddTask
-              householdId={household_id}
-              members={this.state.membersList}
-              handleAdd={this.handleAddTasks}
-              handleToggle={this.toggleAddTasks}
-            ></AddTask>
-          </Modal>
-        ) : null}
 
-        {addTask && !this.state.membersList.length ? (
-          <Modal>
-            <div className="alert">
-              <p className="alertMsg">Add Members First!</p>
-              <button
-                className="reset-all-scores"
-                onClick={this.toggleAddTasks}
-              >
-                Cancel
-              </button>
-            </div>
-          </Modal>
-        ) : null}
+        {this.state.addTask && <p>this is the add form</p>}
 
         <section className="membersList">
           {this.state.membersList.map(member => {
@@ -188,14 +173,41 @@ export default class HouseholdPage extends Component {
                 deleteTask={this.handleDeleteTask}
                 editTask={this.handleEditTasks}
                 key={member.id}
-                householdId={household_id}
                 member={member}
-                tasks={member.tasks}
-              ></MembersCard>
+              />
             );
           })}
         </section>
       </section>
     );
   }
+}
+
+{
+  /* {addTask && this.state.membersList.length ? (
+          <Modal>
+            <AddTask
+              householdId={household_id}
+              members={this.state.membersList}
+              handleAdd={this.handleAddTasks}
+              handleToggle={this.toggleAddTasks}
+            ></AddTask>
+          </Modal>
+   ) : null*/
+}
+{
+  /* 
+                      {addTask && !this.state.membersList.length ? (
+                        <Modal>
+                          <div className="alert">
+                            <p className="alertMsg">Add Members First!</p>
+                            <button
+                              className="reset-all-scores"
+                              onClick={this.toggleAddTasks}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </Modal>
+                      ) : null} */
 }

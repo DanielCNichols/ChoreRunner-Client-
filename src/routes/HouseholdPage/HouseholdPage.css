@@ -10,10 +10,15 @@ button {
   cursor: pointer;
 }
 
+.addButton {
+  display: none;
+}
+
 .household-page {
   flex-direction: column;
-  height: 88vh;
+  height: 100%;
   padding-top: 12vh;
+  padding-bottom: 100px;
   overflow-y: auto;
 }
 
@@ -331,6 +336,9 @@ button.delete-task {
 }
 
 @media screen and (min-width: 800px) {
+  .addButton {
+    display: initial;
+  }
   .member-card {
     width: 60%;
   }

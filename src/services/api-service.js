@@ -170,8 +170,9 @@ const ApiService = {
     );
   },
 
-  parentUpdateTaskStatus(taskId, householdId, newStatus, points, memberId) {
-    let data = { newStatus, points, memberId };
+  parentUpdateTaskStatus(taskId, householdId, newStatus, points, member_id) {
+    console.log('this is the member id', member_id);
+    let data = { newStatus, points, member_id };
     return fetch(
       `${config.API_ENDPOINT}/households/${householdId}/tasks/status/${taskId}`,
       {

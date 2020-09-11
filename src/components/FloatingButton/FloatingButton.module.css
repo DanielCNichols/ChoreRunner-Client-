@@ -11,6 +11,9 @@
   width: 65px;
   height: 65px;
   padding: 0;
+  position: fixed;
+  bottom: 15%;
+  right: 15%;
 }
 
 .FloatingButton svg {
@@ -19,4 +22,10 @@
   background-color: white;
   color: var(--color-mainHeader);
   border-radius: inherit;
+}
+
+@media screen and (min-width: 800px) {
+  .FloatingButton {
+    display: none;
+  }
 }

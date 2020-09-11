@@ -1,0 +1,31 @@
+.taskItem {
+  width: 100%;
+  padding: 5px 10px;
+  display: grid;
+  grid-template: auto / repeat(3, 1fr);
+  gap: 0 10%;
+  align-items: center;
+}
+
+.taskItem p {
+  margin: 0;
+  padding: 0;
+}
+
+.taskItem p,
+.taskControls {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.taskControls {
+  width: 80%;
+  margin-left: auto;
+  font-size: 1.5em;
+  justify-content: space-between;
+}
+
+.taskControls svg {
+  color: white;
+}
