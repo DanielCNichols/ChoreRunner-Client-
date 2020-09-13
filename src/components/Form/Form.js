@@ -25,6 +25,12 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
   );
 });
 
+export const Select = React.forwardRef(({ className, ...props }, ref) => {
+  return (
+    <select className={cx(`${s.Select}`, className)} ref={ref} {...props} />
+  );
+});
+
 export function Required({ className, ...props }) {
   return (
     <span className={cx('Required', className)} {...props}>

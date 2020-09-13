@@ -1,213 +1,180 @@
-import React, { Component } from 'react';
-import AddTask from '../../components/AddTask/AddTask';
+import React, { Component, useState, useEffect } from 'react';
+import AddTask from '../../components/AddTask/AddTaskForm';
 import ApiService from '../../services/api-service';
-import Modal from '../../components/Modal/Modal';
 import MembersCard from '../../components/MembersCard/MembersCard';
 import './HouseholdPage.css';
+import Modal from '../../components/Modal/Modal';
 
 import FloatingButton from '../../components/FloatingButton/FloatingButton';
-import { faSleigh } from '@fortawesome/free-solid-svg-icons';
 
-export default class HouseholdPage extends Component {
-  state = {
-    addTask: false,
-    membersList: [],
-    error: null,
-  };
+export default function HouseHoldPage(props) {
+  const [addTask, setAddTask] = useState(false);
+  const [members, setMembers] = useState([]);
+  const [error, setError] = useState(null);
 
-  componentDidMount() {
-    const household_id = this.props.match.params.id;
-    ApiService.getMembers(household_id).then(members => {
-      this.setState({
-        membersList: members,
+  useEffect(() => {
+    //!This param is not descriptive. Change it in the route.
+    let household_id = props.match.params.id;
+    ApiService.getMembers(household_id)
+      .then(members => {
+        setMembers(members);
+      })
+      .catch(error => {
+        setError(error);
       });
-    });
+  }, []);
+
+  //Helpers
+
+  const toggleAddTasks = () => {
+    setAddTask(!addTask);
+  };
+
+  const handleAddTask = task => {
+    let { member_id } = task;
+
+    let newMembers = [...members];
+    let memberIdx = getIndex(member_id, newMembers);
+
+    newMembers[memberIdx].assignedTasks = [
+      ...newMembers[memberIdx].assignedTasks,
+      task,
+    ];
+
+    setMembers(newMembers);
+  };
+
+  function getIndex(id, list) {
+    return list.findIndex(member => member.id === id);
   }
 
-  // <--------------------------Helper Functions--------------->
-  refreshMemberList(updated) {
-    return this.state.membersList.map(member => {
-      return member.id === updated.id ? updated : member;
+  function resetAllScores() {
+    let updatedMembers = [...members];
+
+    updatedMembers.forEach(member => {
+      member.total_score = 0;
+      member.level_id = 1;
     });
+
+    setMembers(updatedMembers);
   }
 
-  findMemberIndex(id) {
-    return this.state.membersList.findIndex(member => member.id === id);
-  }
+  /* Handlers */
 
-  setScoreToZero() {
-    let list = this.state.membersList;
+  const handleResetScores = async () => {
+    try {
+      let household_id = props.match.params.id;
+      await ApiService.resetScores(household_id);
 
-    list.forEach(member => (member.total_score = 0));
-
-    this.setState({ membersList: list });
-  }
-
-  // <--------------------------Member Functions--------------->
-  handleResetScores = () => {
-    let household_id = this.props.match.params.id;
-    ApiService.resetScores(household_id)
-      .then(res => {
-        this.setScoreToZero();
-      })
-      .catch(error => this.context.setError(error));
+      resetAllScores();
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  toggleEditMember = () => {
-    this.setState({ editMember: !this.state.editMember });
+  //Approve task
+
+  const handleTaskApproved = task => {
+    let { id, member_id } = task;
+
+    let updatedMembers = [...members];
+    let memberIdx = getIndex(member_id, updatedMembers);
+
+    updatedMembers[memberIdx].completedTasks = updatedMembers[
+      memberIdx
+    ].completedTasks.filter(task => task.id !== id);
+
+    setMembers(updatedMembers);
   };
 
-  handleEditMember = updatedMember => {
-    let list = this.refreshMemberList(updatedMember);
+  //reject task
 
-    this.setState({ membersList: list });
+  const handleTaskRejection = task => {
+    let { id, member_id } = task;
+    let updatedMembers = [...members];
+
+    let memberIdx = getIndex(member_id, updatedMembers);
+
+    //Move from "completed" to "assigned".
+
+    updatedMembers[memberIdx].completedTasks = updatedMembers[
+      memberIdx
+    ].completedTasks.filter(task => task.id !== id);
+
+    updatedMembers[memberIdx].assignedTasks = updatedMembers[
+      memberIdx
+    ].assignedTasks.push({ ...task, ...(task.status = 'assigned') });
+
+    setMembers(updatedMembers);
   };
 
-  handleDeleteMember = id => {
-    let householdId = this.props.match.params.id;
-    ApiService.deleteMember(id, householdId)
-      .then(() => {
-        let list = this.state.membersList.filter(member => {
-          return member.id !== id;
-        });
-        this.setState({ membersList: list });
-      })
-      .catch(error => this.setState(error));
+  //edit Task
+
+  const handleEditTask = updatedTask => {
+    let { id, member_id } = updatedTask;
+    let updatedMembers = [...members];
+
+    let memberIdx = getIndex(member_id, updatedMembers);
+    let taskIdx = getIndex(id, updatedMembers[memberIdx].assignedTasks);
+
+    updatedMembers[memberIdx].assignedTasks[taskIdx] = { ...updatedTask };
+
+    setMembers(updatedMembers);
   };
 
-  // <--------------------------Task Functions Functions--------------->
+  //Delete Task
 
-  toggleAddTasks = () => {
-    this.setState({ addTask: !this.state.addTask });
+  const handleDeleteTask = task => {
+    let { id, member_id } = task;
+
+    let updatedMembers = [...members];
+
+    let memberIdx = getIndex(member_id, updatedMembers);
+
+    updatedMembers[memberIdx].assignedTasks = updatedMembers[
+      memberIdx
+    ].assignedTasks.filter(task => task.id !== id);
+
+    setMembers(updatedMembers);
   };
 
-  handleAddTasks = newTask => {
-    let idx = this.findMemberIndex(newTask.member_id);
-    let updated = this.state.membersList[idx];
-    updated.tasks.push(newTask);
+  return (
+    <section className="household-page">
+      <h3>Group Page</h3>
+      <div className="dash-buttons">
+        <FloatingButton onClick={toggleAddTasks} />
+        <button className="addButton" onClick={toggleAddTasks}>
+          + Assign Tasks
+        </button>
+        <button onClick={handleResetScores} className="reset-all-scores">
+          reset all scores
+        </button>
+      </div>
+      {addTask && (
+        <Modal>
+          <AddTask
+            householdId={props.match.params.id}
+            members={members}
+            addTask={handleAddTask}
+            toggleAdd={toggleAddTasks}
+          />
+        </Modal>
+      )}
 
-    let newList = this.refreshMemberList(updated);
-    this.setState({ membersList: newList });
-  };
-
-  handleDeleteTask = (task_id, member_id) => {
-    const { membersList } = this.state;
-    let idx = this.findMemberIndex(member_id);
-    let newList = membersList[idx].tasks.filter(task => task.id !== task_id);
-    let updatedMember = membersList[idx];
-    updatedMember.tasks = newList;
-    let updated = membersList.map(member => {
-      return member.id === updatedMember.id ? updatedMember : member;
-    });
-    this.setState({ membersList: updated });
-  };
-
-  handleApproveTask = (points, memberId, taskId) => {
-    //find the member
-    let idx = this.findMemberIndex(memberId);
-    let updateMember = this.state.membersList[idx];
-    updateMember.total_score = updateMember.total_score += points;
-    updateMember.tasks = updateMember.tasks.filter(task => task.id !== taskId);
-
-    let newList = this.refreshMemberList(updateMember);
-    this.setState({ membersList: newList });
-  };
-
-  handleRejectTask = (memberId, taskId, newStatus) => {
-    let idx = this.findMemberIndex(memberId);
-    let updateMember = this.state.membersList[idx];
-    updateMember.tasks.find(task => task.id === taskId).status = newStatus;
-    let newList = this.refreshMemberList(updateMember);
-    this.setState({ membersList: newList });
-  };
-
-  handleEditTasks = updatedTask => {
-    //find the appropriate member in the list
-    let idx = this.state.membersList.findIndex(
-      member => member.id === updatedTask.member_id
-    );
-
-    let newList = this.state.membersList[idx].tasks.map(task => {
-      return task.id === updatedTask.id ? updatedTask : task;
-    });
-
-    let updatedMember = this.state.membersList[idx];
-    updatedMember.tasks = newList;
-
-    //update the list and set state
-
-    let updated = this.state.membersList.map(member => {
-      return member.id === updatedMember.id ? updatedMember : member;
-    });
-
-    this.setState({ membersList: updated });
-  };
-
-  render() {
-    const { addTask } = this.state;
-    const household_id = this.props.match.params.id;
-
-    return (
-      <section className="household-page">
-        <h3>Group Page</h3>
-        <div className="dash-buttons">
-          <FloatingButton onClick={this.toggleAddTasks} />
-          <button className="addButton" onClick={this.toggleAddTasks}>
-            + Assign Tasks
-          </button>
-          <button onClick={this.handleResetScores} className="reset-all-scores">
-            reset all scores
-          </button>
-        </div>
-
-        {this.state.addTask && <p>this is the add form</p>}
-
-        <section className="membersList">
-          {this.state.membersList.map(member => {
-            return (
-              <MembersCard
-                deleteMember={this.handleDeleteMember}
-                editMember={this.handleEditMember}
-                rejectTask={this.handleRejectTask}
-                approveTask={this.handleApproveTask}
-                deleteTask={this.handleDeleteTask}
-                editTask={this.handleEditTasks}
-                key={member.id}
-                member={member}
-              />
-            );
-          })}
-        </section>
+      <section className="membersList">
+        {members.map(member => {
+          return (
+            <MembersCard
+              rejectTask={handleTaskRejection}
+              approveTask={handleTaskApproved}
+              deleteTask={handleDeleteTask}
+              editTask={handleEditTask}
+              key={member.id}
+              member={member}
+            />
+          );
+        })}
       </section>
-    );
-  }
-}
-
-{
-  /* {addTask && this.state.membersList.length ? (
-          <Modal>
-            <AddTask
-              householdId={household_id}
-              members={this.state.membersList}
-              handleAdd={this.handleAddTasks}
-              handleToggle={this.toggleAddTasks}
-            ></AddTask>
-          </Modal>
-   ) : null*/
-}
-{
-  /* 
-                      {addTask && !this.state.membersList.length ? (
-                        <Modal>
-                          <div className="alert">
-                            <p className="alertMsg">Add Members First!</p>
-                            <button
-                              className="reset-all-scores"
-                              onClick={this.toggleAddTasks}
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                        </Modal>
-                      ) : null} */
+    </section>
+  );
 }
