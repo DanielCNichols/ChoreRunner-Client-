@@ -92,6 +92,10 @@ export default function ParentDashRoute(props) {
     setHouseholds(newHouseholds);
   };
 
+  function handleEditMember(updated) {
+    console.log(updated);
+  }
+
   return (
     <section className={s.parentDashboard}>
       <header>
@@ -128,6 +132,7 @@ export default function ParentDashRoute(props) {
               editing={editHouse}
               toggleEdit={toggleEditHouse}
               handleEdit={handleEditHousehold}
+              handleEditMember={handleEditMember}
               handleDelete={handleDeleteHousehold}
               handleAddMembers={handleAddMembers}
               deleteMember={deleteMember}

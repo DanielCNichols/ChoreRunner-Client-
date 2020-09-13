@@ -4,7 +4,8 @@ import s from './HouseCard.module.css';
 import ApiService from '../../services/api-service';
 import AddMembers from '../../components/AddMembers/AddMembers';
 import { Link } from 'react-router-dom';
-import EditMember from '../EditMember/EditMember';
+import Member from '../Member/Member';
+
 import {
   MdSave,
   MdEdit,
@@ -19,10 +20,12 @@ export default function HouseCard({
   handleDelete,
   handleEdit,
   handleAddMembers,
+  handleEditMember,
   deleteMember,
 }) {
   const [name, setName] = useState(house.name);
   const [addMember, setAddMember] = useState(false);
+  const [editingMember, setEditingMember] = useState(false);
   const [editing, setEditing] = useState(false);
 
   const [error, setError] = useState(null);
@@ -127,44 +130,12 @@ export default function HouseCard({
               <ul className={s.membersList}>
                 {house.members.map(member => {
                   return (
-                    <li key={member.id} className={s.memberDetails}>
-                      <div
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                        }}
-                      >
-                        {editing && (
-                          <div className={s.memberEditButtonContainer}>
-                            <MdDelete
-                              onClick={() =>
-                                handleDeleteMember(member.id, house.id)
-                              }
-                            />
-                          </div>
-                        )}
-
-                        <p style={{ textAlign: 'left', width: '100%' }}>
-                          {member.name}
-                        </p>
-                      </div>
-                      <p style={{ justifyContent: 'center' }}>
-                        {member.level_id}
-                      </p>
-                      <div className={s.progressBarContainer}>
-                        <ProgressBar
-                          progressPercent={
-                            (member.level_id * 10 - member.total_score - 10) *
-                            10
-                          }
-                          progressPoints={
-                            member.level_id * 10 - member.total_score - 10
-                          }
-                        />
-                      </div>
-                    </li>
+                    <Member
+                      showEdit={editing}
+                      member={member}
+                      deleteMember={handleDeleteMember}
+                      editMember={handleEditMember}
+                    />
                   );
                 })}
               </ul>
@@ -172,12 +143,14 @@ export default function HouseCard({
           ) : (
             <p>You have not added any members to this household</p>
           )}
-          <div className={s.detailsLink}>
-            <Link to={`/household/${house.id}`}>
-              Manage Tasks
-              <MdChevronRight />
-            </Link>
-          </div>
+          {!!house.members.length && (
+            <div className={s.detailsLink}>
+              <Link to={`/household/${house.id}`}>
+                Manage Tasks
+                <MdChevronRight />
+              </Link>
+            </div>
+          )}
         </>
       )}
     </div>
