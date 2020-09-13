@@ -124,9 +124,7 @@ export default function HouseHoldPage(props) {
 
   //Delete Task
 
-  const handleDeleteTask = task => {
-    let { id, member_id } = task;
-
+  const handleDeleteTask = (id, member_id) => {
     let updatedMembers = [...members];
 
     let memberIdx = getIndex(member_id, updatedMembers);

@@ -8,6 +8,7 @@ import { IoMdThumbsUp, IoMdThumbsDown } from 'react-icons/io';
 import s from './Task.module.css';
 
 export default function Task({
+  task,
   task: { id, household_id, member_id, points, title, status },
   editTask,
   deleteTask,
@@ -20,7 +21,7 @@ export default function Task({
   const handleDeleteTask = async () => {
     try {
       await ApiService.deleteTask(household_id, id);
-      deleteTask(household_id, id);
+      deleteTask(id, member_id);
     } catch (error) {
       setError(error);
     }
@@ -62,11 +63,11 @@ export default function Task({
 
   return (
     <li className={s.taskItem}>
-      {/* {editing && (
+      {editing && (
         <Modal>
-          <EditTask editTask={editTask} handleToggle={toggleEdit} task={ta />
+          <EditTask editTask={editTask} handleToggle={toggleEdit} task={task} />
         </Modal>
-      )} */}
+      )}
 
       <p>{title}</p>
       <p>Points: {points}</p>
