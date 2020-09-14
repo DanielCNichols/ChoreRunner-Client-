@@ -73,7 +73,6 @@ export default function AddMemberForm({
 
   async function handleSubmitMember(ev) {
     try {
-      console.log('runnnig');
       ev.preventDefault();
       resetErrors();
 
@@ -84,7 +83,6 @@ export default function AddMemberForm({
         errors.password ||
         errors.confirmPass
       ) {
-        console.log('errors');
         return setError(errors);
       }
 

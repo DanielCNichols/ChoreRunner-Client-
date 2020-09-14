@@ -58,7 +58,6 @@ export default function EditMember({
       }
     }
 
-    console.log('these are the errors', errors);
     return errors;
   }
 
@@ -72,14 +71,12 @@ export default function EditMember({
     });
   }
   async function handleEditSubmit(ev) {
-    console.log('submitting');
     try {
       resetErrors();
       ev.preventDefault();
       let errors = validateInputs();
 
       if (Object.keys(errors).length) {
-        console.log('errors');
         return setError(errors);
       }
 
@@ -90,8 +87,6 @@ export default function EditMember({
       };
 
       let update = await ApiService.editMember(updatedMember, household_id, id);
-
-      console.log('updated member', update);
 
       editMember(update);
       toggleEdit();
