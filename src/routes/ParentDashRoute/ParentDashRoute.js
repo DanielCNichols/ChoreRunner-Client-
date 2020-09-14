@@ -92,8 +92,21 @@ export default function ParentDashRoute(props) {
     setHouseholds(newHouseholds);
   };
 
+  function getIndex(id, list) {
+    return list.findIndex(member => member.id === id);
+  }
+
   function handleEditMember(updated) {
-    console.log(updated);
+    let { household_id, id } = updated;
+
+    let newHouseholds = [...households];
+    let householdIdx = getIndex(household_id, newHouseholds);
+
+    let memberIdx = getIndex(id, newHouseholds[householdIdx].members);
+
+    newHouseholds[householdIdx].members[memberIdx] = updated;
+
+    setHouseholds(newHouseholds);
   }
 
   return (

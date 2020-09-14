@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import ApiService from '../../services/api-service';
-import './EditMember.css';
+import s from './EditMemberForm.module.css';
 import { Fieldset, Input, Label, FormElement, Legend } from '../Form/Form';
 
 export default function EditMember({
@@ -94,188 +94,86 @@ export default function EditMember({
       console.log('updated member', update);
 
       editMember(update);
+      toggleEdit();
     } catch (serverError) {
       setError({ ...error, server: serverError });
     }
   }
 
   return (
-    <form onSubmit={handleEditSubmit} className="edit-member-form">
-      <fieldset>
-        <legend>Edit Member</legend>
-        <label htmlFor="member-name">Name</label>
-        <input
-          type="text"
-          name="name"
-          value={inputs.name}
-          onChange={handleInputChange}
-        ></input>
-        <label htmlFor="child-username">Child username</label>
-        <input
-          type="text"
-          name="username"
-          value={inputs.username}
-          onChange={handleInputChange}
-        ></input>
-        <label htmlFor="child-password">Child password</label>
-        <input
-          type="password"
-          name="password"
-          onFocus={toggleTouched}
-          onChange={handleInputChange}
-        ></input>
+    <form onSubmit={handleEditSubmit} className={s.editMemberForm}>
+      <Fieldset>
+        <Legend className="videoGameTitles">Edit Member</Legend>
+        <FormElement className={s.formElement}>
+          <Label htmlFor="member-name">Name</Label>
+          {error.name && (
+            <div role="alert" className={s.error}>
+              <span>{error.name}</span>
+            </div>
+          )}
+          <Input
+            type="text"
+            name="name"
+            value={inputs.name}
+            onChange={handleInputChange}
+          />
+        </FormElement>
 
-        <input
-          type="password"
-          name="confirmPass"
-          onChange={handleInputChange}
-        ></input>
-        <div className="valid-error"></div>
-        <button type="submit" className="submit-edit-member">
-          Submit Changes
-        </button>
-        <button type="button" onClick={toggleEdit} className="cancel">
-          Cancel
-        </button>
-      </fieldset>
+        <FormElement className={s.formElement}>
+          <Label htmlFor="child-username">Child username</Label>
+          {error.username && (
+            <div role="alert" className={s.error}>
+              <span>{error.username}</span>
+            </div>
+          )}
+          <Input
+            type="text"
+            name="username"
+            value={inputs.username}
+            onChange={handleInputChange}
+          />
+        </FormElement>
+
+        <FormElement className={s.formElement}>
+          <Label htmlFor="child-password">Child password</Label>
+          {error.password && (
+            <div role="alert" className={s.error}>
+              <span>{error.password}</span>
+            </div>
+          )}
+          <Input
+            type="password"
+            name="password"
+            onFocus={toggleTouched}
+            onChange={handleInputChange}
+          />
+        </FormElement>
+        <FormElement className={s.formElement}>
+          <Label htmlFor="confirmPass">Confirm Password</Label>
+          {error.confirmPass && (
+            <div role="alert" className={s.error}>
+              <span>{error.confirmPass}</span>
+            </div>
+          )}
+          <Input
+            type="password"
+            name="confirmPass"
+            onChange={handleInputChange}
+          />
+        </FormElement>
+        {error.server && (
+          <div role="alert" className={s.error}>
+            <span>{error.server}</span>
+          </div>
+        )}
+
+        <div className={s.formButtons}>
+          <button type="submit">Submit Changes</button>
+          <button type="button" onClick={toggleEdit}>
+            Cancel
+          </button>
+        </div>
+      </Fieldset>
     </form>
   );
 }
-
-// export default class EditMember extends React.Component {
-//   constructor(props) {
-//     let { id, name, username, password } = props.member;
-//     super(props);
-//     this.state = {
-//       id,
-//       name,
-//       username,
-//       password,
-//       touched: false,
-//       error: null,
-//       validateError: {
-//         nameError: '',
-//         usernameError: '',
-//         passwordError: '',
-//       },
-//     };
-//   }
-
-//   onChangeHandle = e => {
-//     this.setState({
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   toggleTouched = () => {
-//     this.setState({ touched: true });
-//   };
-
-//   validate = (name, username, pass) => {
-//     let nameError = '';
-//     let usernameError = '';
-//     let passwordError = '';
-
-//     if (name.length <= 2) {
-//       nameError = 'Please enter 3 characters or more';
-//     }
-
-//     // Validates child's username
-//     if (username.length > 50 || username.length < 3) {
-//       usernameError = 'Your name must be less than 50 characters';
-//     }
-
-//     //validate the password
-//     if (pass) {
-//       if (pass.length > 10 || pass.length < 4) {
-//         passwordError =
-//           'Your password must be more than 4 and less than 40 characters';
-//       }
-//     }
-
-//     if (nameError || usernameError || passwordError) {
-//       this.setState({
-//         validateError: { usernameError, nameError, passwordError },
-//       });
-//       return false;
-//     }
-//     return true;
-//   };
-
-//   handleSubmit = e => {
-//     e.preventDefault();
-//     let { householdId } = this.props;
-
-//     let updatedMember = {
-//       id: this.state.id,
-//       name: this.state.name.trim(),
-//       username: this.state.username.trim(),
-//       password: this.state.touched ? this.state.password.trim() : null,
-//     };
-
-//     let isValid = this.validate(
-//       updatedMember.name,
-//       updatedMember.username,
-//       updatedMember.password
-//     );
-
-//     if (isValid) {
-//       ApiService.editMember(updatedMember, householdId, this.state.id)
-//         .then(res => {
-//           this.props.editMember(res);
-//           this.props.toggleForm();
-//         })
-//         .catch(error => this.setState({ error: error.error }));
-//     }
-//   };
-
-//   render() {
-//     const {
-//       usernameError,
-//       nameError,
-//       passwordError,
-//     } = this.state.validateError;
-//     const { error, name, username } = this.state;
-//     return (
-//       <form onSubmit={this.handleSubmit} className="edit-member-form">
-//         <fieldset>
-//           <legend>Edit Member</legend>
-//           <label htmlFor="member-name">Name</label>
-//           <input
-//             type="text"
-//             name="name"
-//             value={name}
-//             onChange={this.onChangeHandle}
-//           ></input>
-//           <label htmlFor="child-username">Child username</label>
-//           <input
-//             type="text"
-//             name="username"
-//             value={username}
-//             onChange={this.onChangeHandle}
-//           ></input>
-//           <label htmlFor="child-password">Child password</label>
-//           <input
-//             type="password"
-//             name="password"
-//             onFocus={this.toggleTouched}
-//             onChange={this.onChangeHandle}
-//           ></input>
-//           <div className="valid-error">
-//             {nameError || usernameError || passwordError || error}
-//           </div>
-//           <button type="submit" className="submit-edit-member">
-//             Submit Changes
-//           </button>
-//           <button
-//             type="button"
-//             onClick={this.props.toggleEdit}
-//             className="cancel"
-//           >
-//             Cancel
-//           </button>
-//         </fieldset>
-//       </form>
-//     );
-//   }
-// }
