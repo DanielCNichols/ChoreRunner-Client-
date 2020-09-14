@@ -117,10 +117,10 @@ export default function EditTaskForm({
           </div>
         )}
         <div className={s.formButtons}>
-          <button type="submit">Update Task</button>
           <button type="button" onClick={handleToggle}>
             Cancel
           </button>
+          <button type="submit">Update Task</button>
         </div>
       </Fieldset>
     </form>
