@@ -15,7 +15,7 @@ export default function Member({ member, deleteMember, editMember, showEdit }) {
   return (
     <li className={s.memberDetails}>
       {editing && (
-        <Modal>
+        <Modal titleText="Edit Member Form">
           <EditMember
             member={member}
             toggleEdit={toggleEditMember}

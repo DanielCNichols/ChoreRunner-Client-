@@ -3,6 +3,7 @@ import ApiService from '../../services/api-service.js';
 import FloatingButton from '../../components/FloatingButton/FloatingButton';
 import AddHouseHoldForm from '../../components/AddHouseHoldForm/AddHouseHoldForm';
 import s from './ParentDashRoute.module.css';
+import Modal from '../../components/Modal/Modal';
 
 import HouseCard from '../../components/HouseCard/HouseCard';
 
@@ -26,13 +27,12 @@ export default function ParentDashRoute(props) {
     return (
       <>
         <div className={s.parentDashboardFeedback}>
-          <h3>Get Started!</h3>
-
-          <p>1. Click the "Add Group" button to create groups</p>
-          <p>2. Add members to your groups with the "Add Member" button</p>
-          <p>
-            3. Manage your group's tasks by clicking <span>'Manage tasks'</span>{' '}
-          </p>
+          <h3 className="videoGameTitles">Get Started!</h3>
+          <ol>
+            <li>1. Click the "Add" button to create groups</li>
+            <li>2. Add members to your groups with the "Add Member" button</li>
+            <li>3. Manage your group's tasks by clicking "Manage Tasks"</li>
+          </ol>
         </div>
       </>
     );
@@ -127,11 +127,13 @@ export default function ParentDashRoute(props) {
       ></FloatingButton>
       <div className={s.formContainer}>
         {houseAdd && (
-          <AddHouseHoldForm
-            handleCancel={toggleAddHouse}
-            handleAdd={handleAddHousehold}
-            toggleAdd={toggleAddHouse}
-          />
+          <Modal titleText="Add Group Form">
+            <AddHouseHoldForm
+              handleCancel={toggleAddHouse}
+              handleAdd={handleAddHousehold}
+              toggleAdd={toggleAddHouse}
+            />
+          </Modal>
         )}
       </div>
       {!households.length && !houseAdd ? (

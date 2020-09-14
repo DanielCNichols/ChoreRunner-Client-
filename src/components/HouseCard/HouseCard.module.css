@@ -73,6 +73,8 @@
   grid-row: 1;
   margin: 0;
   text-align: left;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .cardBody p:nth-child(2) {
@@ -103,7 +105,7 @@
 
 @media screen and (min-width: 450px) {
   .houseCard {
-    width: 50%;
+    width: 60%;
     max-width: 500px;
     min-width: 270px;
   }

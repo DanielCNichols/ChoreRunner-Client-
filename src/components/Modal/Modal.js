@@ -1,12 +1,10 @@
 import React from 'react';
-import Overlay from '../Overlay/Overlay'
-import './Modal.css';
+import AriaModal from 'react-aria-modal';
 
-export default function Modal(props) {
+export default function Modal({ titleText, children }) {
   return (
-
-    <Overlay>
-      <section className="modal">{props.children}</section>
-    </Overlay>
+    <AriaModal verticallyCenter="true" titleText={titleText}>
+      {children}
+    </AriaModal>
   );
 }

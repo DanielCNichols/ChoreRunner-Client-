@@ -158,7 +158,7 @@ export default function HouseHoldPage(props) {
         </button>
       </div>
       {addTask && (
-        <Modal>
+        <Modal titleText="Add Task Form">
           <AddTask
             householdId={props.match.params.id}
             members={members}

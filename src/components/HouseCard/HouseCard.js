@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ProgressBar from '../ProgressBar/ProgressBar';
 import s from './HouseCard.module.css';
 import ApiService from '../../services/api-service';
-import AddMembers from '../../components/AddMembers/AddMembers';
+import Modal from '../Modal/Modal';
+import AddMembers from '../AddMembers/AddMemberForm';
 import { Link } from 'react-router-dom';
 import Member from '../Member/Member';
 
@@ -80,11 +80,13 @@ export default function HouseCard({
   return (
     <div className={s.houseCard}>
       {addMember ? (
-        <AddMembers
-          id={house.id}
-          handleAddMembers={handleAddMembers}
-          toggleAddMember={toggleAddMember}
-        />
+        <Modal titleText="Add Member Form">
+          <AddMembers
+            id={house.id}
+            handleAddMembers={handleAddMembers}
+            toggleAddMember={toggleAddMember}
+          />
+        </Modal>
       ) : (
         <>
           <div className={s.cardHeader}>
