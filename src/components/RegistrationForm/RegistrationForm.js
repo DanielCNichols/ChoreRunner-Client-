@@ -8,7 +8,6 @@ import {
   Legend,
 } from '../Form/Form';
 import AuthApiService from '../../services/auth-api-service';
-import Button from '../FloatingButton/FloatingButton';
 import s from './RegistrationForm.module.css';
 
 class RegistrationForm extends Component {

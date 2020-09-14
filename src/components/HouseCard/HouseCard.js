@@ -131,6 +131,7 @@ export default function HouseCard({
                 {house.members.map(member => {
                   return (
                     <Member
+                      key={member.id}
                       showEdit={editing}
                       member={member}
                       deleteMember={handleDeleteMember}

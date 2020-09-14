@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import EditMember from '../EditMember/EditMember';
 import Task from '../Task/Task';
 import s from './MembersCard.module.css';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';

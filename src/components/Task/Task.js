@@ -1,6 +1,6 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import ApiService from '../../services/api-service';
-import EditTask from '../EditTask/EditTask';
+import EditTaskForm from '../EditTask/EditTaskForm';
 import Modal from '../Modal/Modal';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { IoMdThumbsUp, IoMdThumbsDown } from 'react-icons/io';
@@ -20,6 +20,7 @@ export default function Task({
 
   const handleDeleteTask = async () => {
     try {
+      throw new Error('Something fucked up');
       await ApiService.deleteTask(household_id, id);
       deleteTask(id, member_id);
     } catch (error) {
@@ -65,7 +66,11 @@ export default function Task({
     <li className={s.taskItem}>
       {editing && (
         <Modal>
-          <EditTask editTask={editTask} handleToggle={toggleEdit} task={task} />
+          <EditTaskForm
+            editTask={editTask}
+            handleToggle={toggleEdit}
+            task={task}
+          />
         </Modal>
       )}
 
@@ -95,98 +100,12 @@ export default function Task({
           </>
         )}
       </div>
+
+      {error && (
+        <div className={s.fadeIn}>
+          <p>{error.message}</p>
+        </div>
+      )}
     </li>
   );
 }
-
-// export default class Task extends Component {
-//   handleUpdateStatus = (newStatus, points, memberId, taskId) => {
-//     const { householdId, approveTask, rejectTask } = this.props;
-
-//   render() {
-//     const { task, editTask, householdId } = this.props;
-//     const { editing, error } = this.state;
-
-//     return (
-//       <li key={task.id} className="task-item">
-//         {editing ? (
-//           <Modal>
-//             <EditTask
-//               editTask={editTask}
-//               householdId={householdId}
-//               handleToggle={this.toggleEdit}
-//               task={task}
-//             ></EditTask>
-//           </Modal>
-//         ) : null}
-//         <p className="task-item-title">{task.title}</p>
-//         <p className="task-item-points">Points: {task.points}</p>
-
-//         {task.status === 'completed' ? (
-//           <div className="task-item-buttons">
-//             <button
-//               onClick={() =>
-//                 this.handleUpdateStatus(
-//                   'approved',
-//                   task.points,
-//                   task.member_id,
-//                   task.id
-//                 )
-//               }
-//             >
-//               <FontAwesomeIcon
-//                 className="thumb-icon"
-//                 icon={faThumbsUp}
-//                 size="1x"
-//                 color="#b1b1b1"
-//               ></FontAwesomeIcon>
-//             </button>
-//             <button
-//               onClick={() =>
-//                 this.handleUpdateStatus(
-//                   'assigned',
-//                   task.points,
-//                   task.member_id,
-//                   task.id
-//                 )
-//               }
-//             >
-//               <FontAwesomeIcon
-//                 className="thumb-icon"
-//                 icon={faThumbsDown}
-//                 size="1x"
-//                 color=" #b1b1b1"
-//               ></FontAwesomeIcon>
-//             </button>
-//           </div>
-//         ) : (
-//           <div className="task-item-buttons">
-//             <button onClick={this.toggleEdit}>
-//               <FontAwesomeIcon
-//                 className="pen-icon"
-//                 icon={faPencilAlt}
-//                 size="1x"
-//                 color="#b1b1b1"
-//               />
-//               <span>Edit</span>
-//             </button>
-//             <button onClick={() => this.handleDelete(task.id, task.member_id)}>
-//               <FontAwesomeIcon
-//                 className="trash-icon"
-//                 icon={faTrashAlt}
-//                 size="1x"
-//                 color="#b1b1b1"
-//               />
-//               <span>Delete</span>
-//             </button>
-//           </div>
-//         )}
-//         {error ? (
-//           <div className="alert">
-//             <p className="alertMsg">{error}</p>
-//           </div>
-//         ) : null}
-//       </li>
-//     );
-//   }
-// }
