@@ -3,7 +3,6 @@ import TokenService from './token-service';
 
 const ApiService = {
   addHouseholdMember(householdId, newMember) {
-    console.log(householdId, newMember);
     return fetch(`${config.API_ENDPOINT}/households/${householdId}/members`, {
       method: 'POST',
       headers: {
@@ -172,7 +171,6 @@ const ApiService = {
   },
 
   parentUpdateTaskStatus(taskId, householdId, newStatus, points, member_id) {
-    console.log('this is the member id', member_id);
     let data = { newStatus, points, member_id };
     return fetch(
       `${config.API_ENDPOINT}/households/${householdId}/tasks/status/${taskId}`,

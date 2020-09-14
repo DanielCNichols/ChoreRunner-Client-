@@ -12,7 +12,7 @@
 }
 
 .addTaskForm fieldset {
-  width: 80%;
+  width: 100%;
   min-width: 245;
   border: none;
   display: flex;

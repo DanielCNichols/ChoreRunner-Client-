@@ -64,7 +64,7 @@ export default function Task({
   return (
     <li className={s.taskItem}>
       {editing && (
-        <Modal>
+        <Modal titleText="Edit task form">
           <EditTaskForm
             editTask={editTask}
             handleToggle={toggleEdit}

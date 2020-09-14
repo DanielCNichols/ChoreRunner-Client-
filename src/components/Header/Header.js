@@ -8,6 +8,7 @@ function NavBar(props) {
 
   const handleLogoutClick = () => {
     context.processLogout();
+    props.history.push('/');
   };
 
   function renderLogoutLink() {
