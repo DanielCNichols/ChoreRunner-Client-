@@ -20,7 +20,6 @@ export default function Task({
 
   const handleDeleteTask = async () => {
     try {
-      throw new Error('Something fucked up');
       await ApiService.deleteTask(household_id, id);
       deleteTask(id, member_id);
     } catch (error) {

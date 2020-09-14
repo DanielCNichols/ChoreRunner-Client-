@@ -60,3 +60,22 @@
   padding: 0;
   width: 100%;
 }
+
+@media screen and (min-width: 450px) {
+  .memberCard h4,
+  .memberCard header h3 {
+    font-size: 1em;
+  }
+
+  .memberCard {
+    width: 100%;
+    max-width: 500px;
+    min-width: 270px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .memberCard {
+    width: 500px;
+  }
+}

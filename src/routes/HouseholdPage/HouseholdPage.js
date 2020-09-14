@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import AddTask from '../../components/AddTask/AddTaskForm';
 import ApiService from '../../services/api-service';
 import MembersCard from '../../components/MembersCard/MembersCard';
-import './HouseholdPage.css';
+import s from './HouseholdPage.module.css';
 import Modal from '../../components/Modal/Modal';
 
 import FloatingButton from '../../components/FloatingButton/FloatingButton';
@@ -63,10 +63,15 @@ export default function HouseHoldPage(props) {
 
   const handleResetScores = async () => {
     try {
-      let household_id = props.match.params.id;
-      await ApiService.resetScores(household_id);
-
-      resetAllScores();
+      if (
+        window.confirm(
+          'Are you sure you want to reset all scores? This action cannot be undone.'
+        )
+      ) {
+        let household_id = props.match.params.id;
+        await ApiService.resetScores(household_id);
+        resetAllScores();
+      }
     } catch (error) {
       setError(error);
     }
@@ -137,15 +142,19 @@ export default function HouseHoldPage(props) {
   };
 
   return (
-    <section className="household-page">
+    <section className={s.householdPage}>
       <h3>Group Page</h3>
-      <div className="dash-buttons">
-        <FloatingButton onClick={toggleAddTasks} />
-        <button className="addButton" onClick={toggleAddTasks}>
-          + Assign Tasks
+      <div className={s.dashButtons}>
+        <FloatingButton id={s.FloatingButton} onClick={toggleAddTasks} />
+        <button
+          id={s.addButton}
+          onClick={toggleAddTasks}
+          className="arcadeButton"
+        >
+          <p>Add Task</p>
         </button>
-        <button onClick={handleResetScores} className="reset-all-scores">
-          reset all scores
+        <button onClick={handleResetScores} className="arcadeButton">
+          <p>Reset all scores</p>
         </button>
       </div>
       {addTask && (
@@ -159,7 +168,7 @@ export default function HouseHoldPage(props) {
         </Modal>
       )}
 
-      <section className="membersList">
+      <section className={s.membersList}>
         {members.map(member => {
           return (
             <MembersCard
