@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import s from './AddHouseHoldForm.module.css';
 import {
   Input,
@@ -9,91 +9,75 @@ import {
 } from '../../components/Form/Form';
 import ApiService from '../../services/api-service';
 
-export default class AddHouseHoldForm extends Component {
-  state = {
-    householdName: '',
-    feedback: null,
-    errors: {
-      inputErrors: null,
-      error: null,
-    },
+export default function AddHouseHoldForm({ handleAdd, toggleAdd }) {
+  const [groupName, setGroupName] = useState('');
+
+  const [confirm, setConfirm] = useState('');
+
+  const [error, setError] = useState({
+    groupName: null,
+    server: null,
+  });
+
+  const handleInputChange = ev => {
+    ev.persist();
+    setGroupName(ev.target.value);
   };
 
-  handleInputChange = ev => {
-    this.setState({ householdName: ev.target.value });
-  };
-
-  validateInput() {
-    if (this.state.householdName.length < 1) {
-      this.setState({ errors: { inputErrors: 'Household name is required' } });
-    }
-  }
-
-  handleHousholdSubmit = async ev => {
+  const handleHouseholdSubmit = async ev => {
     try {
       ev.preventDefault();
+      setError({ groupName: null });
 
-      if (this.state.errors.inputErrors) {
-        return;
+      if (!groupName) {
+        return setError({ groupName: 'Group name is required' });
       }
 
-      let res = await ApiService.postHousehold(this.state.householdName);
+      console.log('this is the group name', groupName);
 
-      res.members = [];
-      this.props.handleAdd(res);
+      let added = await ApiService.postHousehold(groupName);
+      console.log(added);
 
-      this.setState({ feedback: 'success!' });
-
-      setTimeout(() => {
-        this.props.toggleAdd();
-      }, 500);
+      handleAdd(added);
+      toggleAdd();
     } catch (error) {
-      this.setState({ errors: { error: error } });
+      setError({ error: error });
     }
   };
 
-  render() {
-    const { handleCancel } = this.props;
-    return (
-      <form
-        className={s.addHouseholdForm}
-        onSubmit={ev => this.handleHousholdSubmit(ev)}
-      >
-        <Fieldset>
-          <Legend>Add a Group</Legend>
-          <Label htmlFor="householdName">Group Name</Label>
-          {this.state.errors.inputErrors && (
-            <p>{this.state.errors.inputErrors}</p>
+  return (
+    <form className={s.addHouseholdForm} onSubmit={handleHouseholdSubmit}>
+      <Fieldset>
+        <Legend>Add a Group</Legend>
+        <FormElement>
+          <Label htmlFor="groupName">Group Name</Label>
+          {error.groupName && (
+            <div className={s.error}>
+              <span>{error.groupName}</span>
+            </div>
           )}
-          <FormElement>
-            <Input
-              onBlur={() => this.validateInput()}
-              onChange={ev => this.handleInputChange(ev)}
-              name="householdName"
-              type="text"
-              value={this.state.householdName}
-              ref={input => (this.householdName = input)}
-            />
-          </FormElement>
+          <Input
+            onChange={handleInputChange}
+            name="groupName"
+            type="text"
+            value={groupName}
+          />
+        </FormElement>
 
-          {this.state.feedback && (
-            <p style={{ color: 'white' }}> {this.state.feedback}</p>
-          )}
-
-          <div className={s.formButtons}>
-            <button
-              className="arcadeButton"
-              type="button"
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
-            <button className="arcadeButton" type="submit">
-              Create
-            </button>
+        {error.server && (
+          <div className={s.error}>
+            <span>{error.server}</span>
           </div>
-        </Fieldset>
-      </form>
-    );
-  }
+        )}
+        <div className={s.formButtons}>
+          <button className="arcadeButton" type="button" onClick={toggleAdd}>
+            Cancel
+          </button>
+          <button className="arcadeButton" type="submit">
+            Create
+          </button>
+        </div>
+      </Fieldset>
+    </form>
+  );
 }

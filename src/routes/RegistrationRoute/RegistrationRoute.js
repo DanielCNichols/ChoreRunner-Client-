@@ -1,27 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 import s from './RegistrationRoute.module.css';
-class RegistrationRoute extends Component {
-  static defaultProps = {
+
+export default function RegistrationRoute(props) {
+  RegistrationRoute.defaultProps = {
     history: {
       push: () => {},
     },
   };
 
-  handleRegistrationSuccess = () => {
-    const { history } = this.props;
+  const handleRegistrationSuccess = () => {
+    const { history } = props;
     history.push('/login');
   };
 
-  render() {
-    return (
-      <section className={s.registrationContainer}>
-        <RegistrationForm
-          onRegistrationSuccess={this.handleRegistrationSuccess}
-        />
-      </section>
-    );
-  }
+  return (
+    <section className={s.registrationContainer}>
+      <RegistrationForm onRegistrationSuccess={handleRegistrationSuccess} />
+    </section>
+  );
 }
-
-export default RegistrationRoute;

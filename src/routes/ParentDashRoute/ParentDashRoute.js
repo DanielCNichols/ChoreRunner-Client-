@@ -129,7 +129,6 @@ export default function ParentDashRoute(props) {
         {houseAdd && (
           <Modal titleText="Add Group Form">
             <AddHouseHoldForm
-              handleCancel={toggleAddHouse}
               handleAdd={handleAddHousehold}
               toggleAdd={toggleAddHouse}
             />
