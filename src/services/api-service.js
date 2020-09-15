@@ -105,7 +105,9 @@ const ApiService = {
     );
   },
 
-  getMemberTasks() {
+  //!For the member dashboard
+  //!KEEP THIS ONE
+  getMemberStatus() {
     return fetch(
       `${config.API_ENDPOINT}/households/householdId/members/memberId/tasks`,
       {
@@ -119,6 +121,7 @@ const ApiService = {
     );
   },
 
+  //!Is for the leaderboard
   getMemberScores(household_id) {
     return fetch(`${config.API_ENDPOINT}/households/household/scores`, {
       headers: {
@@ -216,6 +219,7 @@ const ApiService = {
     );
   },
 
+  //!Pulling this into the dashboard getTasks
   getBadge() {
     return fetch(`${config.API_ENDPOINT}/members`, {
       headers: {

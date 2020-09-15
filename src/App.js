@@ -11,7 +11,7 @@ import ParentDashRoute from './routes/ParentDashRoute/ParentDashRoute';
 import MemberOnlyRoute from './routes/MemberOnlyRoute';
 import NavBar from './components/Header/Header';
 import HouseholdPage from './routes/HouseholdPage/HouseholdPage';
-import MemberDashboard from './components/MemberDashboard/MemberDashboard';
+import MemberDashRoute from './routes/MemberDashRoute/MemberDashRoute';
 import MemberLogin from './components/MemberLogin/MemberLogin';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import './normalize.css';
@@ -35,7 +35,7 @@ function App() {
           <MemberOnlyRoute
             exact
             path={'/member-dashboard'}
-            component={MemberDashboard}
+            component={MemberDashRoute}
           />
           <PrivateRoute
             exact
