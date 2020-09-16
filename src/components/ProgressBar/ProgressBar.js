@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function ProgressBar({ progressPoints }) {
+  //NOTE: The progressBar is expecting progressPoints to be the difference between the players level and their total score.
   const getPercentFilled = () => {
     let points = pointsToNextLevel();
     return (points / 10) * 100;
@@ -23,19 +24,20 @@ export default function ProgressBar({ progressPoints }) {
     width: `${getPercentFilled()}%`,
     backgroundColor: 'white',
     textAlign: 'right',
+    position: 'absolute',
+    top: '0',
   };
 
   const labelStyle = {
     padding: '5px',
     display: 'inline-block',
-
     color: '#ffd900',
     fontWeight: 'bold',
     position: 'relative',
-    // left: '25%',
     width: '100%',
     textAlign: 'center',
     verticalAlign: 'middle',
+    zIndex: '2',
   };
 
   return (

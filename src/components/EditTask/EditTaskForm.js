@@ -66,7 +66,8 @@ export default function EditTaskForm({
 
       let errors = validateInputs();
 
-      if (errors) {
+      if (Object.keys(errors).length) {
+        console.log('got errors');
         return setError(errors);
       }
 

@@ -40,7 +40,7 @@ export default function Task({
         points,
         member_id
       );
-      approveTask(points, member_id, id);
+      approveTask(id, member_id);
     } catch (error) {
       setError(error);
     }
@@ -55,7 +55,7 @@ export default function Task({
         points,
         member_id
       );
-      rejectTask(points, member_id, id);
+      rejectTask(task);
     } catch (error) {
       setError(error);
     }

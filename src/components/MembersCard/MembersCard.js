@@ -16,23 +16,19 @@ export default function MembersCard({
     let num = (goal - member.total_score) % 10;
 
     if (num === 0) {
-      return num;
+      return 10;
     } else {
-      return Math.abs(num - 10);
+      return num;
     }
   }
 
-  let progressPoints = formatPoints();
   return (
     <div className={s.memberCard}>
       <header>
         <h3>{member.name}</h3>
         <p>level: {member.level_id}</p>
         <div className={s.progressBarContainer}>
-          <ProgressBar
-            progressPercent={(progressPoints / 10) * 100}
-            progressPoints={progressPoints}
-          />
+          <ProgressBar progressPoints={formatPoints()} />
         </div>
       </header>
 
@@ -41,7 +37,14 @@ export default function MembersCard({
 
         <ul className={s.completed}>
           {member.completedTasks.map(task => {
-            return <Task key={task.id} task={task} editTask={editTask} />;
+            return (
+              <Task
+                key={task.id}
+                approveTask={approveTask}
+                rejectTask={rejectTask}
+                task={task}
+              />
+            );
           })}
         </ul>
 
@@ -57,9 +60,7 @@ export default function MembersCard({
                 key={task.id}
                 task={task}
                 editTask={editTask}
-                approveTask={approveTask}
                 deleteTask={deleteTask}
-                rejectTask={rejectTask}
               />
             );
           })}

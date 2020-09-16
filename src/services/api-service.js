@@ -214,9 +214,7 @@ const ApiService = {
         },
         body: JSON.stringify({ taskId: id }),
       }
-    ).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+    ).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
   },
 
   //!Pulling this into the dashboard getTasks

@@ -6,9 +6,12 @@
   margin-bottom: 10px;
 }
 
-.memberDetails p,
-.progressBarContainer {
+.memberDetails p {
   margin: 0;
   display: flex;
   align-items: center;
+}
+
+.progressBarContainer {
+  width: 100%;
 }

@@ -21,11 +21,18 @@ export default function MemberDashRoute() {
       .catch(error => setError(error));
   }, []);
 
+  function updateTasks(id) {
+    let newTasks = assignedTasks.filter(task => {
+      return task.id !== id;
+    });
+    setAssignedTasks(newTasks);
+  }
   async function handleCompleted(id) {
+    console.log('running');
+    console.log('id', id);
     try {
       await ApiService.completeTask(id);
-      let newTasks = assignedTasks.filter(task => task.id !== id);
-      setAssignedTasks(newTasks);
+      updateTasks(id);
     } catch (error) {
       setError(error);
     }
@@ -33,7 +40,7 @@ export default function MemberDashRoute() {
 
   function TaskItem({ task: { id, title, points } }) {
     return (
-      <li key={id}>
+      <li className={s.taskItem}>
         <div className={s.taskName}>
           <p>{title}</p>
         </div>
@@ -66,7 +73,7 @@ export default function MemberDashRoute() {
           {assignedTasks.length ? (
             <ul>
               {assignedTasks.map(task => {
-                return <TaskItem task={task} />;
+                return <TaskItem key={task.id} task={task} />;
               })}
             </ul>
           ) : (
