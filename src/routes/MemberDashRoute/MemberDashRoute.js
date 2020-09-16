@@ -28,8 +28,6 @@ export default function MemberDashRoute() {
     setAssignedTasks(newTasks);
   }
   async function handleCompleted(id) {
-    console.log('running');
-    console.log('id', id);
     try {
       await ApiService.completeTask(id);
       updateTasks(id);

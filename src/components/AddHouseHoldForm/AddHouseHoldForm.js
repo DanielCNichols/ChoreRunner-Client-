@@ -33,10 +33,7 @@ export default function AddHouseHoldForm({ handleAdd, toggleAdd }) {
         return setError({ groupName: 'Group name is required' });
       }
 
-      console.log('this is the group name', groupName);
-
       let added = await ApiService.postHousehold(groupName);
-      console.log(added);
 
       handleAdd(added);
       toggleAdd();

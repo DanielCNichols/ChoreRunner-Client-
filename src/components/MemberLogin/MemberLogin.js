@@ -62,7 +62,6 @@ export default function MemberLogin(props) {
       let errors = validateInputs();
 
       if (Object.keys(errors).length) {
-        console.log('got errors');
         return setError(errors);
       }
 

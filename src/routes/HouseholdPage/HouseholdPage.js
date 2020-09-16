@@ -80,19 +80,15 @@ export default function HouseHoldPage(props) {
   //Approve task
 
   const handleTaskApproved = (id, member_id) => {
-    console.log(id, member_id);
-
     let updatedMembers = [...members];
     let memberIdx = getIndex(member_id, updatedMembers);
 
-    console.log(memberIdx);
     let newTasks = updatedMembers[memberIdx].completedTasks.filter(
       task => task.id !== id
     );
 
     updatedMembers[memberIdx].completedTasks = newTasks;
 
-    console.log('these are the udated', updatedMembers);
     setMembers(updatedMembers);
   };
 
@@ -115,7 +111,6 @@ export default function HouseHoldPage(props) {
       status: 'assigned',
     });
 
-    console.log(updatedMembers);
     setMembers(updatedMembers);
   };
 
