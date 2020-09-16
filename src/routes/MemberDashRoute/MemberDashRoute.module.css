@@ -32,7 +32,7 @@
 .choresContainer {
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
-  width: 95%;
+  width: 100%;
   margin: 20px auto;
   padding-bottom: 20px;
   border: 3px solid white;
@@ -102,11 +102,6 @@
     font-family: 'Press Start 2P', cursive;
   }
 
-  .member-container {
-    position: absolute;
-    width: 100%;
-  }
-
   @keyframes house {
     from {
       background-position: 0 0;
@@ -140,11 +135,14 @@
   .memberDashWrapper {
     padding-top: 50px;
     width: 80%;
+    min-width: 500px;
+
     margin: auto;
   }
 
   .memberDashboard header {
     width: 80%;
+    min-width: 425px;
   }
 
   .choresContainer {
@@ -153,6 +151,7 @@
     margin-bottom: 100px;
     width: 80%;
     margin: 20px auto;
+    min-width: 425px;
   }
 }
 

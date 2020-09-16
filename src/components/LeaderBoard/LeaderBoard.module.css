@@ -12,7 +12,7 @@
   font-family: 'Press Start 2P', cursive;
   color: white;
   text-align: center;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
 .leaderBoard h3 {
@@ -94,6 +94,7 @@
 @media (min-width: 500px) {
   .leaderBoard {
     width: 80%;
+    min-width: 425px;
   }
   .rankings {
     font-size: 1.3em;

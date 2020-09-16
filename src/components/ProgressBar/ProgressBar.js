@@ -1,6 +1,15 @@
 import React from 'react';
 
-export default function ProgressBar({ progressPercent, progressPoints }) {
+export default function ProgressBar({ progressPoints }) {
+  const getPercentFilled = () => {
+    let points = pointsToNextLevel();
+    return (points / 10) * 100;
+  };
+
+  const pointsToNextLevel = () => {
+    return Math.abs(progressPoints - 10);
+  };
+
   const containerStyle = {
     height: '30px',
     width: '100%',
@@ -11,25 +20,27 @@ export default function ProgressBar({ progressPercent, progressPoints }) {
 
   const filledStyle = {
     height: '100%',
-    width: `${progressPercent}%`,
+    width: `${getPercentFilled()}%`,
     backgroundColor: 'white',
     textAlign: 'right',
   };
 
   const labelStyle = {
-    padding: 5,
+    padding: '5px',
+    display: 'inline-block',
+
     color: '#ffd900',
     fontWeight: 'bold',
-    position: 'absolute',
-    left: '25%',
-    width: 'inherit',
-    textAlign: 'left',
+    position: 'relative',
+    // left: '25%',
+    width: '100%',
+    textAlign: 'center',
     verticalAlign: 'middle',
   };
 
   return (
     <div style={containerStyle}>
-      <span style={labelStyle}>{`${progressPoints} / 10`}</span>
+      <span style={labelStyle}>{`${pointsToNextLevel()} / 10`}</span>
       <div style={filledStyle}></div>
     </div>
   );
