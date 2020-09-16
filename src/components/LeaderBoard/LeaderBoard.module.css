@@ -115,7 +115,9 @@
 
 @media (min-width: 850px) {
   .leaderBoard {
-    width: 60%;
+    width: 80%;
+    min-width: 600px;
+    max-width: 800px;
   }
   .rankings {
     font-size: 1.4em;
@@ -124,7 +126,7 @@
 
   .rankings li:nth-child(1)::before,
   .rankings li:nth-child(2)::before,
-  .rankings li:nth-child(3)::before {
+  .rankings li:nth-chilcd(3)::before {
     background-size: 50px;
     height: 60px;
     width: 50px;

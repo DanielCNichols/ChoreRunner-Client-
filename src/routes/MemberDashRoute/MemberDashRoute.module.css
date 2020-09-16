@@ -157,8 +157,14 @@
 }
 
 @media screen and (min-width: 850px) {
-  .choresContainer {
+  .memberDashWrapper {
     width: 60%;
+  }
+  .choresContainer,
+  .memberDashboard header {
+    width: 80%;
+    min-width: 600px;
+    max-width: 800px;
   }
 
   .badge-task-container {
@@ -170,12 +176,11 @@
   }
 }
 
-@media screen and (min-width: 1050px) {
+/* @media screen and (min-width: 1050px) {
   .memberDashWrapper {
     width: 60%;
   }
   .choresContainer {
     width: 80%;
-    background-color: blue;
   }
-}
+} */

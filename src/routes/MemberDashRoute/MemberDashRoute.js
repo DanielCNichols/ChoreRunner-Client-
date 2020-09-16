@@ -3,7 +3,7 @@ import HouseholdContext from '../../contexts/HouseHoldContext';
 import ApiService from '../../services/api-service.js';
 import s from './MemberDashRoute.module.css';
 import Leaderboard from '../../components/LeaderBoard/LeaderBoard';
-import Badge from '../../components/Badge/Badge';
+import PlayerStats from '../../components/Badge/PlayerStats';
 
 export default function MemberDashRoute() {
   const [assignedTasks, setAssignedTasks] = useState([]);
@@ -60,7 +60,7 @@ export default function MemberDashRoute() {
           <h2 className="videoGameTitles">{userStats.name}'s Profile</h2>
         </header>
         <Leaderboard rankings={rankings} />
-        <Badge userStats={userStats} />
+        <PlayerStats userStats={userStats} />
         <div className={s.choresContainer}>
           <h2>Chore-llenges</h2>
           {assignedTasks.length ? (
