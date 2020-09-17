@@ -79,7 +79,7 @@ export default function HouseCard({
 
   return (
     <div className={s.houseCard}>
-      {addMember ? (
+      {addMember && (
         <Modal titleText="Add Member Form">
           <AddMembers
             id={house.id}
@@ -87,75 +87,74 @@ export default function HouseCard({
             toggleAddMember={toggleAddMember}
           />
         </Modal>
-      ) : (
-        <>
-          <div className={s.cardHeader}>
-            <header>
-              {editing ? (
-                <input value={name} onChange={ev => handleNameChange(ev)} />
-              ) : (
-                <h4 className="videoGameTitles">{house.name}</h4>
-              )}
-            </header>
-            <div className={s.buttonContainer}>
-              {editing ? (
-                <div className={s.editButtons}>
-                  <button onClick={() => setEditing(false)}>
-                    <MdCancel />
-                  </button>
-                  <button onClick={() => handleSubmit()}>
-                    <MdSave />
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <button onClick={() => setAddMember(true)}>
-                    <MdPersonAdd />
-                  </button>
-                  <button onClick={() => setEditing(true)}>
-                    <MdEdit />
-                  </button>
-                  <button onClick={() => handleDeleteHousehold(house.id)}>
-                    <MdDelete />
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-
-          {house.members.length ? (
-            <div className={s.cardBody}>
-              <p>Name</p>
-              <p>Level</p>
-              <p>Exp</p>
-
-              <ul className={s.membersList}>
-                {house.members.map(member => {
-                  return (
-                    <Member
-                      key={member.id}
-                      showEdit={editing}
-                      member={member}
-                      deleteMember={handleDeleteMember}
-                      editMember={handleEditMember}
-                    />
-                  );
-                })}
-              </ul>
-            </div>
-          ) : (
-            <p>You have not added any members to this household</p>
-          )}
-          {!!house.members.length && (
-            <div className={s.detailsLink}>
-              <Link to={`/household/${house.id}`}>
-                Manage Tasks
-                <MdChevronRight />
-              </Link>
-            </div>
-          )}
-        </>
       )}
+      <>
+        <div className={s.cardHeader}>
+          <header>
+            {editing ? (
+              <input value={name} onChange={ev => handleNameChange(ev)} />
+            ) : (
+              <h4 className="videoGameTitles">{house.name}</h4>
+            )}
+          </header>
+          <div className={s.buttonContainer}>
+            {editing ? (
+              <div className={s.editButtons}>
+                <button onClick={() => setEditing(false)}>
+                  <MdCancel />
+                </button>
+                <button onClick={() => handleSubmit()}>
+                  <MdSave />
+                </button>
+              </div>
+            ) : (
+              <>
+                <button onClick={() => setAddMember(true)}>
+                  <MdPersonAdd />
+                </button>
+                <button onClick={() => setEditing(true)}>
+                  <MdEdit />
+                </button>
+                <button onClick={() => handleDeleteHousehold(house.id)}>
+                  <MdDelete />
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+
+        {house.members.length ? (
+          <div className={s.cardBody}>
+            <p>Name</p>
+            <p>Level</p>
+            <p>Exp</p>
+
+            <ul className={s.membersList}>
+              {house.members.map(member => {
+                return (
+                  <Member
+                    key={member.id}
+                    showEdit={editing}
+                    member={member}
+                    deleteMember={handleDeleteMember}
+                    editMember={handleEditMember}
+                  />
+                );
+              })}
+            </ul>
+          </div>
+        ) : (
+          <p>You have not added any members to this household</p>
+        )}
+        {!!house.members.length && (
+          <div className={s.detailsLink}>
+            <Link to={`/household/${house.id}`}>
+              Manage Tasks
+              <MdChevronRight />
+            </Link>
+          </div>
+        )}
+      </>
     </div>
   );
 }
