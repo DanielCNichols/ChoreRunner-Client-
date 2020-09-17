@@ -119,7 +119,9 @@ export default function ParentLogin(props) {
             </div>
           )}
 
-          <button type="submit">login</button>
+          <button className="arcadeButton" type="submit">
+            login
+          </button>
         </Fieldset>
       </form>
     </div>

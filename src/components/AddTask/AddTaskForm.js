@@ -151,10 +151,10 @@ export default function AddTask({ members, addTask, toggleAdd, householdId }) {
         )}
 
         <div className={s.formButtons}>
-          <button type="submit">Assign Task</button>
           <button type="button" onClick={toggleAdd}>
             Cancel
           </button>
+          <button type="submit">Assign Task</button>
         </div>
       </Fieldset>
     </form>

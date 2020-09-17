@@ -51,6 +51,7 @@ export default function MemberDashRoute() {
         <div className={s.taskControl}>
           {status === 'assigned' ? (
             <button
+              className="arcadeButton"
               onClick={() => {
                 handleCompleted(id);
               }}

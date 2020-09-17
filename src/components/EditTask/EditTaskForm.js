@@ -121,10 +121,12 @@ export default function EditTaskForm({
           </div>
         )}
         <div className={s.formButtons}>
-          <button type="button" onClick={handleToggle}>
+          <button className="arcadeButton" type="button" onClick={handleToggle}>
             Cancel
           </button>
-          <button type="submit">Update Task</button>
+          <button className="arcadeButton" type="submit">
+            Update Task
+          </button>
         </div>
       </Fieldset>
     </form>

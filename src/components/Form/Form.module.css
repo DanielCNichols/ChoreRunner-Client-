@@ -11,6 +11,7 @@
 .Select {
   height: 35px;
   border-radius: 3px;
+  padding: 3px;
 }
 
 .Label {

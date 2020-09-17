@@ -101,6 +101,7 @@
   margin: 10px;
   max-width: 290px;
   color: #725f00;
+  font-family: 'Fredoka One', cursive;
 }
 
 .linkButtons {
@@ -129,6 +130,7 @@
   color: #725f00;
   width: 90%;
   max-width: 290px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .onBoardingContent {

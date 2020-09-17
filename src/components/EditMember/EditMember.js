@@ -169,10 +169,12 @@ export default function EditMember({
         )}
 
         <div className={s.formButtons}>
-          <button type="button" onClick={toggleEdit}>
+          <button className="arcadeButton" type="button" onClick={toggleEdit}>
             Cancel
           </button>
-          <button type="submit">Submit</button>
+          <button className="arcadeButton" type="submit">
+            Submit
+          </button>
         </div>
       </Fieldset>
     </form>
