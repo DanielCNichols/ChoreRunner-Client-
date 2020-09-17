@@ -6,14 +6,16 @@ import PlayerStats from '../../components/Badge/PlayerStats';
 
 export default function MemberDashRoute() {
   const [assignedTasks, setAssignedTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
   const [rankings, setRankings] = useState([]);
   const [userStats, setUserStats] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
     ApiService.getMemberStatus()
-      .then(({ assignedTasks, userStats, rankings }) => {
+      .then(({ assignedTasks, completedTasks, userStats, rankings }) => {
         setAssignedTasks(assignedTasks);
+        setCompletedTasks(completedTasks);
         setUserStats(userStats);
         setRankings(rankings);
       })
@@ -21,11 +23,13 @@ export default function MemberDashRoute() {
   }, []);
 
   function updateTasks(id) {
-    let newTasks = assignedTasks.filter(task => {
-      return task.id !== id;
-    });
+    let newTasks = [...assignedTasks];
+    let index = newTasks.findIndex(task => task.id === id);
+    newTasks[index].status = 'completed';
+
     setAssignedTasks(newTasks);
   }
+
   async function handleCompleted(id) {
     try {
       await ApiService.completeTask(id);
@@ -35,7 +39,7 @@ export default function MemberDashRoute() {
     }
   }
 
-  function TaskItem({ task: { id, title, points } }) {
+  function TaskItem({ task: { id, title, points, status } }) {
     return (
       <li className={s.taskItem}>
         <div className={s.taskName}>
@@ -45,13 +49,17 @@ export default function MemberDashRoute() {
           <span>{points} EXP</span>
         </div>
         <div className={s.taskControl}>
-          <button
-            onClick={() => {
-              handleCompleted(id);
-            }}
-          >
-            Clear!
-          </button>
+          {status === 'assigned' ? (
+            <button
+              onClick={() => {
+                handleCompleted(id);
+              }}
+            >
+              Clear!
+            </button>
+          ) : (
+            <p className={s.waiting}>Awaiting Approval!</p>
+          )}
         </div>
       </li>
     );
@@ -67,15 +75,25 @@ export default function MemberDashRoute() {
         <PlayerStats userStats={userStats} />
         <div className={s.choresContainer}>
           <h2>Chore-llenges</h2>
+
+          {!assignedTasks.length && !completedTasks.length && (
+            <p className={s.taskAlert}>You don't have any chores to do!</p>
+          )}
           {assignedTasks.length ? (
             <ul>
               {assignedTasks.map(task => {
                 return <TaskItem key={task.id} task={task} />;
               })}
             </ul>
-          ) : (
-            <p className={s.taskAlert}>You don't have any chores to do!</p>
-          )}
+          ) : null}
+
+          {completedTasks.length ? (
+            <ul>
+              {completedTasks.map(task => {
+                return <TaskItem key={task.id} task={task} />;
+              })}
+            </ul>
+          ) : null}
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import images from '../../ImgAssets/index';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 export default function Badge({
-  userStats: { level_id, name, total_score, badge, toNextLevel },
+  userStats: { level_id, name, total_score, badge, pointsToNextLevel },
 }) {
   return (
     <section className={s.levelInfoGrid}>
@@ -18,13 +18,13 @@ export default function Badge({
       <div className={s.status}>
         <h3>Experience</h3>
         <div className={s.progressBarContainer}>
-          <ProgressBar progressPoints={toNextLevel} />
+          <ProgressBar progressPoints={pointsToNextLevel} />
         </div>
         <p>
           Total EXP: <span>{total_score}</span>
         </p>
         <p>
-          EXP to next level: <span>{toNextLevel}</span>
+          EXP to next level: <span>{pointsToNextLevel}</span>
         </p>
       </div>
     </section>

@@ -62,8 +62,7 @@
   align-items: center;
   margin: 0 auto 30px auto;
   font-size: 1.2em;
-  width: 80%;
-
+  width: 90%;
   /* padding: 0 20px; */
 }
 .taskAlert {
@@ -93,6 +92,7 @@
   font-family: 'Press Start 2P', cursive;
   font-size: 13px;
   padding: 10px;
+  margin: 0 auto;
   background-color: rgb(255, 217, 0);
   text-shadow: -0.5px -1px rgb(105, 90, 0), 1px 1px white;
   color: #725f00;
@@ -105,6 +105,16 @@
   animation: bounce 500ms infinite alternate;
   -webkit-animation: bounce 500ms infinite alternate;
   cursor: pointer;
+}
+
+.waiting {
+  margin: 0 auto;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 13px;
+  text-align: center;
+  color: white;
+  justify-self: flex-end;
+  align-self: flex-end;
 }
 
 @keyframes house {
