@@ -9,7 +9,6 @@ import {
 } from '../Form/Form';
 import AuthApiService from '../../services/auth-api-service';
 import s from './RegistrationForm.module.css';
-import ApiService from '../../services/api-service';
 
 export default function RegistrationForm({ onRegistrationSuccess }) {
   const [inputs, setInputs] = useState({
@@ -94,7 +93,7 @@ export default function RegistrationForm({ onRegistrationSuccess }) {
         return setError(errors);
       }
 
-      let yeet = await AuthApiService.postUser(inputs);
+      await AuthApiService.postUser(inputs);
       onRegistrationSuccess();
     } catch (error) {
       setError({ server: error });

@@ -93,6 +93,8 @@ export default function AddTask({ members, addTask, toggleAdd, householdId }) {
           <Input
             value={inputs.title}
             onChange={handleInputChange}
+            placeholder="Clean Room"
+            id="taskName"
             type="text"
             name="title"
           />
@@ -109,6 +111,7 @@ export default function AddTask({ members, addTask, toggleAdd, householdId }) {
             value={inputs.member_id}
             onChange={handleInputChange}
             name="member_id"
+            id="assignee"
             className="select-css"
           >
             <option value="">Please select a member</option>
@@ -132,9 +135,11 @@ export default function AddTask({ members, addTask, toggleAdd, householdId }) {
           <Input
             value={inputs.points}
             onChange={handleInputChange}
+            placeholder="2"
             type="number"
             min="1"
             max="100"
+            id="points"
             name="points"
           />
         </FormElement>

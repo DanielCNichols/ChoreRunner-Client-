@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import HouseholdContext from '../../contexts/HouseHoldContext';
 import ApiService from '../../services/api-service.js';
 import s from './MemberDashRoute.module.css';
 import Leaderboard from '../../components/LeaderBoard/LeaderBoard';

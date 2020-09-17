@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ApiService from '../../services/api-service.js';
 import FloatingButton from '../../components/FloatingButton/FloatingButton';
 import AddHouseHoldForm from '../../components/AddHouseHoldForm/AddHouseHoldForm';
@@ -16,7 +16,6 @@ export default function ParentDashRoute(props) {
   useEffect(() => {
     ApiService.getHouseholds()
       .then(res => {
-        console.log(res);
         setHouseholds(res);
       })
       .catch(error => {

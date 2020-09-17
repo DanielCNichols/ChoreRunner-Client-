@@ -101,7 +101,7 @@ export default function AddMemberForm({
       <Fieldset>
         <Legend className="videoGameTitles">Add Member</Legend>
         <FormElement className={s.formElement}>
-          <Label htmlFor="member-name">Name</Label>
+          <Label htmlFor="name">Name</Label>
           {error.name && (
             <div role="alert" className={s.error}>
               <span>{error.name}</span>
@@ -109,14 +109,15 @@ export default function AddMemberForm({
           )}
           <Input
             type="text"
-            id="member-name"
+            id="name"
             name="name"
+            placeholder="Elliott"
             onChange={handleChangeInputs}
             value={inputs.name}
           />
         </FormElement>
         <FormElement className={s.formElement}>
-          <Label htmlFor="child-username">Member Username</Label>
+          <Label htmlFor="username">Member Username</Label>
           {error.username && (
             <div role="alert" className={s.error}>
               <span>{error.username}</span>
@@ -124,14 +125,15 @@ export default function AddMemberForm({
           )}
           <Input
             type="text"
-            id="child-username"
+            id="username"
             name="username"
+            placeholder="elliot123"
             onChange={handleChangeInputs}
             value={inputs.username}
           />
         </FormElement>
         <FormElement className={s.formElement}>
-          <Label htmlFor="child-password">Member Password</Label>
+          <Label htmlFor="password">Member Password</Label>
           {error.password && (
             <div role="alert" className={s.error}>
               <span>{error.password}</span>
@@ -139,7 +141,7 @@ export default function AddMemberForm({
           )}
           <Input
             type="password"
-            id="child-password"
+            id="password"
             name="password"
             onChange={handleChangeInputs}
             value={inputs.password}

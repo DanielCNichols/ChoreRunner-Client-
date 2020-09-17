@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import s from './FloatingButton.module.css';
 import { BsPlusCircleFill } from 'react-icons/bs';

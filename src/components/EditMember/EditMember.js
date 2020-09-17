@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import ApiService from '../../services/api-service';
 import s from './EditMemberForm.module.css';
 import { Fieldset, Input, Label, FormElement, Legend } from '../Form/Form';
@@ -100,7 +100,7 @@ export default function EditMember({
       <Fieldset>
         <Legend className="videoGameTitles">Edit Member</Legend>
         <FormElement className={s.formElement}>
-          <Label htmlFor="member-name">Name</Label>
+          <Label htmlFor="name">Name</Label>
           {error.name && (
             <div role="alert" className={s.error}>
               <span>{error.name}</span>
@@ -109,13 +109,15 @@ export default function EditMember({
           <Input
             type="text"
             name="name"
+            id="name"
+            placeholder="Elliott"
             value={inputs.name}
             onChange={handleInputChange}
           />
         </FormElement>
 
         <FormElement className={s.formElement}>
-          <Label htmlFor="child-username">Child username</Label>
+          <Label htmlFor="username">Member Username</Label>
           {error.username && (
             <div role="alert" className={s.error}>
               <span>{error.username}</span>
@@ -123,20 +125,23 @@ export default function EditMember({
           )}
           <Input
             type="text"
+            id="username"
             name="username"
+            placeholder="elliot123"
             value={inputs.username}
             onChange={handleInputChange}
           />
         </FormElement>
 
         <FormElement className={s.formElement}>
-          <Label htmlFor="child-password">Child password</Label>
+          <Label htmlFor="password">Member Password</Label>
           {error.password && (
             <div role="alert" className={s.error}>
               <span>{error.password}</span>
             </div>
           )}
           <Input
+            id="password"
             type="password"
             name="password"
             onFocus={toggleTouched}
@@ -151,6 +156,7 @@ export default function EditMember({
             </div>
           )}
           <Input
+            id="confirmPass"
             type="password"
             name="confirmPass"
             onChange={handleInputChange}

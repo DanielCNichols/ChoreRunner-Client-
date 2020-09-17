@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Task from '../Task/Task';
 import s from './MembersCard.module.css';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
@@ -10,18 +10,6 @@ export default function MembersCard({
   editTask,
   member,
 }) {
-  function formatPoints() {
-    let goal = member.level_id * 10;
-
-    let num = (goal - member.total_score) % 10;
-
-    if (num === 0) {
-      return 10;
-    } else {
-      return num;
-    }
-  }
-
   return (
     <div className={s.memberCard}>
       <header>

@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddTask from '../../components/AddTask/AddTaskForm';
 import ApiService from '../../services/api-service';
 import MembersCard from '../../components/MembersCard/MembersCard';
@@ -22,7 +22,7 @@ export default function HouseHoldPage(props) {
       .catch(error => {
         setError(error);
       });
-  }, []);
+  }, [props]);
 
   //Helpers
 
@@ -103,8 +103,6 @@ export default function HouseHoldPage(props) {
     if (level_id) {
       updatedMembers[memberIdx].level_id = level_id;
     }
-
-    console.log('these are the updated memebers', updatedMembers);
 
     setMembers(updatedMembers);
   };

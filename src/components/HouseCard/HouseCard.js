@@ -25,7 +25,6 @@ export default function HouseCard({
 }) {
   const [name, setName] = useState(house.name);
   const [addMember, setAddMember] = useState(false);
-  const [editingMember, setEditingMember] = useState(false);
   const [editing, setEditing] = useState(false);
 
   const [error, setError] = useState(null);

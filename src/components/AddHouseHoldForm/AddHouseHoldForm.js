@@ -12,8 +12,6 @@ import ApiService from '../../services/api-service';
 export default function AddHouseHoldForm({ handleAdd, toggleAdd }) {
   const [groupName, setGroupName] = useState('');
 
-  const [confirm, setConfirm] = useState('');
-
   const [error, setError] = useState({
     groupName: null,
     server: null,

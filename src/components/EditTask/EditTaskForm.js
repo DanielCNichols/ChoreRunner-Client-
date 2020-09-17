@@ -91,7 +91,9 @@ export default function EditTaskForm({
           )}
           <Input
             type="text"
+            id="title"
             name="title"
+            placeholder="Clean Room"
             value={inputs.title}
             onChange={handleInputChange}
           />
@@ -106,6 +108,8 @@ export default function EditTaskForm({
           <Input
             type="number"
             name="points"
+            id="points"
+            placeholder="2"
             value={inputs.points}
             onChange={handleInputChange}
           />
