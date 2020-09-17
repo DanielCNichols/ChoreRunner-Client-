@@ -33,14 +33,18 @@ export default function Task({
 
   const handleApproveTask = async () => {
     try {
-      await ApiService.parentUpdateTaskStatus(
+      let {
+        total_score,
+        toNextLevel,
+        level_id,
+      } = await ApiService.parentUpdateTaskStatus(
         id,
         household_id,
         'approved',
         points,
         member_id
       );
-      approveTask(id, member_id);
+      approveTask(total_score, toNextLevel, level_id, id, member_id);
     } catch (error) {
       setError(error);
     }

@@ -13,10 +13,10 @@ export default function HouseHoldPage(props) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    //!This param is not descriptive. Change it in the route.
     let household_id = props.match.params.id;
     ApiService.getMembers(household_id)
       .then(members => {
+        console.log(members);
         setMembers(members);
       })
       .catch(error => {
@@ -54,6 +54,7 @@ export default function HouseHoldPage(props) {
     updatedMembers.forEach(member => {
       member.total_score = 0;
       member.level_id = 1;
+      member.pointsToNextLevel = 10;
     });
 
     setMembers(updatedMembers);
@@ -79,7 +80,13 @@ export default function HouseHoldPage(props) {
 
   //Approve task
 
-  const handleTaskApproved = (id, member_id) => {
+  const handleTaskApproved = (
+    newScore,
+    toNextLevel,
+    level_id,
+    id,
+    member_id
+  ) => {
     let updatedMembers = [...members];
     let memberIdx = getIndex(member_id, updatedMembers);
 
@@ -88,6 +95,16 @@ export default function HouseHoldPage(props) {
     );
 
     updatedMembers[memberIdx].completedTasks = newTasks;
+
+    updatedMembers[memberIdx].total_score = newScore;
+
+    updatedMembers[memberIdx].pointsToNextLevel = toNextLevel;
+
+    if (level_id) {
+      updatedMembers[memberIdx].level_id = level_id;
+    }
+
+    console.log('these are the updated memebers', updatedMembers);
 
     setMembers(updatedMembers);
   };

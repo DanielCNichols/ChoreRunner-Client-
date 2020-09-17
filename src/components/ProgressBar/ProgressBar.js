@@ -41,9 +41,15 @@ export default function ProgressBar({ progressPoints }) {
   };
 
   return (
-    <div style={containerStyle}>
-      <span style={labelStyle}>{`${pointsToNextLevel()} / 10`}</span>
-      <div style={filledStyle}></div>
-    </div>
+    <>
+      {progressPoints === 'MAX' ? (
+        <p>MAXED OUT!</p>
+      ) : (
+        <div style={containerStyle}>
+          <span style={labelStyle}>{`${pointsToNextLevel()} / 10`}</span>
+          <div style={filledStyle}></div>
+        </div>
+      )}
+    </>
   );
 }

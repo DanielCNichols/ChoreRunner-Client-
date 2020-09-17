@@ -44,9 +44,7 @@ export default function Member({ member, deleteMember, editMember, showEdit }) {
       </div>
       <p style={{ justifyContent: 'center' }}>{member.level_id}</p>
       <div className={s.progressBarContainer}>
-        <ProgressBar
-          progressPoints={member.level_id * 10 - member.total_score}
-        />
+        <ProgressBar progressPoints={member.pointsToNextLevel} />
       </div>
     </li>
   );

@@ -16,6 +16,7 @@ export default function ParentDashRoute(props) {
   useEffect(() => {
     ApiService.getHouseholds()
       .then(res => {
+        console.log(res);
         setHouseholds(res);
       })
       .catch(error => {

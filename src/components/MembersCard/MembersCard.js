@@ -28,7 +28,7 @@ export default function MembersCard({
         <h3>{member.name}</h3>
         <p>level: {member.level_id}</p>
         <div className={s.progressBarContainer}>
-          <ProgressBar progressPoints={formatPoints()} />
+          <ProgressBar progressPoints={member.pointsToNextLevel} />
         </div>
       </header>
 
