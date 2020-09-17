@@ -1,15 +1,37 @@
 .memberDetails {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 30% 1fr;
+  grid-template-columns: 45% 25% 30%;
   text-align: left;
   margin-bottom: 10px;
+  align-items: center;
 }
 
-.memberDetails p {
-  margin: 0;
+.memberDetails span {
+  text-align: left;
+}
+
+#level {
+  text-align: center;
+}
+.memberEdit {
   display: flex;
+  justify-content: flex-start;
+}
+
+.memberEditButtonContainer {
+  min-width: 50px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-right: 10px;
+}
+
+.memberEditButtonContainer button {
+  color: white;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2em;
 }
 
 .progressBarContainer {

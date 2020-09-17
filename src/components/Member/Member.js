@@ -23,26 +23,22 @@ export default function Member({ member, deleteMember, editMember, showEdit }) {
           />
         </Modal>
       )}
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      <div className={s.memberEdit}>
         {showEdit && (
           <div className={s.memberEditButtonContainer}>
-            <MdDelete
+            <button
               onClick={() => deleteMember(member.id, member.household_id)}
-            />
-            <MdEdit onClick={() => toggleEditMember(member)} />
+            >
+              <MdDelete />
+            </button>
+            <button onClick={() => toggleEditMember(member)}>
+              <MdEdit />
+            </button>
           </div>
         )}
-
-        <p style={{ textAlign: 'left', width: '100%' }}>{member.name}</p>
+        <span>{member.name}</span>
       </div>
-      <p style={{ justifyContent: 'center' }}>{member.level_id}</p>
+      <span id={s.level}>{member.level_id}</span>
       <div className={s.progressBarContainer}>
         <ProgressBar progressPoints={member.pointsToNextLevel} />
       </div>

@@ -16,7 +16,6 @@ export default function HouseHoldPage(props) {
     let household_id = props.match.params.id;
     ApiService.getMembers(household_id)
       .then(members => {
-        console.log(members);
         setMembers(members);
       })
       .catch(error => {

@@ -51,9 +51,9 @@
 
 .cardBody {
   display: grid;
-  grid-template-rows: 2;
-  grid-template-columns: 1fr 30% 1fr;
-  padding: 10px 20px;
+  grid-template-columns: 45% 25% 30%;
+  padding: 10px 5px;
+  align-items: center;
 }
 
 .memberEditButtonContainer {
@@ -65,7 +65,7 @@
 
 .memberEditButtonContainer {
   margin-right: 10px;
-  margin-left: -5px;
+  margin-left: -10px;
   font-size: 1.2em;
 }
 
@@ -101,6 +101,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 400px) {
+  .cardBody {
+    padding: 10px 20px;
+  }
 }
 
 @media screen and (min-width: 450px) {
