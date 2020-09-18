@@ -3,7 +3,7 @@ import ApiService from '../../services/api-service';
 import MembersCard from '../../components/MembersCard/MembersCard';
 import s from './HouseholdPage.module.css';
 import Modal from '../../components/Modal/Modal';
-
+import AddTaskForm from '../../components/AddTaskForm/AddTaskForm';
 import FloatingButton from '../../components/FloatingButton/FloatingButton';
 
 export default function HouseHoldPage(props) {
@@ -173,7 +173,7 @@ export default function HouseHoldPage(props) {
       </div>
       {addTask && (
         <Modal titleText="Add Task Form">
-          <AddTask
+          <AddTaskForm
             householdId={props.match.params.id}
             members={members}
             addTask={handleAddTask}

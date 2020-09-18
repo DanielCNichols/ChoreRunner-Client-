@@ -2,19 +2,6 @@ import config from '../config';
 import TokenService from './token-service';
 
 const ApiService = {
-  addHouseholdMember(householdId, newMember) {
-    return fetch(`${config.API_ENDPOINT}/households/${householdId}/members`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify(newMember),
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
   postHousehold(householdName) {
     let name = householdName;
     return fetch(`${config.API_ENDPOINT}/households`, {
@@ -94,17 +81,6 @@ const ApiService = {
     );
   },
 
-  getMembersAndHouseholds() {
-    return fetch(`${config.API_ENDPOINT}/households/members`, {
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
   //!For the member dashboard
   //!KEEP THIS ONE
   getMemberStatus() {
@@ -121,18 +97,6 @@ const ApiService = {
     );
   },
 
-  //!Is for the leaderboard
-  getMemberScores(household_id) {
-    return fetch(`${config.API_ENDPOINT}/households/household/scores`, {
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
   //Refactor this to return all things members and their tasks.
   getMembers(household_id) {
     return fetch(`${config.API_ENDPOINT}/households/${household_id}/members`, {
@@ -142,33 +106,6 @@ const ApiService = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
     }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  getTasksForAll(household_id) {
-    return fetch(`${config.API_ENDPOINT}/households/${household_id}/tasks`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  getTasksToApprove(householdId) {
-    return fetch(
-      `${config.API_ENDPOINT}/households/${householdId}/tasks/status?status=completed`,
-      {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-          authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-      }
-    ).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
@@ -215,18 +152,6 @@ const ApiService = {
         body: JSON.stringify({ taskId: id }),
       }
     ).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
-  },
-
-  //!Pulling this into the dashboard getTasks
-  getBadge() {
-    return fetch(`${config.API_ENDPOINT}/members`, {
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
   },
 
   editHouseholdName(id, updateHousehold) {

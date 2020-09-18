@@ -11,7 +11,6 @@ import ApiService from '../../services/api-service';
 import s from './AddTaskForm.module.css';
 
 export default function AddTask({ members, addTask, toggleAdd, householdId }) {
-  console.log('these are the props', addTask);
   const [inputs, setInputs] = useState({
     title: '',
     points: '',
