@@ -2,26 +2,23 @@
 
 exports[`renders Registration Route as expected 1`] = `
 <section
-  className="register-container"
+  className="registrationContainer"
 >
-  <p
-    className="descriptionLine"
+  <form
+    className="registerForm"
+    name="registration-form"
+    onSubmit={[Function]}
   >
-    Assign tasks for your kids to earn rewards in this fun app.
-  </p>
-  <h2>
-    Sign up
-  </h2>
-  <div
-    className="box"
-  >
-    <form
-      className="registration"
-      name="registration-form"
-      onSubmit={[Function]}
+    <fieldset
+      className="Fieldset"
     >
+      <legend
+        className="Legend"
+      >
+        Sign Up
+      </legend>
       <div
-        className="formItem"
+        className="FormElement formElement"
       >
         <label
           className="Label"
@@ -35,22 +32,16 @@ exports[`renders Registration Route as expected 1`] = `
           </span>
         </label>
         <input
-          className="Input formBox"
+          className="Input"
           id="registration-name-input"
           name="name"
           onChange={[Function]}
-          required={true}
           type="text"
           value=""
         />
-        <div
-          role="alert"
-        >
-          
-        </div>
       </div>
       <div
-        className="formItem"
+        className="FormElement formElement"
       >
         <label
           className="Label"
@@ -64,22 +55,16 @@ exports[`renders Registration Route as expected 1`] = `
           </span>
         </label>
         <input
-          className="Input formBox"
+          className="Input"
           id="registration-username-input"
           name="username"
           onChange={[Function]}
-          required={true}
           type="text"
           value=""
         />
-        <div
-          role="alert"
-        >
-          
-        </div>
       </div>
       <div
-        className="formItem"
+        className="FormElement formElement"
       >
         <label
           className="Label"
@@ -93,31 +78,44 @@ exports[`renders Registration Route as expected 1`] = `
           </span>
         </label>
         <input
-          className="Input formBox"
+          className="Input"
           id="registration-password-input"
           name="password"
           onChange={[Function]}
-          required={true}
           type="password"
           value=""
         />
       </div>
       <div
-        role="alert"
-      />
-      <footer
-        className="formFooter"
+        className="FormElement formElement"
       >
-        <button
-          className="Button basicBtn"
-          type="submit"
+        <label
+          className="Label"
+          htmlFor="registration-password-input"
         >
-          Sign up
-        </button>
-         
-        <br />
-      </footer>
-    </form>
-  </div>
+          Choose a password
+          <span
+            className="Required"
+          >
+            *
+          </span>
+        </label>
+        <input
+          className="Input"
+          id="registration-password-input"
+          name="confirmPass"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="arcadeButton"
+        type="submit"
+      >
+        Sign up
+      </button>
+    </fieldset>
+  </form>
 </section>
 `;

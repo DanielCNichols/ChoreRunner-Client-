@@ -1,84 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header component testing renders UI as expected 1`] = `
-Array [
-  <h1>
+<nav
+  className="navBar"
+>
+  <div
+    className="logo"
+  >
     <a
       href="/"
       onClick={[Function]}
-      style={
-        Object {
-          "textDecoration": "none",
-        }
-      }
     >
       Chore Runner
     </a>
-  </h1>,
-  <nav>
+  </div>
+  <div
+    className="navLinks"
+  >
     <a
       href="/login"
       onClick={[Function]}
-      style={
-        Object {
-          "textDecoration": "none",
-        }
-      }
     >
       Login
     </a>
-     
     <a
       href="/register"
       onClick={[Function]}
-      style={
-        Object {
-          "textDecoration": "none",
-        }
-      }
     >
-      Sign up
+      Sign Up
     </a>
-  </nav>,
-]
+  </div>
+</nav>
 `;
 
 exports[`Header component testing renders empty given no tabs 1`] = `
-<Fragment>
-  <h1>
-    <Link
-      style={
-        Object {
-          "textDecoration": "none",
-        }
-      }
-      to="/"
-    >
-      Chore Runner
-    </Link>
-  </h1>
-  <nav>
-    <Link
-      style={
-        Object {
-          "textDecoration": "none",
-        }
-      }
-      to="/login"
-    >
-      Login
-    </Link>
-     
-    <Link
-      style={
-        Object {
-          "textDecoration": "none",
-        }
-      }
-      to="/register"
-    >
-      Sign up
-    </Link>
-  </nav>
-</Fragment>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

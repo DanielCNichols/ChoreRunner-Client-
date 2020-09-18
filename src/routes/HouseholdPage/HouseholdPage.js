@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import AddTask from '../../components/AddTask/AddTaskForm';
 import ApiService from '../../services/api-service';
 import MembersCard from '../../components/MembersCard/MembersCard';
 import s from './HouseholdPage.module.css';

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ApiService from '../../services/api-service.js';
 import s from './MemberDashRoute.module.css';
 import Leaderboard from '../../components/LeaderBoard/LeaderBoard';
-import PlayerStats from '../../components/Badge/PlayerStats';
+import PlayerStats from '../../components/PlayerStats/PlayerStats';
 
 export default function MemberDashRoute() {
   const [assignedTasks, setAssignedTasks] = useState([]);

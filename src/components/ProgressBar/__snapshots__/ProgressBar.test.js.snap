@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar component testing renders UI as expected 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "blue",
+      "border": "2px solid white",
+      "height": "30px",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <span
+    style={
+      Object {
+        "color": "#ffd900",
+        "display": "inline-block",
+        "fontWeight": "bold",
+        "padding": "5px",
+        "position": "relative",
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": "100%",
+        "zIndex": "2",
+      }
+    }
+  >
+    8 / 10
+  </span>
+  <div
+    style={
+      Object {
+        "backgroundColor": "white",
+        "height": "100%",
+        "position": "absolute",
+        "textAlign": "right",
+        "top": "0",
+        "width": "80%",
+      }
+    }
+  />
+</div>
+`;

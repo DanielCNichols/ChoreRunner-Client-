@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddHouseholdForm tests renders UI as expected 1`] = `
+<form
+  className="addHouseholdForm"
+  onSubmit={[Function]}
+>
+  <fieldset
+    className="Fieldset"
+  >
+    <legend
+      className="Legend"
+    >
+      Add a Group
+    </legend>
+    <div
+      className="FormElement"
+    >
+      <label
+        className="Label"
+        htmlFor="groupName"
+      >
+        Group Name
+      </label>
+      <input
+        className="Input"
+        name="groupName"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="formButtons"
+    >
+      <button
+        className="arcadeButton"
+        onClick={[Function]}
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        className="arcadeButton"
+        type="submit"
+      >
+        Create
+      </button>
+    </div>
+  </fieldset>
+</form>
+`;

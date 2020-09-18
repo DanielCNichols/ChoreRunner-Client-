@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddTaskForm tests renders AddTask as expected 1`] = `
+<form
+  className="addTaskForm"
+  onSubmit={[Function]}
+>
+  <fieldset
+    className="Fieldset"
+  >
+    <legend
+      className="Legend"
+    >
+      Assign Tasks
+    </legend>
+    <div
+      className="FormElement formElement"
+    >
+      <label
+        className="Label"
+        htmlFor="taskName"
+      >
+        Task Name
+      </label>
+      <input
+        className="Input"
+        id="taskName"
+        name="title"
+        onChange={[Function]}
+        placeholder="Clean Room"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="FormElement formElement"
+    >
+      <label
+        className="Label"
+        htmlFor="assignee"
+      >
+        Assign to
+      </label>
+      <select
+        className="Select select-css"
+        id="assignee"
+        name="member_id"
+        onChange={[Function]}
+        value=""
+      >
+        <option
+          value=""
+        >
+          Please select a member
+        </option>
+        <option
+          value={1}
+        >
+          daniel
+        </option>
+      </select>
+    </div>
+    <div
+      className="FormElement formElement"
+    >
+      <label
+        className="Label"
+        htmlFor="points"
+      >
+        Points
+      </label>
+      <input
+        className="Input"
+        id="points"
+        max="100"
+        min="1"
+        name="points"
+        onChange={[Function]}
+        placeholder="2"
+        type="number"
+        value=""
+      />
+    </div>
+    <div
+      className="formButtons"
+    >
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+      >
+        Assign Task
+      </button>
+    </div>
+  </fieldset>
+</form>
+`;

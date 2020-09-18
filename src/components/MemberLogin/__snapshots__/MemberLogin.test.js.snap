@@ -2,104 +2,73 @@
 
 exports[`MemberLogin component testing renders UI as expected 1`] = `
 <div
-  className="parent-login"
+  className="container"
 >
-  <h2>
-    Member login
-  </h2>
   <form
-    className="parent-form-container"
-    id="member-login"
+    className="memberForm"
     onSubmit={[Function]}
   >
-    <div>
-      <label
-        htmlFor="username"
-      >
-        Username
-      </label>
-      <input
-        name="username"
-        onChange={[Function]}
-        required={true}
-        type="text"
-        value=""
-      />
-    </div>
-    <div>
-      <label
-        htmlFor="password"
-      >
-        Password
-      </label>
-      <input
-        name="password"
-        onChange={[Function]}
-        required={true}
-        type="password"
-        value=""
-      />
-    </div>
     <div
-      role="alert"
-    />
-    <button
-      type="submit"
+      className="demo"
     >
-      login
-    </button>
-  </form>
-</div>
-`;
-
-exports[`MemberLogin component testing renders empty given no tabs 1`] = `
-<div
-  className="parent-login"
->
-  <h2>
-    Member login
-  </h2>
-  <form
-    className="parent-form-container"
-    id="member-login"
-    onSubmit={[Function]}
-  >
-    <div>
-      <label
-        htmlFor="username"
-      >
-        Username
-      </label>
-      <input
-        name="username"
-        onChange={[Function]}
-        required={true}
-        type="text"
-        value=""
-      />
+      <h3>
+        Demo:
+      </h3>
+      <p>
+        username: margeincharge
+      </p>
+      <p>
+        password: Password123!
+      </p>
     </div>
-    <div>
-      <label
-        htmlFor="password"
-      >
-        Password
-      </label>
-      <input
-        name="password"
-        onChange={[Function]}
-        required={true}
-        type="password"
-        value=""
-      />
-    </div>
-    <div
-      role="alert"
-    />
-    <button
-      type="submit"
+    <fieldset
+      className="Fieldset"
     >
-      login
-    </button>
+      <legend
+        className="Legend"
+      >
+        Member Login
+      </legend>
+      <div
+        className="FormElement formElement"
+      >
+        <label
+          className="Label"
+          htmlFor="username"
+        >
+          Username
+        </label>
+        <input
+          className="Input"
+          name="username"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="FormElement formElement"
+      >
+        <label
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          className="Input"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="arcadeButton"
+        type="submit"
+      >
+        login
+      </button>
+    </fieldset>
   </form>
 </div>
 `;

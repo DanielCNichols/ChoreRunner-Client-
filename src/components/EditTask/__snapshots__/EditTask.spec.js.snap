@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayerStats component testing renders UI as expected 1`] = `
+<form
+  className="editTaskForm"
+  onSubmit={[Function]}
+>
+  <fieldset
+    className="Fieldset"
+  >
+    <legend
+      className="Legend videoGameTitles"
+    >
+      Edit Task
+    </legend>
+    <div
+      className="FormElement formElement"
+    >
+      <label
+        className="Label"
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <input
+        className="Input"
+        id="title"
+        name="title"
+        onChange={[Function]}
+        placeholder="Clean Room"
+        type="text"
+        value="test"
+      />
+    </div>
+    <div
+      className="FormElement formElement"
+    >
+      <label
+        className="Label"
+        htmlFor="points"
+      >
+        Point Value
+      </label>
+      <input
+        className="Input"
+        id="points"
+        name="points"
+        onChange={[Function]}
+        placeholder="2"
+        type="number"
+        value={3}
+      />
+    </div>
+    <div
+      className="formButtons"
+    >
+      <button
+        className="arcadeButton"
+        onClick={[Function]}
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        className="arcadeButton"
+        type="submit"
+      >
+        Update Task
+      </button>
+    </div>
+  </fieldset>
+</form>
+`;

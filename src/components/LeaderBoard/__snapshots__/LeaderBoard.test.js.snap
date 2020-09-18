@@ -2,35 +2,23 @@
 
 exports[`LeaderBoard component testing renders UI as expected 1`] = `
 <section
-  className="leader_board"
+  className="leaderBoard"
 >
   <h3>
     Leaderboard
   </h3>
   <div
-    className="leader_board-grid"
+    className="leaderBoardGrid"
   >
-    <div
-      className="header_rank"
-    >
-      <span>
-        Rank
-      </span>
-    </div>
-    <div
-      className="header_name"
-    >
-      <span>
-        Member Name
-      </span>
-    </div>
-    <div
-      className="header_score"
-    >
-      <span>
-        Score
-      </span>
-    </div>
+    <p>
+      Rank
+    </p>
+    <p>
+      Member Name
+    </p>
+    <p>
+      Score
+    </p>
   </div>
   <ul
     className="rankings"

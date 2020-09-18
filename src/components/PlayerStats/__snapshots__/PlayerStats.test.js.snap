@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayerStats component testing renders UI as expected 1`] = `
+<section
+  className="levelInfoGrid"
+>
+  <h3
+    className="videoGameTitles"
+  >
+    daniel
+    's Stats
+  </h3>
+  <div
+    className="badge"
+  >
+    <div
+      className="imageContainer"
+    >
+      <img
+        alt="Badge.png"
+        src="Badge1.png"
+      />
+    </div>
+    <p>
+      Level 
+      1
+    </p>
+  </div>
+  <div
+    className="status"
+  >
+    <h3>
+      Experience
+    </h3>
+    <div
+      className="progressBarContainer"
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "blue",
+            "border": "2px solid white",
+            "height": "30px",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "color": "#ffd900",
+              "display": "inline-block",
+              "fontWeight": "bold",
+              "padding": "5px",
+              "position": "relative",
+              "textAlign": "center",
+              "verticalAlign": "middle",
+              "width": "100%",
+              "zIndex": "2",
+            }
+          }
+        >
+          8 / 10
+        </span>
+        <div
+          style={
+            Object {
+              "backgroundColor": "white",
+              "height": "100%",
+              "position": "absolute",
+              "textAlign": "right",
+              "top": "0",
+              "width": "80%",
+            }
+          }
+        />
+      </div>
+    </div>
+    <p>
+      Total EXP: 
+      <span>
+        23
+      </span>
+    </p>
+    <p>
+      EXP to next level: 
+      <span>
+        2
+      </span>
+    </p>
+  </div>
+</section>
+`;

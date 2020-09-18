@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 const history = { push: () => [] };
 
-it('Registration Routerenders without crashing', () => {
+it('Registration Route renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <MemoryRouter>

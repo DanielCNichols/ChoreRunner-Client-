@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MembersCard component testing renders UI as expected 1`] = `
+<div
+  className="memberCard"
+>
+  <header>
+    <h3>
+      daniel
+    </h3>
+    <p>
+      level: 
+      1
+    </p>
+    <div
+      className="progressBarContainer"
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "blue",
+            "border": "2px solid white",
+            "height": "30px",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "color": "#ffd900",
+              "display": "inline-block",
+              "fontWeight": "bold",
+              "padding": "5px",
+              "position": "relative",
+              "textAlign": "center",
+              "verticalAlign": "middle",
+              "width": "100%",
+              "zIndex": "2",
+            }
+          }
+        >
+          8 / 10
+        </span>
+        <div
+          style={
+            Object {
+              "backgroundColor": "white",
+              "height": "100%",
+              "position": "absolute",
+              "textAlign": "right",
+              "top": "0",
+              "width": "80%",
+            }
+          }
+        />
+      </div>
+    </div>
+  </header>
+  <div
+    className="cardBody"
+  >
+    <h4
+      className="videoGameTitles"
+    >
+      Completed Tasks
+    </h4>
+    <ul
+      className="completed"
+    />
+    <p>
+      daniel
+       has not completed any tasks... yet!
+    </p>
+    <h4
+      className="videoGameTitles"
+    >
+      Assigned Tasks
+    </h4>
+    <ul
+      className="assigned"
+    />
+    <p>
+      daniel
+       has no tasks.
+    </p>
+  </div>
+</div>
+`;

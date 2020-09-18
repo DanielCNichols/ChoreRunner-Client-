@@ -5,7 +5,6 @@ import s from './EditTaskForm.module.css';
 
 export default function EditTaskForm({
   task: { id, title, points, household_id },
-  handleUpdateTask,
   handleToggle,
   editTask,
 }) {

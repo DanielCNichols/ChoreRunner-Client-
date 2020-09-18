@@ -2,51 +2,73 @@
 
 exports[`renders Parent Login as expected 1`] = `
 <div
-  className="parent-login container"
+  className="container"
 >
-  <h2>
-    Parent Login
-  </h2>
   <form
-    className="parent-form-container"
+    className="parentForm"
     onSubmit={[Function]}
   >
-    <div>
-      <label
-        htmlFor="username"
-      >
-        Username
-      </label>
-      <input
-        name="username"
-        onChange={[Function]}
-        required={true}
-        type="text"
-        value=""
-      />
-    </div>
-    <div>
-      <label
-        htmlFor="password"
-      >
-        Password
-      </label>
-      <input
-        name="password"
-        onChange={[Function]}
-        required={true}
-        type="password"
-        value=""
-      />
-    </div>
     <div
-      role="alert"
-    />
-    <button
-      type="submit"
+      className="demo"
     >
-      login
-    </button>
+      <h3>
+        Demo:
+      </h3>
+      <p>
+        username: margeincharge
+      </p>
+      <p>
+        password: Password123!
+      </p>
+    </div>
+    <fieldset
+      className="Fieldset"
+    >
+      <legend
+        className="Legend"
+      >
+        Parent Login
+      </legend>
+      <div
+        className="FormElement formElement"
+      >
+        <label
+          className="Label"
+          htmlFor="username"
+        >
+          Username
+        </label>
+        <input
+          className="Input"
+          name="username"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="FormElement formElement"
+      >
+        <label
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          className="Input"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="arcadeButton"
+        type="submit"
+      >
+        login
+      </button>
+    </fieldset>
   </form>
 </div>
 `;

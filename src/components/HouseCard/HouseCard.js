@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import s from './HouseCard.module.css';
 import ApiService from '../../services/api-service';
 import Modal from '../Modal/Modal';
-import AddMembers from '../AddMembers/AddMemberForm';
+import AddMembers from '../AddMemberForm/AddMemberForm';
 import { Link } from 'react-router-dom';
 import Member from '../Member/Member';
 
