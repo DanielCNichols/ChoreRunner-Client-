@@ -81,12 +81,14 @@ export default function EditMember({
       }
 
       let updatedMember = {
+        id,
+        household_id,
         name: inputs.name,
         username: inputs.username,
         password: passwordTouched ? inputs.password : password,
       };
 
-      let update = await ApiService.editMember(updatedMember, household_id, id);
+      let update = await ApiService.editMember(updatedMember);
 
       editMember(update);
       toggleEdit();

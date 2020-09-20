@@ -15,6 +15,7 @@ export default function AddTask({ members, addTask, toggleAdd, householdId }) {
     title: '',
     points: '',
     member_id: '',
+    household_id: householdId,
   });
 
   const [error, setError] = useState({
@@ -69,7 +70,7 @@ export default function AddTask({ members, addTask, toggleAdd, householdId }) {
       if (error.title || error.member || error.points) {
         return setError(error);
       } else {
-        let newTask = await ApiService.addTask(householdId, inputs);
+        let newTask = await ApiService.addTask(inputs);
 
         addTask(newTask);
         toggleAdd();

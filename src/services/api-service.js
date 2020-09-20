@@ -1,9 +1,9 @@
 import config from '../config';
 import TokenService from './token-service';
 
+//!good
 const ApiService = {
-  postHousehold(householdName) {
-    let name = householdName;
+  postHousehold(name) {
     return fetch(`${config.API_ENDPOINT}/households`, {
       method: 'POST',
       headers: {
@@ -16,18 +16,8 @@ const ApiService = {
     );
   },
 
-  deleteHousehold(id) {
-    return fetch(`${config.API_ENDPOINT}/households/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : undefined
-    );
-  },
-
+  //!good
+  //parent dash page
   getHouseholds() {
     return fetch(`${config.API_ENDPOINT}/households`, {
       headers: {
@@ -39,121 +29,18 @@ const ApiService = {
     );
   },
 
-  addMember(newMember, householdId) {
-    return fetch(`${config.API_ENDPOINT}/households/${householdId}/members`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify(newMember),
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  editMember(updatedMember, householdId, memberId) {
-    return fetch(
-      `${config.API_ENDPOINT}/households/${householdId}/members/${memberId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-        body: JSON.stringify(updatedMember),
-      }
-    ).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  deleteMember(member_id, householdId) {
-    return fetch(`${config.API_ENDPOINT}/households/${householdId}/members`, {
+  //good
+  deleteHousehold(id) {
+    return fetch(`${config.API_ENDPOINT}/households/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({ member_id: `${member_id}` }),
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : undefined
-    );
+    }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
   },
 
-  //!For the member dashboard
-  //!KEEP THIS ONE
-  getMemberStatus() {
-    return fetch(
-      `${config.API_ENDPOINT}/households/householdId/members/memberId/tasks`,
-      {
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-      }
-    ).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  //Refactor this to return all things members and their tasks.
-  getMembers(household_id) {
-    return fetch(`${config.API_ENDPOINT}/households/${household_id}/members`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  parentUpdateTaskStatus(taskId, householdId, newStatus, points, member_id) {
-    let data = { newStatus, points, member_id };
-    return fetch(
-      `${config.API_ENDPOINT}/households/${householdId}/tasks/status/${taskId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'content-type': 'application/json',
-          authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-        body: JSON.stringify(data),
-      }
-    ).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  addTask(id, newTask) {
-    return fetch(`${config.API_ENDPOINT}/households/${id}/tasks`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify(newTask),
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
-  },
-
-  completeTask(id) {
-    return fetch(
-      `${config.API_ENDPOINT}/households/householdId/members/memberId/tasks`,
-      {
-        method: 'PATCH',
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-        body: JSON.stringify({ taskId: id }),
-      }
-    ).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
-  },
-
+  //good
   editHouseholdName(id, updateHousehold) {
     return fetch(`${config.API_ENDPOINT}/households/${id}`, {
       method: 'PATCH',
@@ -167,40 +54,163 @@ const ApiService = {
     );
   },
 
-  updateTask(household_id, reqBody) {
-    return fetch(`${config.API_ENDPOINT}/households/${household_id}/tasks`, {
-      method: 'PATCH',
+  //Refactor this to return all things members and their tasks.
+  //householdPage
+  //good
+  getMembers(household_id) {
+    return fetch(`${config.API_ENDPOINT}/households/${household_id}/status`, {
+      method: 'GET',
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify(reqBody),
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
 
-  deleteTask(householdId, taskId) {
-    return fetch(
-      `${config.API_ENDPOINT}/households/${householdId}/tasks/${taskId}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'content-type': 'application/json',
-          authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-      }
+  //good
+  addMember(newMember) {
+    return fetch(`${config.API_ENDPOINT}/members`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(newMember),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
 
-  resetScores(household_id) {
-    return fetch(`${config.API_ENDPOINT}/households/household/scores`, {
+  //good
+  editMember(updatedMember) {
+    return fetch(`${config.API_ENDPOINT}/members/${updatedMember.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(updatedMember),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+
+  //good
+  deleteMember(member_id) {
+    return fetch(`${config.API_ENDPOINT}/members/${member_id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      // body: JSON.stringify({ member_id: `${member_id}` }),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : undefined
+    );
+  },
+
+  //!For the member dashboard
+  //!KEEP THIS ONE
+  //good
+  getMemberStatus(member_id) {
+    return fetch(`${config.API_ENDPOINT}/members/${member_id}/status`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+
+  //good
+  parentApproveTask(task) {
+    return fetch(`${config.API_ENDPOINT}/tasks/${task.id}/approve`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(task),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+
+  //good
+  parentRejectTask(taskId) {
+    return fetch(`${config.API_ENDPOINT}/tasks/${taskId}/reject`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      // body: JSON.stringify(task),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+
+  addTask(newTask) {
+    return fetch(`${config.API_ENDPOINT}/tasks`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(newTask),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+
+  //!Update this to access the /tasks/:taskId
+  updateTask(updated) {
+    return fetch(`${config.API_ENDPOINT}/tasks/${updated.id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({ household_id }),
+      body: JSON.stringify(updated),
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+
+  deleteTask(taskId) {
+    return fetch(`${config.API_ENDPOINT}/tasks/${taskId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    });
+  },
+
+  //good
+
+  completeTask(id) {
+    return fetch(`${config.API_ENDPOINT}/tasks/${id}/complete`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
+  },
+
+  //good
+  resetScores(household_id) {
+    return fetch(`${config.API_ENDPOINT}/households/${household_id}/scores`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      // body: JSON.stringify({ household_id }),
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );

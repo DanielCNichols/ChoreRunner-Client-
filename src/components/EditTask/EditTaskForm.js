@@ -12,6 +12,7 @@ export default function EditTaskForm({
     id: id,
     title: title,
     points: points,
+    household_id,
   });
 
   const [error, setError] = useState({
@@ -69,7 +70,7 @@ export default function EditTaskForm({
         return setError(errors);
       }
 
-      let updated = await ApiService.updateTask(household_id, inputs);
+      let updated = await ApiService.updateTask(inputs);
       editTask(updated);
       handleToggle();
     } catch (error) {

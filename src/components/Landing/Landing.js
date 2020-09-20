@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { AiFillCaretDown } from 'react-icons/ai';
 import images from '../../ImgAssets/index';
 import s from './Landing.module.css';
 
@@ -31,12 +30,7 @@ export default function LandingPage(props) {
           <div className={s.about}>
             <a href={'#about-info'}>
               How does it work?
-              <FontAwesomeIcon
-                className="down-arrow"
-                icon={faCaretDown}
-                size="5x"
-                color="white"
-              />
+              <AiFillCaretDown />
             </a>
           </div>
         </div>

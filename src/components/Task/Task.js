@@ -20,7 +20,7 @@ export default function Task({
 
   const handleDeleteTask = async () => {
     try {
-      await ApiService.deleteTask(household_id, id);
+      await ApiService.deleteTask(id);
       deleteTask(id, member_id);
     } catch (error) {
       setError(error);
@@ -37,13 +37,7 @@ export default function Task({
         total_score,
         toNextLevel,
         level_id,
-      } = await ApiService.parentUpdateTaskStatus(
-        id,
-        household_id,
-        'approved',
-        points,
-        member_id
-      );
+      } = await ApiService.parentApproveTask(task);
       approveTask(total_score, toNextLevel, level_id, id, member_id);
     } catch (error) {
       setError(error);
@@ -52,13 +46,7 @@ export default function Task({
 
   const handleRejectTask = async () => {
     try {
-      await ApiService.parentUpdateTaskStatus(
-        id,
-        household_id,
-        'assigned',
-        points,
-        member_id
-      );
+      await ApiService.parentRejectTask(id);
       rejectTask(task);
     } catch (error) {
       setError(error);
