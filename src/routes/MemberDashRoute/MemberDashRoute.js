@@ -3,6 +3,7 @@ import ApiService from '../../services/api-service.js';
 import s from './MemberDashRoute.module.css';
 import Leaderboard from '../../components/LeaderBoard/LeaderBoard';
 import PlayerStats from '../../components/PlayerStats/PlayerStats';
+import Loading from '../../components/Loading/Loading';
 
 export default function MemberDashRoute() {
   const [assignedTasks, setAssignedTasks] = useState([]);
@@ -10,6 +11,7 @@ export default function MemberDashRoute() {
   const [rankings, setRankings] = useState([]);
   const [userStats, setUserStats] = useState({});
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     ApiService.getMemberStatus()
@@ -18,8 +20,12 @@ export default function MemberDashRoute() {
         setCompletedTasks(completedTasks);
         setUserStats(userStats);
         setRankings(rankings);
+        setLoading(false);
       })
-      .catch(error => setError(error));
+      .catch(error => {
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
   function updateTasks(id) {
@@ -67,36 +73,43 @@ export default function MemberDashRoute() {
   }
 
   return (
-    <section className={s.memberDashboard}>
-      <div className={s.memberDashWrapper}>
-        <header>
-          <h2 className="videoGameTitles">{userStats.name}'s Profile</h2>
-        </header>
-        <Leaderboard rankings={rankings} />
-        <PlayerStats userStats={userStats} />
-        <div className={s.choresContainer}>
-          <h2>Chore-llenges</h2>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className={s.memberDashboard}>
+          (
+          <div className={s.memberDashWrapper}>
+            <header>
+              <h2 className="videoGameTitles">{userStats.name}'s Profile</h2>
+            </header>
+            <Leaderboard rankings={rankings} />
+            <PlayerStats userStats={userStats} />
+            <div className={s.choresContainer}>
+              <h2>Chore-llenges</h2>
 
-          {!assignedTasks.length && !completedTasks.length && (
-            <p className={s.taskAlert}>You don't have any chores to do!</p>
-          )}
-          {assignedTasks.length ? (
-            <ul>
-              {assignedTasks.map(task => {
-                return <TaskItem key={task.id} task={task} />;
-              })}
-            </ul>
-          ) : null}
+              {!assignedTasks.length && !completedTasks.length && (
+                <p className={s.taskAlert}>You don't have any chores to do!</p>
+              )}
+              {assignedTasks.length ? (
+                <ul>
+                  {assignedTasks.map(task => {
+                    return <TaskItem key={task.id} task={task} />;
+                  })}
+                </ul>
+              ) : null}
 
-          {completedTasks.length ? (
-            <ul>
-              {completedTasks.map(task => {
-                return <TaskItem key={task.id} task={task} />;
-              })}
-            </ul>
-          ) : null}
-        </div>
-      </div>
-    </section>
+              {completedTasks.length ? (
+                <ul>
+                  {completedTasks.map(task => {
+                    return <TaskItem key={task.id} task={task} />;
+                  })}
+                </ul>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }

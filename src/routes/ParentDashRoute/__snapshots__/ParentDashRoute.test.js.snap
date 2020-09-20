@@ -1,77 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ParentDashRoute component testing renders UI as expected 1`] = `
-<section
-  className="parentDashboard"
+<div
+  className="loadingContainer"
 >
-  <header>
-    <h3
-      className="videoGameTitles"
-    >
-      Your Groups
-    </h3>
-  </header>
-  <div
-    className="addControls"
-  >
-    <button
-      className="arcadeButton"
-      onClick={[Function]}
-    >
-      Add Group
-    </button>
-  </div>
-  <div
-    className="buttonMenuContainer"
-  >
-    <button
-      className="FloatingButton floatingButton"
-      onClick={[Function]}
-    >
-      <svg
-        fill="currentColor"
-        height="1em"
-        stroke="currentColor"
-        strokeWidth="0"
-        style={
-          Object {
-            "color": undefined,
-          }
-        }
-        viewBox="0 0 16 16"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clipRule="evenodd"
-          d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-          fillRule="evenodd"
-        />
-      </svg>
-    </button>
-  </div>
-  <div
-    className="formContainer"
+  <img
+    alt="megaman"
+    src="megaman.gif"
   />
-  <div
-    className="parentDashboardFeedback"
+  <p
+    className="videoGameTitles"
   >
-    <h3
-      className="videoGameTitles"
+    Loading
+    <span
+      className="period"
     >
-      Get Started!
-    </h3>
-    <ol>
-      <li>
-        1. Click the "Add" button to create groups
-      </li>
-      <li>
-        2. Add members to your groups with the "Add Member" button
-      </li>
-      <li>
-        3. Manage your group's tasks by clicking "Manage Tasks"
-      </li>
-    </ol>
-  </div>
-</section>
+      .
+    </span>
+    <span
+      className="period"
+    >
+      .
+    </span>
+    <span
+      className="period"
+    >
+      .
+    </span>
+  </p>
+</div>
 `;

@@ -1,5 +1,9 @@
 @import '../../vars.css';
 
+.error {
+  color: red;
+  margin-bottom: 5px;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -37,7 +41,7 @@
 }
 
 .memberForm label {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-family: var(--font-body);
   color: var(--color-bodyText);
 }

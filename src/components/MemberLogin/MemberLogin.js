@@ -100,9 +100,9 @@ export default function MemberLogin(props) {
 
           <FormElement className={s.formElement}>
             <label htmlFor="password">Password</label>
-            {error.username && (
+            {error.password && (
               <div role="alert" className={s.error}>
-                <span>{error.username}</span>
+                <span>{error.password}</span>
               </div>
             )}
             <Input

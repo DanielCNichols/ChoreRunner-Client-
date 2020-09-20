@@ -92,8 +92,8 @@ export default function EditMember({
 
       editMember(update);
       toggleEdit();
-    } catch (serverError) {
-      setError({ ...error, server: serverError });
+    } catch ({ error }) {
+      setError({ server: error });
     }
   }
 

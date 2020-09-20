@@ -4,6 +4,7 @@ import FloatingButton from '../../components/FloatingButton/FloatingButton';
 import AddHouseHoldForm from '../../components/AddHouseHoldForm/AddHouseHoldForm';
 import s from './ParentDashRoute.module.css';
 import Modal from '../../components/Modal/Modal';
+import Loading from '../../components/Loading/Loading';
 
 import HouseCard from '../../components/HouseCard/HouseCard';
 
@@ -12,13 +13,16 @@ export default function ParentDashRoute(props) {
   const [houseAdd, setHouseAdd] = useState(false);
   const [editHouse, setEditHouse] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     ApiService.getHouseholds()
       .then(res => {
         setHouseholds(res);
+        setLoading(false);
       })
       .catch(error => {
+        setLoading(false);
         setError(error);
       });
   }, []);
@@ -105,50 +109,56 @@ export default function ParentDashRoute(props) {
   }
 
   return (
-    <section className={s.parentDashboard}>
-      <header>
-        <h3 className="videoGameTitles">Your Groups</h3>
-      </header>
-      {/* !I think we can refactor this and just put the add member button in the card! */}
-      <div className={s.addControls}>
-        <button className="arcadeButton" onClick={() => toggleAddHouse()}>
-          Add Group
-        </button>
-      </div>
-
-      <FloatingButton
-        className={s.floatingButton}
-        onClick={() => toggleAddHouse()}
-      ></FloatingButton>
-      <div className={s.formContainer}>
-        {houseAdd && (
-          <Modal titleText="Add Group Form">
-            <AddHouseHoldForm
-              handleAdd={handleAddHousehold}
-              toggleAdd={toggleAddHouse}
-            />
-          </Modal>
-        )}
-      </div>
-      {!households.length && !houseAdd ? (
-        <UserPrompt />
+    <>
+      {loading ? (
+        <Loading />
       ) : (
-        households.map(house => {
-          return (
-            <HouseCard
-              key={house.id}
-              house={house}
-              editing={editHouse}
-              toggleEdit={toggleEditHouse}
-              handleEdit={handleEditHousehold}
-              handleEditMember={handleEditMember}
-              handleDelete={handleDeleteHousehold}
-              handleAddMembers={handleAddMembers}
-              deleteMember={deleteMember}
-            />
-          );
-        })
+        <section className={s.parentDashboard}>
+          <header>
+            <h3 className="videoGameTitles">Your Groups</h3>
+          </header>
+
+          <div className={s.addControls}>
+            <button className="arcadeButton" onClick={() => toggleAddHouse()}>
+              Add Group
+            </button>
+          </div>
+
+          <FloatingButton
+            className={s.floatingButton}
+            onClick={() => toggleAddHouse()}
+          ></FloatingButton>
+          <div className={s.formContainer}>
+            {houseAdd && (
+              <Modal titleText="Add Group Form">
+                <AddHouseHoldForm
+                  handleAdd={handleAddHousehold}
+                  toggleAdd={toggleAddHouse}
+                />
+              </Modal>
+            )}
+          </div>
+          {!households.length && !houseAdd ? (
+            <UserPrompt />
+          ) : (
+            households.map(house => {
+              return (
+                <HouseCard
+                  key={house.id}
+                  house={house}
+                  editing={editHouse}
+                  toggleEdit={toggleEditHouse}
+                  handleEdit={handleEditHousehold}
+                  handleEditMember={handleEditMember}
+                  handleDelete={handleDeleteHousehold}
+                  handleAddMembers={handleAddMembers}
+                  deleteMember={deleteMember}
+                />
+              );
+            })
+          )}
+        </section>
       )}
-    </section>
+    </>
   );
 }

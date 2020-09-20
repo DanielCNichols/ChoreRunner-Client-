@@ -13,13 +13,14 @@ import HouseholdPage from './routes/HouseholdPage/HouseholdPage';
 import MemberDashRoute from './routes/MemberDashRoute/MemberDashRoute';
 import MemberLogin from './components/MemberLogin/MemberLogin';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
+import Loading from './components/Loading/Loading';
 import './normalize.css';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <NavBar></NavBar>
+      <NavBar />
       <main>
         <Switch>
           <PublicRoute exact path={'/'} component={Landing} />

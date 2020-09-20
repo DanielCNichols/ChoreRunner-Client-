@@ -91,7 +91,7 @@ export default function AddMemberForm({
 
       handleAddMembers(added);
       toggleAddMember();
-    } catch (error) {
+    } catch ({ error }) {
       setError({ server: error });
     }
   }
@@ -162,6 +162,12 @@ export default function AddMemberForm({
             value={inputs.confirmPass}
           />
         </FormElement>
+
+        {error.server && (
+          <div role="alert" className={s.error}>
+            <span>{error.server}</span>
+          </div>
+        )}
 
         <div className={s.formButtons}>
           <button

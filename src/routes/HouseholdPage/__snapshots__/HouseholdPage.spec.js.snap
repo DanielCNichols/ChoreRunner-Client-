@@ -1,65 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HouseholdPage component testing renders UI as expected 1`] = `
-<section
-  className="householdPage"
+<div
+  className="loadingContainer"
 >
-  <h3>
-    Group Page
-  </h3>
-  <div
-    className="dashButtons"
-  >
-    <div
-      className="buttonMenuContainer"
-    >
-      <button
-        className="FloatingButton"
-        id="FloatingButton"
-        onClick={[Function]}
-      >
-        <svg
-          fill="currentColor"
-          height="1em"
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          viewBox="0 0 16 16"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clipRule="evenodd"
-            d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-            fillRule="evenodd"
-          />
-        </svg>
-      </button>
-    </div>
-    <button
-      className="arcadeButton"
-      id="addButton"
-      onClick={[Function]}
-    >
-      <p>
-        Add Task
-      </p>
-    </button>
-    <button
-      className="arcadeButton"
-      onClick={[Function]}
-    >
-      <p>
-        Reset all scores
-      </p>
-    </button>
-  </div>
-  <section
-    className="membersList"
+  <img
+    alt="megaman"
+    src="megaman.gif"
   />
-</section>
+  <p
+    className="videoGameTitles"
+  >
+    Loading
+    <span
+      className="period"
+    >
+      .
+    </span>
+    <span
+      className="period"
+    >
+      .
+    </span>
+    <span
+      className="period"
+    >
+      .
+    </span>
+  </p>
+</div>
 `;

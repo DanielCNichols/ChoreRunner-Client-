@@ -5,20 +5,24 @@ import s from './HouseholdPage.module.css';
 import Modal from '../../components/Modal/Modal';
 import AddTaskForm from '../../components/AddTaskForm/AddTaskForm';
 import FloatingButton from '../../components/FloatingButton/FloatingButton';
+import Loading from '../../components/Loading/Loading';
 
 export default function HouseHoldPage(props) {
   const [addTask, setAddTask] = useState(false);
   const [members, setMembers] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let household_id = props.match.params.id;
     ApiService.getMembers(household_id)
       .then(members => {
         setMembers(members);
+        setLoading(false);
       })
       .catch(error => {
         setError(error);
+        setLoading(false);
       });
   }, [props]);
 
@@ -156,46 +160,52 @@ export default function HouseHoldPage(props) {
   };
 
   return (
-    <section className={s.householdPage}>
-      <h3>Group Page</h3>
-      <div className={s.dashButtons}>
-        <FloatingButton id={s.FloatingButton} onClick={toggleAddTasks} />
-        <button
-          id={s.addButton}
-          onClick={toggleAddTasks}
-          className="arcadeButton"
-        >
-          <p>Add Task</p>
-        </button>
-        <button onClick={handleResetScores} className="arcadeButton">
-          <p>Reset all scores</p>
-        </button>
-      </div>
-      {addTask && (
-        <Modal titleText="Add Task Form">
-          <AddTaskForm
-            householdId={props.match.params.id}
-            members={members}
-            addTask={handleAddTask}
-            toggleAdd={toggleAddTasks}
-          />
-        </Modal>
-      )}
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className={s.householdPage}>
+          <h3>Group Page</h3>
+          <div className={s.dashButtons}>
+            <FloatingButton id={s.FloatingButton} onClick={toggleAddTasks} />
+            <button
+              id={s.addButton}
+              onClick={toggleAddTasks}
+              className="arcadeButton"
+            >
+              <p>Add Task</p>
+            </button>
+            <button onClick={handleResetScores} className="arcadeButton">
+              <p>Reset all scores</p>
+            </button>
+          </div>
+          {addTask && (
+            <Modal titleText="Add Task Form">
+              <AddTaskForm
+                householdId={props.match.params.id}
+                members={members}
+                addTask={handleAddTask}
+                toggleAdd={toggleAddTasks}
+              />
+            </Modal>
+          )}
 
-      <section className={s.membersList}>
-        {members.map(member => {
-          return (
-            <MembersCard
-              rejectTask={handleTaskRejection}
-              approveTask={handleTaskApproved}
-              deleteTask={handleDeleteTask}
-              editTask={handleEditTask}
-              key={member.id}
-              member={member}
-            />
-          );
-        })}
-      </section>
-    </section>
+          <section className={s.membersList}>
+            {members.map(member => {
+              return (
+                <MembersCard
+                  rejectTask={handleTaskRejection}
+                  approveTask={handleTaskApproved}
+                  deleteTask={handleDeleteTask}
+                  editTask={handleEditTask}
+                  key={member.id}
+                  member={member}
+                />
+              );
+            })}
+          </section>
+        </section>
+      )}
+    </>
   );
 }
