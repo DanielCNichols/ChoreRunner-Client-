@@ -7,7 +7,6 @@
   margin: 0 auto 50px auto;
 }
 
-/* !Pay attention to the positioning here. Might need to update when we get the header straightened out */
 .heroWrapper {
   composes: house from '../../index.css';
   position: relative;
@@ -56,22 +55,14 @@
   width: 300px;
   margin: 0 auto;
   align-items: center;
-
   font-family: 'Electrolize', sans-serif;
-  color: grey;
-}
-
-.about > a {
-  padding-bottom: 30px;
-  font-family: 'Fredoka One', cursive;
   color: white;
-  line-height: 0;
 }
 
 .about svg {
   display: block;
   margin: auto;
-  width: 100px;
+  font-size: 3em;
 }
 
 .onBoarding h3 {

@@ -78,8 +78,8 @@ export default function MemberLogin(props) {
       <form className={s.memberForm} onSubmit={handleLoginSubmit}>
         <div className={s.demo}>
           <h3>Demo:</h3>
-          <p>username: margeincharge</p>
-          <p>password: Password123!</p>
+          <p>username: bartman</p>
+          <p>password: bartman!</p>
         </div>
         <Fieldset>
           <Legend>Member Login</Legend>

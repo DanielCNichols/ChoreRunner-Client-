@@ -149,7 +149,7 @@ export default function AddMemberForm({
         </FormElement>
 
         <FormElement className={s.formElement}>
-          <Label htmlFor="confirmPass">Member Password</Label>
+          <Label htmlFor="confirmPass">Confirm Password</Label>
           {error.confirmPass && (
             <div role="alert" className={s.error}>
               <span>{error.confirmPass}</span>

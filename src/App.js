@@ -18,6 +18,7 @@ import './normalize.css';
 import './App.css';
 
 function App() {
+  console.log(process.env.YEET);
   return (
     <div className="App">
       <NavBar />

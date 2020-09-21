@@ -11,16 +11,20 @@ function NavBar(props) {
     props.history.push('/');
   };
 
-  function renderLogoutLink() {
-    return <p onClick={handleLogoutClick}>Logout</p>;
+  function LogoutLinks() {
+    return (
+      <p className={s.logout} onClick={handleLogoutClick}>
+        Logout
+      </p>
+    );
   }
 
-  function renderLoginLinks() {
+  function LoginLinks() {
     return (
-      <>
+      <div className={s.loginLinks}>
         <Link to="/login">Login</Link>
         <Link to="/register">Sign Up</Link>
-      </>
+      </div>
     );
   }
 
@@ -31,7 +35,7 @@ function NavBar(props) {
       </div>
 
       <div className={s.navLinks}>
-        {context.user.id ? renderLogoutLink() : renderLoginLinks()}
+        {context.user.id ? <LogoutLinks /> : <LoginLinks />}
       </div>
     </nav>
   );

@@ -28,10 +28,8 @@ export default function LandingPage(props) {
             </Link>
           </div>
           <div className={s.about}>
-            <a href={'#about-info'}>
-              How does it work?
-              <AiFillCaretDown />
-            </a>
+            How does it work?
+            <AiFillCaretDown />
           </div>
         </div>
       </div>

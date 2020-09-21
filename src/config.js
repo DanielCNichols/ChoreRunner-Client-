@@ -1,5 +1,6 @@
 export default {
-  API_ENDPOINT: process.env.API_ENDPOINT || 'http://localhost:8000/api',
-  TOKEN_KEY: process.env.TOKEN_KEY || 'chorerunner-jwt-secret',
+  API_ENDPOINT: 'http://localhost:8000/api',
+  // API_ENDPOINT: 'https://dry-falls-07924.herokuapp.com/api',
+  TOKEN_KEY: 'chore-runner-token',
   TYPE: 'type',
 };
