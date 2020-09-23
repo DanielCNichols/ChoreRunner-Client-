@@ -1,19 +1,19 @@
-# ChoreRunner 1.0
+# ChoreRunner 1.1
 
-![Add Entry page image](./wide-screenshot.png "ChoreRunner!")
+![Add Entry page image](./wide-screenshot.png 'ChoreRunner!')
 
 ## Divide and Conquer
 
 Authors: Daniel Nichols, Hubert Yang, Chitchanok Nancy Phiukhao, Yulia Khisamutdinova, Alexander Fukui
 
-* Live version: http://chorerunner-client.now.sh
-* Required API: 
-  - Live: https://enigmatic-waters-75582.herokuapp.com/
-  - Repo:  https://github.com/thinkful-ei-gecko/ChoreRunner-API
+- Live version: http://chorerunner-run.now.sh
+- Required API:
+  - Repo: https://github.com/thinkful-ei-gecko/ChoreRunner-API
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Tech stack
+
 - ReactJS
 - HTML5
 - CSS3

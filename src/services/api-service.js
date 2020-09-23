@@ -1,7 +1,6 @@
 import config from '../config';
 import TokenService from './token-service';
 
-//!good
 const ApiService = {
   postHousehold(name) {
     return fetch(`${config.API_ENDPOINT}/households`, {
@@ -16,8 +15,6 @@ const ApiService = {
     );
   },
 
-  //!good
-  //parent dash page
   getHouseholds() {
     return fetch(`${config.API_ENDPOINT}/households`, {
       headers: {
@@ -29,7 +26,6 @@ const ApiService = {
     );
   },
 
-  //good
   deleteHousehold(id) {
     return fetch(`${config.API_ENDPOINT}/households/${id}`, {
       method: 'DELETE',
@@ -40,7 +36,6 @@ const ApiService = {
     }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
   },
 
-  //good
   editHouseholdName(id, updateHousehold) {
     return fetch(`${config.API_ENDPOINT}/households/${id}`, {
       method: 'PATCH',
@@ -54,9 +49,6 @@ const ApiService = {
     );
   },
 
-  //Refactor this to return all things members and their tasks.
-  //householdPage
-  //good
   getMembers(household_id) {
     return fetch(`${config.API_ENDPOINT}/households/${household_id}/status`, {
       method: 'GET',
@@ -69,7 +61,6 @@ const ApiService = {
     );
   },
 
-  //good
   addMember(newMember) {
     return fetch(`${config.API_ENDPOINT}/members`, {
       method: 'POST',
@@ -83,7 +74,6 @@ const ApiService = {
     );
   },
 
-  //good
   editMember(updatedMember) {
     return fetch(`${config.API_ENDPOINT}/members/${updatedMember.id}`, {
       method: 'PATCH',
@@ -97,7 +87,6 @@ const ApiService = {
     );
   },
 
-  //good
   deleteMember(member_id) {
     return fetch(`${config.API_ENDPOINT}/members/${member_id}`, {
       method: 'DELETE',
@@ -105,15 +94,11 @@ const ApiService = {
         'content-type': 'application/json',
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      // body: JSON.stringify({ member_id: `${member_id}` }),
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : undefined
     );
   },
 
-  //!For the member dashboard
-  //!KEEP THIS ONE
-  //good
   getMemberStatus(member_id) {
     return fetch(`${config.API_ENDPOINT}/members/${member_id}/status`, {
       headers: {
@@ -125,7 +110,6 @@ const ApiService = {
     );
   },
 
-  //good
   parentApproveTask(task) {
     return fetch(`${config.API_ENDPOINT}/tasks/${task.id}/approve`, {
       method: 'PATCH',
@@ -139,7 +123,6 @@ const ApiService = {
     );
   },
 
-  //good
   parentRejectTask(taskId) {
     return fetch(`${config.API_ENDPOINT}/tasks/${taskId}/reject`, {
       method: 'PATCH',
@@ -147,7 +130,6 @@ const ApiService = {
         'content-type': 'application/json',
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      // body: JSON.stringify(task),
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
@@ -190,8 +172,6 @@ const ApiService = {
     });
   },
 
-  //good
-
   completeTask(id) {
     return fetch(`${config.API_ENDPOINT}/tasks/${id}/complete`, {
       method: 'PATCH',
@@ -202,7 +182,6 @@ const ApiService = {
     }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
   },
 
-  //good
   resetScores(household_id) {
     return fetch(`${config.API_ENDPOINT}/households/${household_id}/scores`, {
       method: 'PATCH',
@@ -210,7 +189,6 @@ const ApiService = {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      // body: JSON.stringify({ household_id }),
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
